@@ -9,7 +9,8 @@ import SwiftUI
 import Neumorphic
 
 struct CalculatorView: View {
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
+    @StateObject var viewModel = CalculatorViewModel()
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -17,14 +18,31 @@ struct CalculatorView: View {
             
             VStack(spacing: 0) {
                 
-                HeaderWorkingWindows()
+                HeaderWorkingWindows(viewModel: viewModel)
                 
-//                BodyCalculatorWorking()
-                
+                VStack(alignment: .leading) {
+                    Button(action: {}) {
+                        Image("loudspeaker")
+                            .resizable()
+                            .renderingMode(.template)
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(Color.white)
+                            .frame(width: 24, height: 24)
+                    }
+                    .padding(UIScreen.unit(5))
+                    
+                    Text(viewModel.displayResult.spellOut().capitalizingFirstLetter())
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(.top, UIScreen.unit(10))
+                .frame(width: UIScreen.width - UIScreen.unit(40), alignment: .leading)
+
                 Spacer()
+
+                BodyCalculatorWorking(viewModel: viewModel)
+                
                 
                 VStack(alignment: .center, spacing: UIScreen.unit(20)) {
-                    //roleBackButton
                     
                     row0
                     
@@ -36,7 +54,7 @@ struct CalculatorView: View {
                     
                     row4
                 }
-                .padding(.bottom, UIScreen.unit(20))
+                .padding(.bottom, UIScreen.unit(10))
             }
         }
     }
@@ -71,7 +89,13 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorIconButton("letter_ac_icon") {
-                
+                viewModel.resetAll()
+            }
+            
+            Spacer()
+            
+            CalculatorIconButton("letter_c_icon") {
+                self.viewModel.backTap()
             }
             
             Spacer()
@@ -83,13 +107,7 @@ struct CalculatorView: View {
             Spacer()
             
             SpecialButton("percent") {
-                
-            }
-            
-            Spacer()
-            
-            SpecialButton("divide") {
-                
+                self.viewModel.percentTap()
             }
             
             Spacer()
@@ -102,28 +120,28 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorNumberButton("1") {
-                
+                self.viewModel.oneTap()
             }
             
             Spacer()
             
             CalculatorNumberButton("2") {
-                
+                self.viewModel.twoTap()
             }
             
             Spacer()
             
             CalculatorNumberButton("3") {
-                
+                self.viewModel.threeTap()
             }
             
             Spacer()
             
             
-            
-            SpecialButton("crossed") {
-                
+            SpecialButton("divide") {
+                self.viewModel.devideTap()
             }
+            .disabled(self.viewModel.specialSelection == .devide ? true : false)
             
             Spacer()
             
@@ -135,26 +153,27 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorNumberButton("4") {
-                
+                self.viewModel.fourTap()
             }
             
             Spacer()
             
             CalculatorNumberButton("5") {
-                
+                self.viewModel.fiveTap()
             }
             
             Spacer()
             
             CalculatorNumberButton("6") {
-                
+                self.viewModel.sixTap()
             }
             
             Spacer()
             
-            SpecialButton("minus") {
-                
+            SpecialButton("crossed") {
+                self.viewModel.timesTap()
             }
+            .disabled(self.viewModel.specialSelection == .times ? true : false)
             
             Spacer()
             
@@ -166,26 +185,27 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorNumberButton("7") {
-                
+                self.viewModel.sevenTap()
             }
             
             Spacer()
             
             CalculatorNumberButton("8") {
-                
+                self.viewModel.eightTap()
             }
             
             Spacer()
             
             CalculatorNumberButton("9") {
-                
+                self.viewModel.nineTap()
             }
             
             Spacer()
             
-            SpecialButton("add") {
-                
+            SpecialButton("minus") {
+                self.viewModel.minusTap()
             }
+            .disabled(self.viewModel.specialSelection == .minus ? true : false)
             
             Spacer()
         }
@@ -195,27 +215,28 @@ struct CalculatorView: View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorNumberButton("?") {
-                
-            }
-            
-            Spacer()
-            
             CalculatorNumberButton("0") {
-                
+                self.viewModel.zeroTap()
             }
             
             Spacer()
             
             CalculatorNumberButton(".") {
-                
+                self.viewModel.decimalTap()
             }
             
             Spacer()
             
             SpecialButton("equal") {
-                
+                self.viewModel.equalsTap()
             }
+            
+            Spacer()
+            
+            SpecialButton("add") {
+                self.viewModel.plusTap()
+            }
+            .disabled(self.viewModel.specialSelection == .plus ? true : false)
             
             Spacer()
         }
@@ -227,7 +248,7 @@ struct CalculatorView_Previews: PreviewProvider {
         CalculatorView()
             .colorScheme(.dark)
         
-        CalculatorView()
-            .colorScheme(.light)
+//        CalculatorView()
+//            .colorScheme(.light)
     }
 }

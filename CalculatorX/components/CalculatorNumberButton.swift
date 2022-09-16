@@ -18,8 +18,8 @@ struct CalculatorNumberButton: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let width: CGFloat = UIScreen.unit((UIScreen.width / 3) - 65)
-        let height: CGFloat = width * 0.65
+        let width: CGFloat = UIScreen.unit((UIScreen.width / 3) - 70)
+        let height: CGFloat = width * 0.70
         let radius: CGFloat = UIScreen.unit(16)
         let fontSize: CGFloat = UIScreen.unit(32)
         

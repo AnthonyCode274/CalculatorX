@@ -18,8 +18,8 @@ struct SpecialButton: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let width: CGFloat = UIScreen.unit((UIScreen.width / 3) - 65)
-        let height: CGFloat = width * 0.65
+        let width: CGFloat = UIScreen.unit((UIScreen.width / 3) - 70)
+        let height: CGFloat = width * 0.70
         let radius: CGFloat = UIScreen.unit(16)
         
         Button(action: action) {
@@ -33,7 +33,7 @@ struct SpecialButton: View {
                         .renderingMode(.template)
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(Color.white)
-                        .frame(width: width / 4, height: width / 4, alignment: .center)
+                        .frame(width: width / 3.5, height: width / 3.5, alignment: .center)
                 )
         }
     }

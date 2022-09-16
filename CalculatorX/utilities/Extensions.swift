@@ -9,7 +9,19 @@ import Foundation
 import UIKit
 import SwiftUI
 
+
 extension UIScreen {
+    public static var edges: UIEdgeInsets? {
+        let keyWindow = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .map({$0 as? UIWindowScene})
+            .compactMap({$0})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first
+        
+        return keyWindow?.safeAreaInsets
+    }
+    
     public static var width: CGFloat {
         return UIScreen.main.bounds.width
     }
@@ -56,5 +68,31 @@ extension String {
         let number = NSNumber(value: doubleValue)
         let formattedValue = formatter.string(from: number)!
         return String(formattedValue)
+    }
+    
+    func spellOut() -> String {
+        let number = (self as NSString).intValue
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .spellOut
+        formatter.locale = Locale(identifier: "vi_VN")
+        let numberAsWord = formatter.string(from: NSNumber(value: number))
+        return String(numberAsWord ?? "")
+    }
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}
+
+
+extension AnyView{
+    static func + (left: AnyView, right: AnyView) -> AnyView{
+        return AnyView(HStack{left.fixedSize(horizontal: true, vertical: false)
+            right.fixedSize(horizontal: true, vertical: false)})
     }
 }

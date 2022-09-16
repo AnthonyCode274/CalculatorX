@@ -18,8 +18,8 @@ struct CalculatorIconButton: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let width: CGFloat = UIScreen.unit((UIScreen.width / 3) - 60)
-        let height: CGFloat = width * 0.60
+        let width: CGFloat = UIScreen.unit((UIScreen.width / 3) - 70)
+        let height: CGFloat = width * 0.70
         let radius: CGFloat = UIScreen.unit(16)
         
         Button(action: action) {
@@ -35,7 +35,7 @@ struct CalculatorIconButton: View {
                         .foregroundColor(
                             colorScheme == .dark ? Color.white : Color.black
                         )
-                        .frame(width: width / 3, height: width / 3, alignment: .center)
+                        .frame(width: width / 2, height: width / 2, alignment: .center)
                 )
         }
     }

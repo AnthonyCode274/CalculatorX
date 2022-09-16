@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B201119828D3167400E21359 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = B201119728D3167400E21359 /* Neumorphic */; };
 		B20A1FD628C9AC2C00D27DE8 /* MTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A1FD528C9AC2C00D27DE8 /* MTUtils.swift */; };
-		B28343B828D0E4AD00DFEAE4 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = B28343B728D0E4AD00DFEAE4 /* Neumorphic */; };
+		B24FCE8A28D2C62E00CC2D14 /* FunctionMoreImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FCE8928D2C62E00CC2D14 /* FunctionMoreImageButton.swift */; };
+		B2552D1228D3100000BE24CE /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2552D1128D3100000BE24CE /* ExpandableText.swift */; };
+		B272A69F28D31DB4003A15A5 /* Kameron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B272A69D28D31DB4003A15A5 /* Kameron-Regular.ttf */; };
+		B272A6A028D31DB4003A15A5 /* Kameron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B272A69E28D31DB4003A15A5 /* Kameron-Bold.ttf */; };
+		B272A6A228D32921003A15A5 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */; };
 		B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */; };
 		B28343BC28D0EDF600DFEAE4 /* CalculatorNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28343BB28D0EDF600DFEAE4 /* CalculatorNumberButton.swift */; };
 		B28DE0CB28C401A20076DBDA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28DE0CA28C401A20076DBDA /* Extensions.swift */; };
@@ -34,6 +39,11 @@
 
 /* Begin PBXFileReference section */
 		B20A1FD528C9AC2C00D27DE8 /* MTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUtils.swift; sourceTree = "<group>"; };
+		B24FCE8928D2C62E00CC2D14 /* FunctionMoreImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMoreImageButton.swift; sourceTree = "<group>"; };
+		B2552D1128D3100000BE24CE /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
+		B272A69D28D31DB4003A15A5 /* Kameron-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kameron-Regular.ttf"; path = "../../../../Downloads/Kameron/Kameron-Regular.ttf"; sourceTree = "<group>"; };
+		B272A69E28D31DB4003A15A5 /* Kameron-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kameron-Bold.ttf"; path = "../../../../Downloads/Kameron/Kameron-Bold.ttf"; sourceTree = "<group>"; };
+		B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		B28343BB28D0EDF600DFEAE4 /* CalculatorNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorNumberButton.swift; sourceTree = "<group>"; };
 		B28DE0CA28C401A20076DBDA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -64,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B28343B828D0E4AD00DFEAE4 /* Neumorphic in Frameworks */,
+				B201119828D3167400E21359 /* Neumorphic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +84,8 @@
 		B2CCC4D128D17F390008AEC1 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B272A69E28D31DB4003A15A5 /* Kameron-Bold.ttf */,
+				B272A69D28D31DB4003A15A5 /* Kameron-Regular.ttf */,
 				B2CCC4DD28D1882D0008AEC1 /* Gajkley.otf */,
 				B2CCC4D228D17F7C0008AEC1 /* AltoneTrial-Bold.ttf */,
 				B2CCC4D528D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf */,
@@ -127,14 +139,11 @@
 			isa = PBXGroup;
 			children = (
 				B2F7632028C0FC570084662D /* MainScreen.swift */,
-				B2F7632228C1002A0084662D /* ButtonView.swift */,
-				B28DE0CE28C405DE0076DBDA /* ZeroButton.swift */,
 				B28F8F7028C4A69700845A88 /* ViewModel.swift */,
 				B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */,
 				B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */,
 				B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */,
-				B2CCC4E128D18BFA0008AEC1 /* TextBody.swift */,
-				B2CCC4E328D1CCF50008AEC1 /* SpecialButton.swift */,
+				B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -151,8 +160,14 @@
 		B2FEF14528CDDBED00046C20 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				B28DE0CE28C405DE0076DBDA /* ZeroButton.swift */,
 				B28343BB28D0EDF600DFEAE4 /* CalculatorNumberButton.swift */,
+				B2F7632228C1002A0084662D /* ButtonView.swift */,
+				B2CCC4E328D1CCF50008AEC1 /* SpecialButton.swift */,
+				B2CCC4E128D18BFA0008AEC1 /* TextBody.swift */,
 				B2CCC4CD28D1682A0008AEC1 /* CalculatorIconButton.swift */,
+				B24FCE8928D2C62E00CC2D14 /* FunctionMoreImageButton.swift */,
+				B2552D1128D3100000BE24CE /* ExpandableText.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -174,7 +189,7 @@
 			);
 			name = CalculatorX;
 			packageProductDependencies = (
-				B28343B728D0E4AD00DFEAE4 /* Neumorphic */,
+				B201119728D3167400E21359 /* Neumorphic */,
 			);
 			productName = CalculatorX;
 			productReference = B2F7630E28C0FA2C0084662D /* CalculatorX.app */;
@@ -205,7 +220,7 @@
 			);
 			mainGroup = B2F7630528C0FA2B0084662D;
 			packageReferences = (
-				B28343B628D0E4AD00DFEAE4 /* XCRemoteSwiftPackageReference "neumorphic" */,
+				B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */,
 			);
 			productRefGroup = B2F7630F28C0FA2C0084662D /* Products */;
 			projectDirPath = "";
@@ -224,7 +239,9 @@
 				B2CCC4DE28D1882D0008AEC1 /* Gajkley.otf in Resources */,
 				B2CCC4D628D17F7C0008AEC1 /* AltoneTrial-Bold.ttf in Resources */,
 				B2CCC4D728D17F7C0008AEC1 /* AltoneTrial-Regular.ttf in Resources */,
+				B272A69F28D31DB4003A15A5 /* Kameron-Regular.ttf in Resources */,
 				B2F7631928C0FA2E0084662D /* Preview Assets.xcassets in Resources */,
+				B272A6A028D31DB4003A15A5 /* Kameron-Bold.ttf in Resources */,
 				B2CCC4D928D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf in Resources */,
 				B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */,
 				B2CCC4D828D17F7C0008AEC1 /* AltoneTrial-RegularOblique.ttf in Resources */,
@@ -244,8 +261,11 @@
 				B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */,
 				B20A1FD628C9AC2C00D27DE8 /* MTUtils.swift in Sources */,
 				B2F7631428C0FA2C0084662D /* ContentView.swift in Sources */,
+				B2552D1228D3100000BE24CE /* ExpandableText.swift in Sources */,
 				B2CCC4E228D18BFA0008AEC1 /* TextBody.swift in Sources */,
 				B28DE0CF28C405DE0076DBDA /* ZeroButton.swift in Sources */,
+				B24FCE8A28D2C62E00CC2D14 /* FunctionMoreImageButton.swift in Sources */,
+				B272A6A228D32921003A15A5 /* CalculatorViewModel.swift in Sources */,
 				B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */,
 				B2F7631228C0FA2C0084662D /* CalculatorXApp.swift in Sources */,
 				B28343BC28D0EDF600DFEAE4 /* CalculatorNumberButton.swift in Sources */,
@@ -457,7 +477,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B28343B628D0E4AD00DFEAE4 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+		B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/costachung/neumorphic/";
 			requirement = {
@@ -468,9 +488,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B28343B728D0E4AD00DFEAE4 /* Neumorphic */ = {
+		B201119728D3167400E21359 /* Neumorphic */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B28343B628D0E4AD00DFEAE4 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			package = B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */;
 			productName = Neumorphic;
 		};
 /* End XCSwiftPackageProductDependency section */
