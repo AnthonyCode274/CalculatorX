@@ -2,13 +2,13 @@
 //  FunctionMoreButton.swift
 //  CalculatorX
 //
-//  Created by Hau Nguyen on 15/09/2022.
+//  Created by Hau Nguyen on 18/09/2022.
 //
 
 import SwiftUI
 import Neumorphic
 
-struct FunctionMoreImageButton: View {
+struct FunctionMoreButton: View {
     init(_ name: String,_ action: @escaping () -> Void) {
         self.name = name
         self.action = action
@@ -18,8 +18,8 @@ struct FunctionMoreImageButton: View {
     let action: () -> Void
     
     var body: some View {
-        let width: CGFloat = UIScreen.unit(30)
-        let radius: CGFloat = UIScreen.unit(6)
+        let width: CGFloat = UIScreen.getUnit(35)
+        let radius: CGFloat = UIScreen.getUnit(6)
         
         Button(action: action) {
             Image(name)
@@ -37,7 +37,7 @@ struct FunctionMoreImageButton: View {
     }
 }
 
-struct FunctionMoreImageButton_Previews: PreviewProvider {
+struct FunctionMoreButton_Previews: PreviewProvider {
     static var previews: some View {
         CalculatorView()
             .colorScheme(.dark)

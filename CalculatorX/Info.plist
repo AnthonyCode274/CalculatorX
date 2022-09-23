@@ -4,13 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Kameron-Bold.ttf</string>
-		<string>Kameron-Regular.ttf</string>
-		<string>Gajkley.otf</string>
-		<string>AltoneTrial-Bold.ttf</string>
-		<string>AltoneTrial-BoldOblique.ttf</string>
-		<string>AltoneTrial-Regular.ttf</string>
 		<string>AltoneTrial-RegularOblique.ttf</string>
+		<string>AltoneTrial-BoldOblique.ttf</string>
+		<string>Gajkley.otf</string>
 	</array>
 </dict>
 </plist>

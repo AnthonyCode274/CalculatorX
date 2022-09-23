@@ -10,6 +10,16 @@ import UIKit
 import SwiftUI
 
 
+extension Double {
+    var clean: String {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+    
+    func truncate(places: Int) -> Double {
+        return Double(floor(pow(10.0, Double(places)) * self) / pow(10.0, Double(places)))
+    }
+}
+
 extension UIScreen {
     public static var edges: UIEdgeInsets? {
         let keyWindow = UIApplication.shared.connectedScenes
@@ -30,12 +40,37 @@ extension UIScreen {
         return UIScreen.main.bounds.height
     }
     
-    public static func unit(_ number: CGFloat) -> CGFloat {
+    public static func getUnit(_ number: CGFloat) -> CGFloat {
         return (number * UIScreen.width) / 360
     }
 }
 
 extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+        
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue:  Double(b) / 255,
+            opacity: Double(a) / 255
+        )
+    }
+    
     public static var GrayLight: Color {
         return Color(UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0))
     }
@@ -49,7 +84,11 @@ extension Color {
     }
     
     public static var OgranLight: Color {
-        return Color(UIColor(red: 255/255, green: 140/255, blue: 0/255, alpha: 1.0))
+        return Color(hex: "#FF8C00")
+    }
+    
+    public static var OgranDark: Color {
+        return Color(hex: "#9A5500")
     }
 }
 
@@ -64,7 +103,7 @@ extension String {
         let doubleValue = (self as NSString).doubleValue
         
         print("doubleValue: \(doubleValue)")
-
+        
         let number = NSNumber(value: doubleValue)
         let formattedValue = formatter.string(from: number)!
         return String(formattedValue)
@@ -86,6 +125,19 @@ extension String {
     
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
+    }
+    
+    func convertFromDoubleToCleanString() -> String? {
+        
+        if self.last == "." {
+            return self
+        }
+        
+        if let double = Double(self) {
+            return double.truncate(places: 4).clean
+        } else {
+            return nil
+        }
     }
 }
 

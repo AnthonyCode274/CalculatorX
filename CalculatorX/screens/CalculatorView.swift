@@ -20,53 +20,36 @@ struct CalculatorView: View {
                 
                 HeaderWorkingWindows(viewModel: viewModel)
                 
-                VStack(alignment: .leading) {
-                    Button(action: {}) {
-                        Image("loudspeaker")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(Color.white)
-                            .frame(width: 24, height: 24)
-                    }
-                    .padding(UIScreen.unit(5))
-                    
-                    Text(viewModel.displayResult.spellOut().capitalizingFirstLetter())
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .padding(.top, UIScreen.unit(10))
-                .frame(width: UIScreen.width - UIScreen.unit(40), alignment: .leading)
-
-                Spacer()
-
                 BodyCalculatorWorking(viewModel: viewModel)
                 
+                Spacer()
                 
-                VStack(alignment: .center, spacing: UIScreen.unit(20)) {
+                VStack(alignment: .center, spacing: UIScreen.getUnit(20)) {
                     
                     row0
                     
                     row1
-                    
+                     
                     row2
                     
                     row3
                     
                     row4
                 }
-                .padding(.bottom, UIScreen.unit(10))
             }
+            .padding(.vertical, UIScreen.getUnit(20))
         }
+        .frame(maxWidth: UIScreen.width)
     }
     
     var roleBackButton: some View {
         Button(action: {
         
         }) {
-            RoundedRectangle(cornerRadius: UIScreen.unit(14))
+            RoundedRectangle(cornerRadius: UIScreen.getUnit(14))
                 .fill(Color.Neumorphic.main)
-                .frame(width: UIScreen.unit(60),
-                       height: UIScreen.unit(40), alignment: .center)
+                .frame(width: UIScreen.getUnit(60),
+                       height: UIScreen.getUnit(40), alignment: .center)
                 .softOuterShadow()
                 .overlay(
                     Image("delete_icon")
@@ -76,38 +59,38 @@ struct CalculatorView: View {
                         .foregroundColor(
                             colorScheme == .dark ? Color.white : Color.black
                         )
-                        .frame(width: UIScreen.unit(30),
-                               height: UIScreen.unit(30), alignment: .center)
+                        .frame(width: UIScreen.getUnit(30),
+                               height: UIScreen.getUnit(30), alignment: .center)
                 )
         }
     }
     
-    let paddingH: CGFloat = UIScreen.unit(20)
+    let paddingH: CGFloat = UIScreen.getUnit(20)
     
     var row0: some View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorIconButton("letter_ac_icon") {
-                viewModel.resetAll()
-            }
-            
-            Spacer()
-            
-            CalculatorIconButton("letter_c_icon") {
-                self.viewModel.backTap()
-            }
-            
-            Spacer()
-            
-            SpecialButton("plus_and_minus") {
+            CalculatorButtonImage("letter_ac_icon", backgroundColor: Color.OgranLight) {
                 
             }
             
             Spacer()
             
-            SpecialButton("percent") {
-                self.viewModel.percentTap()
+            CalculatorButtonImage("letter_c_icon", backgroundColor: Color.OgranLight) {
+                
+            }
+            
+            Spacer()
+            
+            CalculatorButtonImage("plus_and_minus", backgroundColor: Color.OgranLight) {
+                
+            }
+            
+            Spacer()
+            
+            CalculatorButtonImage("percent", backgroundColor: Color.OgranLight) {
+                
             }
             
             Spacer()
@@ -119,29 +102,28 @@ struct CalculatorView: View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorNumberButton("1") {
-                self.viewModel.oneTap()
+            CalculatorButtonText("1") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton("2") {
-                self.viewModel.twoTap()
+            CalculatorButtonText("2") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton("3") {
-                self.viewModel.threeTap()
+            CalculatorButtonText("3") {
+                
             }
             
             Spacer()
             
             
-            SpecialButton("divide") {
-                self.viewModel.devideTap()
+            CalculatorButtonImage("divide", backgroundColor: Color.OgranLight) {
+                
             }
-            .disabled(self.viewModel.specialSelection == .devide ? true : false)
             
             Spacer()
             
@@ -152,28 +134,27 @@ struct CalculatorView: View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorNumberButton("4") {
-                self.viewModel.fourTap()
+            CalculatorButtonText("4") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton("5") {
-                self.viewModel.fiveTap()
+            CalculatorButtonText("5") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton("6") {
-                self.viewModel.sixTap()
+            CalculatorButtonText("6") {
+                
             }
             
             Spacer()
             
-            SpecialButton("crossed") {
-                self.viewModel.timesTap()
+            CalculatorButtonImage("crossed", backgroundColor: Color.OgranLight) {
+                
             }
-            .disabled(self.viewModel.specialSelection == .times ? true : false)
             
             Spacer()
             
@@ -184,28 +165,27 @@ struct CalculatorView: View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorNumberButton("7") {
-                self.viewModel.sevenTap()
+            CalculatorButtonText("7") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton("8") {
-                self.viewModel.eightTap()
+            CalculatorButtonText("8") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton("9") {
-                self.viewModel.nineTap()
+            CalculatorButtonText("9") {
+                
             }
             
             Spacer()
             
-            SpecialButton("minus") {
-                self.viewModel.minusTap()
+            CalculatorButtonImage("minus", backgroundColor: Color.OgranLight) {
+                
             }
-            .disabled(self.viewModel.specialSelection == .minus ? true : false)
             
             Spacer()
         }
@@ -215,28 +195,27 @@ struct CalculatorView: View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorNumberButton("0") {
-                self.viewModel.zeroTap()
+            CalculatorButtonText("0") {
+                
             }
             
             Spacer()
             
-            CalculatorNumberButton(".") {
-                self.viewModel.decimalTap()
+            CalculatorButtonText(".") {
+                
             }
             
             Spacer()
             
-            SpecialButton("equal") {
-                self.viewModel.equalsTap()
+            CalculatorButtonImage("equal", backgroundColor: Color.OgranLight) {
+                
             }
             
             Spacer()
             
-            SpecialButton("add") {
-                self.viewModel.plusTap()
+            CalculatorButtonImage("add", backgroundColor: Color.OgranLight) {
+                
             }
-            .disabled(self.viewModel.specialSelection == .plus ? true : false)
             
             Spacer()
         }
@@ -248,7 +227,7 @@ struct CalculatorView_Previews: PreviewProvider {
         CalculatorView()
             .colorScheme(.dark)
         
-//        CalculatorView()
-//            .colorScheme(.light)
+        CalculatorView()
+            .colorScheme(.light)
     }
 }

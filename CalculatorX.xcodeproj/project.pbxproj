@@ -9,64 +9,50 @@
 /* Begin PBXBuildFile section */
 		B201119828D3167400E21359 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = B201119728D3167400E21359 /* Neumorphic */; };
 		B20A1FD628C9AC2C00D27DE8 /* MTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A1FD528C9AC2C00D27DE8 /* MTUtils.swift */; };
-		B24FCE8A28D2C62E00CC2D14 /* FunctionMoreImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FCE8928D2C62E00CC2D14 /* FunctionMoreImageButton.swift */; };
-		B2552D1228D3100000BE24CE /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2552D1128D3100000BE24CE /* ExpandableText.swift */; };
-		B272A69F28D31DB4003A15A5 /* Kameron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B272A69D28D31DB4003A15A5 /* Kameron-Regular.ttf */; };
-		B272A6A028D31DB4003A15A5 /* Kameron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B272A69E28D31DB4003A15A5 /* Kameron-Bold.ttf */; };
+		B228059628DB187F00367CD2 /* Gajkley.otf in Resources */ = {isa = PBXBuildFile; fileRef = B228059528DB187F00367CD2 /* Gajkley.otf */; };
+		B24D87DF28D48BE0006A8F1E /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87DE28D48BE0006A8F1E /* CalculatorButton.swift */; };
+		B24D87E128D48D7D006A8F1E /* CalculatorButtonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87E028D48D7D006A8F1E /* CalculatorButtonImage.swift */; };
+		B24D87E328D5B3A3006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */; };
 		B272A6A228D32921003A15A5 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */; };
 		B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */; };
-		B28343BC28D0EDF600DFEAE4 /* CalculatorNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28343BB28D0EDF600DFEAE4 /* CalculatorNumberButton.swift */; };
+		B2868D2228DC1B480001D689 /* AltoneTrial-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */; };
+		B2868D2428DC1C670001D689 /* AltoneTrial-RegularOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */; };
 		B28DE0CB28C401A20076DBDA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28DE0CA28C401A20076DBDA /* Extensions.swift */; };
-		B28DE0CF28C405DE0076DBDA /* ZeroButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28DE0CE28C405DE0076DBDA /* ZeroButton.swift */; };
-		B28F8F7128C4A69700845A88 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28F8F7028C4A69700845A88 /* ViewModel.swift */; };
-		B2CCC4CE28D1682A0008AEC1 /* CalculatorIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4CD28D1682A0008AEC1 /* CalculatorIconButton.swift */; };
+		B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */ = {isa = PBXBuildFile; fileRef = B29C0B1728D9A235000C3776 /* locale_identifiers.json */; };
+		B29C0B1B28D9A432000C3776 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C0B1A28D9A432000C3776 /* Language.swift */; };
+		B29D456828DAB70400FCB037 /* FuncitonMoreText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29D456728DAB70400FCB037 /* FuncitonMoreText.swift */; };
 		B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */; };
-		B2CCC4D628D17F7C0008AEC1 /* AltoneTrial-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2CCC4D228D17F7C0008AEC1 /* AltoneTrial-Bold.ttf */; };
-		B2CCC4D728D17F7C0008AEC1 /* AltoneTrial-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2CCC4D328D17F7C0008AEC1 /* AltoneTrial-Regular.ttf */; };
-		B2CCC4D828D17F7C0008AEC1 /* AltoneTrial-RegularOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2CCC4D428D17F7C0008AEC1 /* AltoneTrial-RegularOblique.ttf */; };
-		B2CCC4D928D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2CCC4D528D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf */; };
-		B2CCC4DE28D1882D0008AEC1 /* Gajkley.otf in Resources */ = {isa = PBXBuildFile; fileRef = B2CCC4DD28D1882D0008AEC1 /* Gajkley.otf */; };
 		B2CCC4E028D18B160008AEC1 /* BodyCalculatorWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */; };
-		B2CCC4E228D18BFA0008AEC1 /* TextBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4E128D18BFA0008AEC1 /* TextBody.swift */; };
-		B2CCC4E428D1CCF50008AEC1 /* SpecialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4E328D1CCF50008AEC1 /* SpecialButton.swift */; };
+		B2DE982828D73260008D016A /* FunctionMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DE982728D73260008D016A /* FunctionMoreButton.swift */; };
 		B2F7631228C0FA2C0084662D /* CalculatorXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7631128C0FA2C0084662D /* CalculatorXApp.swift */; };
 		B2F7631428C0FA2C0084662D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7631328C0FA2C0084662D /* ContentView.swift */; };
 		B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F7631528C0FA2E0084662D /* Assets.xcassets */; };
 		B2F7631928C0FA2E0084662D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F7631828C0FA2E0084662D /* Preview Assets.xcassets */; };
-		B2F7632128C0FC570084662D /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7632028C0FC570084662D /* MainScreen.swift */; };
-		B2F7632328C1002A0084662D /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7632228C1002A0084662D /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B20A1FD528C9AC2C00D27DE8 /* MTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUtils.swift; sourceTree = "<group>"; };
-		B24FCE8928D2C62E00CC2D14 /* FunctionMoreImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMoreImageButton.swift; sourceTree = "<group>"; };
-		B2552D1128D3100000BE24CE /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
-		B272A69D28D31DB4003A15A5 /* Kameron-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kameron-Regular.ttf"; path = "../../../../Downloads/Kameron/Kameron-Regular.ttf"; sourceTree = "<group>"; };
-		B272A69E28D31DB4003A15A5 /* Kameron-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kameron-Bold.ttf"; path = "../../../../Downloads/Kameron/Kameron-Bold.ttf"; sourceTree = "<group>"; };
+		B228059528DB187F00367CD2 /* Gajkley.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gajkley.otf; sourceTree = "<group>"; };
+		B24D87DE28D48BE0006A8F1E /* CalculatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
+		B24D87E028D48D7D006A8F1E /* CalculatorButtonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonImage.swift; sourceTree = "<group>"; };
+		B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
 		B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
-		B28343BB28D0EDF600DFEAE4 /* CalculatorNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorNumberButton.swift; sourceTree = "<group>"; };
+		B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-BoldOblique.ttf"; sourceTree = "<group>"; };
+		B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-RegularOblique.ttf"; sourceTree = "<group>"; };
 		B28DE0CA28C401A20076DBDA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		B28DE0CE28C405DE0076DBDA /* ZeroButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroButton.swift; sourceTree = "<group>"; };
-		B28F8F7028C4A69700845A88 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		B2CCC4CD28D1682A0008AEC1 /* CalculatorIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorIconButton.swift; sourceTree = "<group>"; };
+		B29C0B1728D9A235000C3776 /* locale_identifiers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = locale_identifiers.json; sourceTree = "<group>"; };
+		B29C0B1A28D9A432000C3776 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		B29D456728DAB70400FCB037 /* FuncitonMoreText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncitonMoreText.swift; sourceTree = "<group>"; };
 		B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkingWindows.swift; sourceTree = "<group>"; };
-		B2CCC4D228D17F7C0008AEC1 /* AltoneTrial-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AltoneTrial-Bold.ttf"; path = "../../../../Downloads/Altone Trial/OpenType-TT/AltoneTrial-Bold.ttf"; sourceTree = "<group>"; };
-		B2CCC4D328D17F7C0008AEC1 /* AltoneTrial-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AltoneTrial-Regular.ttf"; path = "../../../../Downloads/Altone Trial/OpenType-TT/AltoneTrial-Regular.ttf"; sourceTree = "<group>"; };
-		B2CCC4D428D17F7C0008AEC1 /* AltoneTrial-RegularOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AltoneTrial-RegularOblique.ttf"; path = "../../../../Downloads/Altone Trial/OpenType-TT/AltoneTrial-RegularOblique.ttf"; sourceTree = "<group>"; };
-		B2CCC4D528D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AltoneTrial-BoldOblique.ttf"; path = "../../../../Downloads/Altone Trial/OpenType-TT/AltoneTrial-BoldOblique.ttf"; sourceTree = "<group>"; };
 		B2CCC4DA28D17FF90008AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B2CCC4DD28D1882D0008AEC1 /* Gajkley.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Gajkley.otf; path = ../../../../Downloads/Gajkley.otf; sourceTree = "<group>"; };
 		B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCalculatorWorking.swift; sourceTree = "<group>"; };
-		B2CCC4E128D18BFA0008AEC1 /* TextBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBody.swift; sourceTree = "<group>"; };
-		B2CCC4E328D1CCF50008AEC1 /* SpecialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialButton.swift; sourceTree = "<group>"; };
+		B2DE982728D73260008D016A /* FunctionMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMoreButton.swift; sourceTree = "<group>"; };
 		B2F7630E28C0FA2C0084662D /* CalculatorX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalculatorX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F7631128C0FA2C0084662D /* CalculatorXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorXApp.swift; sourceTree = "<group>"; };
 		B2F7631328C0FA2C0084662D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2F7631528C0FA2E0084662D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2F7631828C0FA2E0084662D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B2F7632028C0FC570084662D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
-		B2F7632228C1002A0084662D /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,16 +67,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B29C0B1628D9A1F1000C3776 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				B29C0B1728D9A235000C3776 /* locale_identifiers.json */,
+			);
+			path = helper;
+			sourceTree = "<group>";
+		};
+		B29C0B1928D9A417000C3776 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B29C0B1A28D9A432000C3776 /* Language.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		B2CCC4D128D17F390008AEC1 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B272A69E28D31DB4003A15A5 /* Kameron-Bold.ttf */,
-				B272A69D28D31DB4003A15A5 /* Kameron-Regular.ttf */,
-				B2CCC4DD28D1882D0008AEC1 /* Gajkley.otf */,
-				B2CCC4D228D17F7C0008AEC1 /* AltoneTrial-Bold.ttf */,
-				B2CCC4D528D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf */,
-				B2CCC4D328D17F7C0008AEC1 /* AltoneTrial-Regular.ttf */,
-				B2CCC4D428D17F7C0008AEC1 /* AltoneTrial-RegularOblique.ttf */,
+				B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */,
+				B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */,
+				B228059528DB187F00367CD2 /* Gajkley.otf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -114,6 +112,8 @@
 		B2F7631028C0FA2C0084662D /* CalculatorX */ = {
 			isa = PBXGroup;
 			children = (
+				B29C0B1928D9A417000C3776 /* model */,
+				B29C0B1628D9A1F1000C3776 /* helper */,
 				B2CCC4DA28D17FF90008AEC1 /* Info.plist */,
 				B2CCC4D128D17F390008AEC1 /* fonts */,
 				B2FEF14528CDDBED00046C20 /* components */,
@@ -138,8 +138,6 @@
 		B2F7631F28C0FC400084662D /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				B2F7632028C0FC570084662D /* MainScreen.swift */,
-				B28F8F7028C4A69700845A88 /* ViewModel.swift */,
 				B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */,
 				B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */,
 				B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */,
@@ -160,14 +158,11 @@
 		B2FEF14528CDDBED00046C20 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				B28DE0CE28C405DE0076DBDA /* ZeroButton.swift */,
-				B28343BB28D0EDF600DFEAE4 /* CalculatorNumberButton.swift */,
-				B2F7632228C1002A0084662D /* ButtonView.swift */,
-				B2CCC4E328D1CCF50008AEC1 /* SpecialButton.swift */,
-				B2CCC4E128D18BFA0008AEC1 /* TextBody.swift */,
-				B2CCC4CD28D1682A0008AEC1 /* CalculatorIconButton.swift */,
-				B24FCE8928D2C62E00CC2D14 /* FunctionMoreImageButton.swift */,
-				B2552D1128D3100000BE24CE /* ExpandableText.swift */,
+				B24D87DE28D48BE0006A8F1E /* CalculatorButton.swift */,
+				B24D87E028D48D7D006A8F1E /* CalculatorButtonImage.swift */,
+				B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */,
+				B2DE982728D73260008D016A /* FunctionMoreButton.swift */,
+				B29D456728DAB70400FCB037 /* FuncitonMoreText.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -236,15 +231,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CCC4DE28D1882D0008AEC1 /* Gajkley.otf in Resources */,
-				B2CCC4D628D17F7C0008AEC1 /* AltoneTrial-Bold.ttf in Resources */,
-				B2CCC4D728D17F7C0008AEC1 /* AltoneTrial-Regular.ttf in Resources */,
-				B272A69F28D31DB4003A15A5 /* Kameron-Regular.ttf in Resources */,
+				B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */,
+				B2868D2428DC1C670001D689 /* AltoneTrial-RegularOblique.ttf in Resources */,
+				B228059628DB187F00367CD2 /* Gajkley.otf in Resources */,
+				B2868D2228DC1B480001D689 /* AltoneTrial-BoldOblique.ttf in Resources */,
 				B2F7631928C0FA2E0084662D /* Preview Assets.xcassets in Resources */,
-				B272A6A028D31DB4003A15A5 /* Kameron-Bold.ttf in Resources */,
-				B2CCC4D928D17F7C0008AEC1 /* AltoneTrial-BoldOblique.ttf in Resources */,
 				B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */,
-				B2CCC4D828D17F7C0008AEC1 /* AltoneTrial-RegularOblique.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,24 +247,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2DE982828D73260008D016A /* FunctionMoreButton.swift in Sources */,
+				B29D456828DAB70400FCB037 /* FuncitonMoreText.swift in Sources */,
 				B28DE0CB28C401A20076DBDA /* Extensions.swift in Sources */,
-				B2F7632128C0FC570084662D /* MainScreen.swift in Sources */,
 				B2CCC4E028D18B160008AEC1 /* BodyCalculatorWorking.swift in Sources */,
 				B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */,
 				B20A1FD628C9AC2C00D27DE8 /* MTUtils.swift in Sources */,
 				B2F7631428C0FA2C0084662D /* ContentView.swift in Sources */,
-				B2552D1228D3100000BE24CE /* ExpandableText.swift in Sources */,
-				B2CCC4E228D18BFA0008AEC1 /* TextBody.swift in Sources */,
-				B28DE0CF28C405DE0076DBDA /* ZeroButton.swift in Sources */,
-				B24FCE8A28D2C62E00CC2D14 /* FunctionMoreImageButton.swift in Sources */,
+				B24D87E128D48D7D006A8F1E /* CalculatorButtonImage.swift in Sources */,
+				B24D87DF28D48BE0006A8F1E /* CalculatorButton.swift in Sources */,
+				B29C0B1B28D9A432000C3776 /* Language.swift in Sources */,
 				B272A6A228D32921003A15A5 /* CalculatorViewModel.swift in Sources */,
+				B24D87E328D5B3A3006A8F1E /* CalculatorButtonText.swift in Sources */,
 				B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */,
 				B2F7631228C0FA2C0084662D /* CalculatorXApp.swift in Sources */,
-				B28343BC28D0EDF600DFEAE4 /* CalculatorNumberButton.swift in Sources */,
-				B2F7632328C1002A0084662D /* ButtonView.swift in Sources */,
-				B2CCC4E428D1CCF50008AEC1 /* SpecialButton.swift in Sources */,
-				B28F8F7128C4A69700845A88 /* ViewModel.swift in Sources */,
-				B2CCC4CE28D1682A0008AEC1 /* CalculatorIconButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
