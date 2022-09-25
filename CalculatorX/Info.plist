@@ -4,6 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>digital-7mono.ttf</string>
+		<string>digital-7monoitalic.ttf</string>
+		<string>digital-7.ttf</string>
+		<string>digital-7italic.ttf</string>
 		<string>AltoneTrial-RegularOblique.ttf</string>
 		<string>AltoneTrial-BoldOblique.ttf</string>
 		<string>Gajkley.otf</string>

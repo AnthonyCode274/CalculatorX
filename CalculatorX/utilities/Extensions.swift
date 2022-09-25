@@ -70,6 +70,9 @@ extension Color {
             opacity: Double(a) / 255
         )
     }
+}
+
+extension Color {
     
     public static var GrayLight: Color {
         return Color(UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0))

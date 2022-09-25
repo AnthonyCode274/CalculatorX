@@ -28,6 +28,10 @@
 		B2F7631428C0FA2C0084662D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7631328C0FA2C0084662D /* ContentView.swift */; };
 		B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F7631528C0FA2E0084662D /* Assets.xcassets */; };
 		B2F7631928C0FA2E0084662D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F7631828C0FA2E0084662D /* Preview Assets.xcassets */; };
+		B2F83F0D28DD76A900E45E95 /* digital-7monoitalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2F83F0928DD76A900E45E95 /* digital-7monoitalic.ttf */; };
+		B2F83F0E28DD76A900E45E95 /* digital-7mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2F83F0A28DD76A900E45E95 /* digital-7mono.ttf */; };
+		B2F83F0F28DD76A900E45E95 /* digital-7italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2F83F0B28DD76A900E45E95 /* digital-7italic.ttf */; };
+		B2F83F1028DD76A900E45E95 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2F83F0C28DD76A900E45E95 /* digital-7.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		B2F7631328C0FA2C0084662D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2F7631528C0FA2E0084662D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2F7631828C0FA2E0084662D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B2F83F0928DD76A900E45E95 /* digital-7monoitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7monoitalic.ttf"; sourceTree = "<group>"; };
+		B2F83F0A28DD76A900E45E95 /* digital-7mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7mono.ttf"; sourceTree = "<group>"; };
+		B2F83F0B28DD76A900E45E95 /* digital-7italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7italic.ttf"; sourceTree = "<group>"; };
+		B2F83F0C28DD76A900E45E95 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,10 @@
 		B2CCC4D128D17F390008AEC1 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B2F83F0B28DD76A900E45E95 /* digital-7italic.ttf */,
+				B2F83F0928DD76A900E45E95 /* digital-7monoitalic.ttf */,
+				B2F83F0A28DD76A900E45E95 /* digital-7mono.ttf */,
+				B2F83F0C28DD76A900E45E95 /* digital-7.ttf */,
 				B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */,
 				B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */,
 				B228059528DB187F00367CD2 /* Gajkley.otf */,
@@ -234,9 +246,13 @@
 				B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */,
 				B2868D2428DC1C670001D689 /* AltoneTrial-RegularOblique.ttf in Resources */,
 				B228059628DB187F00367CD2 /* Gajkley.otf in Resources */,
+				B2F83F0D28DD76A900E45E95 /* digital-7monoitalic.ttf in Resources */,
+				B2F83F0F28DD76A900E45E95 /* digital-7italic.ttf in Resources */,
 				B2868D2228DC1B480001D689 /* AltoneTrial-BoldOblique.ttf in Resources */,
 				B2F7631928C0FA2E0084662D /* Preview Assets.xcassets in Resources */,
+				B2F83F0E28DD76A900E45E95 /* digital-7mono.ttf in Resources */,
 				B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */,
+				B2F83F1028DD76A900E45E95 /* digital-7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

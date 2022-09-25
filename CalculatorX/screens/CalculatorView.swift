@@ -24,7 +24,9 @@ struct CalculatorView: View {
                 
                 Spacer()
                 
-                VStack(alignment: .center, spacing: UIScreen.getUnit(20)) {
+                VStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
+                    
+                    roleBackButton
                     
                     row0
                     
@@ -37,32 +39,27 @@ struct CalculatorView: View {
                     row4
                 }
             }
-            .padding(.vertical, UIScreen.getUnit(20))
+            .padding(.vertical, UIScreen.getUnit(15))
         }
         .frame(maxWidth: UIScreen.width)
     }
     
     var roleBackButton: some View {
-        Button(action: {
-        
-        }) {
-            RoundedRectangle(cornerRadius: UIScreen.getUnit(14))
-                .fill(Color.Neumorphic.main)
-                .frame(width: UIScreen.getUnit(60),
-                       height: UIScreen.getUnit(40), alignment: .center)
-                .softOuterShadow()
-                .overlay(
-                    Image("delete_icon")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(
-                            colorScheme == .dark ? Color.white : Color.black
-                        )
-                        .frame(width: UIScreen.getUnit(30),
-                               height: UIScreen.getUnit(30), alignment: .center)
-                )
+        VStack(alignment: .trailing) {
+            Button(action: {}) {
+                Image("delete_icon")
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(
+                        colorScheme == .dark ? Color.white : Color.black
+                    )
+                    .frame(width: UIScreen.getUnit(30), height: UIScreen.getUnit(30), alignment: .center)
+                    .softOuterShadow()
+            }
+            .padding(.horizontal, UIScreen.getUnit(20))
         }
+        .frame(maxWidth: UIScreen.width, alignment: .trailing)
     }
     
     let paddingH: CGFloat = UIScreen.getUnit(20)
@@ -77,12 +74,6 @@ struct CalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonImage("letter_c_icon", backgroundColor: Color.OgranLight) {
-                
-            }
-            
-            Spacer()
-            
             CalculatorButtonImage("plus_and_minus", backgroundColor: Color.OgranLight) {
                 
             }
@@ -90,6 +81,12 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorButtonImage("percent", backgroundColor: Color.OgranLight) {
+                
+            }
+            
+            Spacer()
+            
+            CalculatorButtonImage("divide", backgroundColor: Color.OgranLight) {
                 
             }
             
@@ -121,7 +118,7 @@ struct CalculatorView: View {
             Spacer()
             
             
-            CalculatorButtonImage("divide", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage("crossed", backgroundColor: Color.OgranLight) {
                 
             }
             
@@ -152,7 +149,7 @@ struct CalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonImage("crossed", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage("minus", backgroundColor: Color.OgranLight) {
                 
             }
             
@@ -183,7 +180,7 @@ struct CalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonImage("minus", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage("add", backgroundColor: Color.OgranLight) {
                 
             }
             
@@ -193,6 +190,12 @@ struct CalculatorView: View {
     
     var row4: some View {
         HStack(spacing: 0) {
+            Spacer()
+            
+            CalculatorButtonText("000") {
+                
+            }
+            
             Spacer()
             
             CalculatorButtonText("0") {
@@ -208,12 +211,6 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorButtonImage("equal", backgroundColor: Color.OgranLight) {
-                
-            }
-            
-            Spacer()
-            
-            CalculatorButtonImage("add", backgroundColor: Color.OgranLight) {
                 
             }
             
