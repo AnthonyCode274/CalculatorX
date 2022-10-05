@@ -46,8 +46,10 @@ struct CalculatorView: View {
     
     var roleBackButton: some View {
         VStack(alignment: .trailing) {
-            Button(action: {}) {
-                Image("delete_icon")
+            Button(action: {
+                self.viewModel.backButtonClear()
+            }) {
+                Image("icon-delete")
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
@@ -63,31 +65,32 @@ struct CalculatorView: View {
     }
     
     let paddingH: CGFloat = UIScreen.getUnit(20)
+    let paddingV: CGFloat = UIScreen.getUnit(20)
     
     var row0: some View {
         HStack(spacing: 0) {
             Spacer()
             
-            CalculatorButtonImage("letter_ac_icon", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-letter_ac", backgroundColor: Color.OgranLight) {
+                self.viewModel.clearAll()
             }
             
             Spacer()
             
-            CalculatorButtonImage("plus_and_minus", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-plus_and_minus", backgroundColor: Color.OgranLight) {
+                self.viewModel.setValue("+/-")
             }
             
             Spacer()
             
-            CalculatorButtonImage("percent", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-percent", backgroundColor: Color.OgranLight) {
+                self.viewModel.setValue("%")
             }
             
             Spacer()
             
-            CalculatorButtonImage("divide", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-divide", backgroundColor: Color.OgranLight) {
+                self.viewModel.setValue("/")
             }
             
             Spacer()
@@ -100,26 +103,26 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorButtonText("1") {
-                
+                self.viewModel.setValue("1")
             }
             
             Spacer()
             
             CalculatorButtonText("2") {
-                
+                self.viewModel.setValue("2")
             }
             
             Spacer()
             
             CalculatorButtonText("3") {
-                
+                self.viewModel.setValue("3")
             }
             
             Spacer()
             
             
-            CalculatorButtonImage("crossed", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-crossed", backgroundColor: Color.OgranLight) {
+                self.viewModel.setValue("*")
             }
             
             Spacer()
@@ -132,25 +135,25 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorButtonText("4") {
-                
+                self.viewModel.setValue("4")
             }
             
             Spacer()
             
             CalculatorButtonText("5") {
-                
+                self.viewModel.setValue("5")
             }
             
             Spacer()
             
             CalculatorButtonText("6") {
-                
+                self.viewModel.setValue("6")
             }
             
             Spacer()
             
-            CalculatorButtonImage("minus", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-minus", backgroundColor: Color.OgranLight) {
+                self.viewModel.setValue("-")
             }
             
             Spacer()
@@ -163,25 +166,25 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorButtonText("7") {
-                
+                self.viewModel.setValue("7")
             }
             
             Spacer()
             
             CalculatorButtonText("8") {
-                
+                self.viewModel.setValue("8")
             }
             
             Spacer()
             
             CalculatorButtonText("9") {
-                
+                self.viewModel.setValue("9")
             }
             
             Spacer()
             
-            CalculatorButtonImage("add", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-add", backgroundColor: Color.OgranLight) {
+                self.viewModel.setValue("+")
             }
             
             Spacer()
@@ -193,25 +196,25 @@ struct CalculatorView: View {
             Spacer()
             
             CalculatorButtonText("000") {
-                
+                self.viewModel.setValue("000")
             }
             
             Spacer()
             
             CalculatorButtonText("0") {
-                
+                self.viewModel.setValue("0")
             }
             
             Spacer()
             
             CalculatorButtonText(".") {
-                
+                self.viewModel.setValue(".")
             }
             
             Spacer()
             
-            CalculatorButtonImage("equal", backgroundColor: Color.OgranLight) {
-                
+            CalculatorButtonImage("icon-equal", backgroundColor: Color.OgranLight) {
+                self.viewModel.equalResult()
             }
             
             Spacer()
@@ -224,7 +227,7 @@ struct CalculatorView_Previews: PreviewProvider {
         CalculatorView()
             .colorScheme(.dark)
         
-        CalculatorView()
-            .colorScheme(.light)
+//        CalculatorView()
+//            .colorScheme(.light)
     }
 }

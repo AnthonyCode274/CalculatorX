@@ -20,8 +20,12 @@ extension Double {
     }
 }
 
-extension UIScreen {
-    public static var edges: UIEdgeInsets? {
+public extension UIScreen {
+    static func setRotationDevice(to orientation: UIInterfaceOrientationMask) {
+        AppDelegate.orientationLock = orientation
+    }
+    
+    static var edges: UIEdgeInsets? {
         let keyWindow = UIApplication.shared.connectedScenes
             .filter({$0.activationState == .foregroundActive})
             .map({$0 as? UIWindowScene})
@@ -32,15 +36,15 @@ extension UIScreen {
         return keyWindow?.safeAreaInsets
     }
     
-    public static var width: CGFloat {
+    static var width: CGFloat {
         return UIScreen.main.bounds.width
     }
     
-    public static var height: CGFloat {
+    static var height: CGFloat {
         return UIScreen.main.bounds.height
     }
     
-    public static func getUnit(_ number: CGFloat) -> CGFloat {
+    static func getUnit(_ number: CGFloat) -> CGFloat {
         return (number * UIScreen.width) / 360
     }
 }
@@ -72,25 +76,25 @@ extension Color {
     }
 }
 
-extension Color {
+public extension Color {
     
-    public static var GrayLight: Color {
+    static var GrayLight: Color {
         return Color(UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0))
     }
     
-    public static var GrayDark: Color {
+    static var GrayDark: Color {
         return Color(UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 1.0))
     }
     
-    public static var YellowLight: Color {
+    static var YellowLight: Color {
         return Color(UIColor(red: 233/255, green: 158/255, blue: 57/255, alpha: 1.0))
     }
     
-    public static var OgranLight: Color {
+    static var OgranLight: Color {
         return Color(hex: "#FF8C00")
     }
     
-    public static var OgranDark: Color {
+    static var OgranDark: Color {
         return Color(hex: "#9A5500")
     }
 }
@@ -105,21 +109,19 @@ extension String {
         
         let doubleValue = (self as NSString).doubleValue
         
-        print("doubleValue: \(doubleValue)")
-        
         let number = NSNumber(value: doubleValue)
         let formattedValue = formatter.string(from: number)!
         return String(formattedValue)
     }
     
     func spellOut() -> String {
-        let number = (self as NSString).intValue
+        let number = (self as NSString).doubleValue
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .spellOut
         formatter.locale = Locale(identifier: "vi_VN")
         let numberAsWord = formatter.string(from: NSNumber(value: number))
-        return String(numberAsWord ?? "")
+        return String(numberAsWord ?? "").capitalizingFirstLetter()
     }
     
     func capitalizingFirstLetter() -> String {
@@ -142,6 +144,39 @@ extension String {
             return nil
         }
     }
+    
+    func doubleValue() -> Double {
+        let val = (self as NSString).doubleValue
+        return val
+    }
+}
+
+public extension Encodable {
+    func toData() -> Data {
+        do {
+            let jsonData = try JSONEncoder().encode(self)
+            return jsonData
+        }
+        catch let jsonError {
+            print("Erorr toJsonString at: >>> \(jsonError.localizedDescription)")
+            return Data()
+        }
+    }
+    
+    func toDict() -> [String:Any] {
+        var dict = [String:Any]()
+        let otherSelf = Mirror(reflecting: self)
+        for child in otherSelf.children {
+            if let key = child.label {
+                if let date = child.value as? Date {
+                    dict[key] = date
+                }else{
+                    dict[key] = child.value
+                }
+            }
+        }
+        return dict
+    }
 }
 
 
@@ -151,3 +186,43 @@ extension AnyView{
             right.fixedSize(horizontal: true, vertical: false)})
     }
 }
+
+public extension DateFormatter {
+    static func defaultFormat() -> DateFormatter {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.calendar = Calendar(identifier: .iso8601)
+        dateFormatterGet.locale = Locale(identifier: NSLocale.current.languageCode ?? "vi_VN")
+        dateFormatterGet.timeZone = TimeZone.current
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatterGet
+    }
+}
+
+public extension Date {
+    
+    static func getStamp() -> String {
+        let dateFormatter = DateFormatter.defaultFormat()
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        return dateFormatter.string(from: Date())
+    }
+    
+    static func formatToString(format: String) -> String {
+        let dateFormatter = DateFormatter.defaultFormat()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self.now)
+    }
+    
+    static func formatToString() -> String {
+        let dateFormatter = DateFormatter.defaultFormat()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter.string(from: self.now)
+    }
+    
+    static var yesterday : Date {
+        var dayComponent    = DateComponents()
+        dayComponent.day    = -1 // For removing one day (yesterday): -1
+        let theCalendar     = Calendar(identifier: .iso8601)
+        return theCalendar.date(byAdding: dayComponent, to: Date())!
+    }
+}
+

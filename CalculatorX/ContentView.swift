@@ -11,6 +11,9 @@ struct ContentView: View {
     var body: some View {
         CalculatorView()
             .statusBar(hidden: true)
+            .onAppear() {
+                UIScreen.setRotationDevice(to: .portrait)
+            }
     }
 }
 

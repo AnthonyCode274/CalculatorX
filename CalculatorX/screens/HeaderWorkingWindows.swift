@@ -13,9 +13,7 @@ struct HeaderWorkingWindows: View {
     }
     @ObservedObject var viewModel: CalculatorViewModel
     @Environment(\.colorScheme) private var colorScheme
-    @State private var textSize: CGFloat = UIScreen.getUnit(38)
-    @State private var leftSideSelected: Bool = false
-    @State private var rightSideSelected: Bool = false
+    @State private var number: Double = 0
     
     var body: some View {
         let width: CGFloat = UIScreen.width - 30
@@ -33,145 +31,112 @@ struct HeaderWorkingWindows: View {
                     .frame(maxWidth:  width - 30, maxHeight: height - 30)
                     .cornerRadius(radius / 2)
                     .clipped()
-                    .softInnerShadow(RoundedRectangle(cornerRadius: radius / 2),
-                                     darkShadow: .black.opacity(0.5),
-                                     lightShadow: .clear,
-                                     spread: 0.15,
-                                     radius: 6)
+                    .softInnerShadow(
+                        RoundedRectangle(cornerRadius: radius / 2),
+                        darkShadow: .black.opacity(0.5),
+                        lightShadow: .clear,
+                        spread: 0.15,
+                        radius: 6
+                    )
                     .overlay(
                         self.resultStatusWorking, alignment: .topTrailing
                     )
                     .overlay(
-                        self.workingNumber, alignment: .trailing
-                    )
-                    .overlay(
-                        self.currencyUnitChange, alignment: .bottomTrailing
+                        self.workingNumber, alignment: .bottomTrailing
                     )
                 
             )
-            .sheet(isPresented: $leftSideSelected) {
-                Text("Lựa chọn đơn vị đổi")
+            .onAppear() {
+                self.viewModel.currentWorking = "11111111111111111111"
+                self.viewModel.resultValue = Double(11111111111111111111)
             }
-            .sheet(isPresented: $rightSideSelected) {
-                Text("Lựa chọn đơn vị chuyển đổi thành")
-            }
-    }
-    
-    func firstOnView() {
-        
-    }
-    
-    var currentFlag: some View {
-        Button(action: {}) {
-            Image("vietnam")
-                .resizable()
-                .renderingMode(.original)
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 24, height: 24)
-                .padding(.vertical, UIScreen.getUnit(6))
-                .padding(.horizontal, UIScreen.getUnit(10))
-                
-        }
-        
     }
     
     var workingNumber: some View {
-        Text("999")
-            .font(.custom("digital-7mono", size: self.textSize))
+        Text(self.viewModel.currentWorking.isEmpty ? "0" : self.viewModel.currentWorking)
+            .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
             .foregroundColor(Color.black)
             .padding(.horizontal, UIScreen.getUnit(10))
-            .padding(.top, UIScreen.getUnit(5))
+            .padding(.vertical, UIScreen.getUnit(10))
     }
     
     var resultStatusWorking: some View {
-        HStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
             
-            Button(action: {}) {
+            HStack(alignment: .center, spacing: UIScreen.getUnit(2)) {
+                
                 Image("icon-history")
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.GrayDark)
+                    .frame(width: UIScreen.getUnit(14), height: UIScreen.getUnit(14))
+                
+                
+                Text("\(self.viewModel.currentWorking.count) - \(self.resizeWorkingNumber())")
+                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(16)))
                     .foregroundColor(Color.GrayDark)
-                    .frame(width: UIScreen.getUnit(16), height: UIScreen.getUnit(16))
+                    .lineLimit(1)
+                    .multilineTextAlignment(.leading)
+                
             }
+            .frame(height: UIScreen.getUnit(20), alignment: .bottom)
             
             Spacer()
             
-            Text("999")
-                .font(.custom("digital-7", size: UIScreen.getUnit(18)))
+            Text("\(self.viewModel.workingMiniShow)")
+                .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(20)))
                 .foregroundColor(Color.GrayDark)
                 .lineLimit(2)
                 .multilineTextAlignment(.trailing)
         }
         .frame(height: UIScreen.getUnit(20), alignment: .center)
-        .padding(.horizontal, UIScreen.getUnit(10))
-        .padding(.top, UIScreen.getUnit(10))
-    }
-    
-    var currencyUnitChange: some View {
-        HStack {
-            
-            HStack(alignment: .center, spacing: 10) {
-                Button(action: {
-                    withAnimation {
-                        self.leftSideSelected.toggle()
-                    }
-                }) {
-                    HStack(alignment: .center, spacing: UIScreen.getUnit(5)) {
-                        Text("VN")
-                            .font(.custom("AltoneTrial-BoldOblique", size: UIScreen.getUnit(14)))
-                            .foregroundColor(Color.black)
-                        
-                        Image("drop-down")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(Color.black)
-                            .frame(width: UIScreen.getUnit(10),
-                                   height: UIScreen.getUnit(10))
-                    }
-                }
-                
-                Image("right-arrow")
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(Color.GrayDark.opacity(0.5))
-                    .frame(width: UIScreen.getUnit(12), height: UIScreen.getUnit(12))
-            }
-            
-            Spacer()
-            
-            HStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
-                
-                Text("22.977")
-                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(16)))
-                    .foregroundColor(Color.black)
-                
-                Button(action: {
-                    withAnimation {
-                        self.rightSideSelected.toggle()
-                    }
-                }) {
-                    HStack(alignment: .center, spacing: UIScreen.getUnit(5)) {
-                        Text("USD")
-                            .font(.custom("AltoneTrial-BoldOblique", size: UIScreen.getUnit(14)))
-                            .foregroundColor(Color.black)
-                        
-                        Image("drop-down")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(Color.black)
-                            .frame(width: UIScreen.getUnit(10),
-                                   height: UIScreen.getUnit(10))
-                    }
-                }
-            }
-        }
-        .padding(UIScreen.getUnit(6))
+        .padding(UIScreen.getUnit(10))
     }
 
+    func resizeWorkingNumber() -> CGFloat {
+        var size: CGFloat = 58
+        let count = self.viewModel.currentWorking.count
+        
+        
+        switch count {
+        case 11:
+            size = 54
+            break;
+        case 12:
+            size = 50
+            break;
+        case 13:
+            size = 46
+            break;
+        case 14:
+            size = 44
+            break;
+        case 15:
+            size = 42
+            break;
+        case 16:
+            size = 38
+            break;
+        case 17:
+            size = 36
+            break;
+        case 18:
+            size = 34
+            break;
+        case 19:
+            size = 32
+            break;
+        case 20:
+            size = 30
+            break;
+        default:
+            size = 58
+            break;
+        }
+        
+        return UIScreen.getUnit(size)
+    }
 }
 
 struct HeaderWorkingWindows_Previews: PreviewProvider {

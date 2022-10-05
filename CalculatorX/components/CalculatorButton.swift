@@ -19,7 +19,7 @@ struct CalculatorButton: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let width: CGFloat = UIScreen.getUnit(75)
+        let width: CGFloat = UIScreen.getUnit(70)
         let height: CGFloat = width / 1.5
         let radius: CGFloat = UIScreen.getUnit(8)
         
