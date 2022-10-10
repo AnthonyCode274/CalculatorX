@@ -20,7 +20,7 @@ struct CalculatorButtonImage: View {
     var backgroundColor: Color = Color.Neumorphic.main
     let name: String
     let action: () -> Void
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         let size: CGFloat = UIScreen.getUnit(20)
@@ -31,9 +31,7 @@ struct CalculatorButtonImage: View {
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(
-                        colorScheme == .dark ? Color.white : Color.black
-                    )
+                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .frame(width: size, height: size, alignment: .center)
             ),
             backgroundColor: backgroundColor,

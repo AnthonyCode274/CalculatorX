@@ -26,7 +26,6 @@
 		B24D87DF28D48BE0006A8F1E /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87DE28D48BE0006A8F1E /* CalculatorButton.swift */; };
 		B24D87E128D48D7D006A8F1E /* CalculatorButtonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87E028D48D7D006A8F1E /* CalculatorButtonImage.swift */; };
 		B24D87E328D5B3A3006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */; };
-		B2644DC728EC3E690055485F /* LongText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2644DC628EC3E690055485F /* LongText.swift */; };
 		B2644DC928EC447A0055485F /* CustomContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2644DC828EC447A0055485F /* CustomContextMenu.swift */; };
 		B2644DCC28EC488C0055485F /* ContextMenusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2644DCB28EC488C0055485F /* ContextMenusHelper.swift */; };
 		B272A6A228D32921003A15A5 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */; };
@@ -68,7 +67,6 @@
 		B24D87DE28D48BE0006A8F1E /* CalculatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
 		B24D87E028D48D7D006A8F1E /* CalculatorButtonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonImage.swift; sourceTree = "<group>"; };
 		B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
-		B2644DC628EC3E690055485F /* LongText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongText.swift; sourceTree = "<group>"; };
 		B2644DC828EC447A0055485F /* CustomContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContextMenu.swift; sourceTree = "<group>"; };
 		B2644DCB28EC488C0055485F /* ContextMenusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenusHelper.swift; sourceTree = "<group>"; };
 		B272A6A128D32921003A15A5 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 				B24D87E028D48D7D006A8F1E /* CalculatorButtonImage.swift */,
 				B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */,
 				B2DE982728D73260008D016A /* FunctionMoreButtonText.swift */,
-				B2644DC628EC3E690055485F /* LongText.swift */,
 				B2644DC828EC447A0055485F /* CustomContextMenu.swift */,
 			);
 			path = components;
@@ -343,7 +340,6 @@
 				B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */,
 				B2F7631428C0FA2C0084662D /* ContentView.swift in Sources */,
 				B20D84D028E2A38D0099713F /* AppDelegate.swift in Sources */,
-				B2644DC728EC3E690055485F /* LongText.swift in Sources */,
 				B2644DC928EC447A0055485F /* CustomContextMenu.swift in Sources */,
 				B24D87E128D48D7D006A8F1E /* CalculatorButtonImage.swift in Sources */,
 				B24D87DF28D48BE0006A8F1E /* CalculatorButton.swift in Sources */,
@@ -496,8 +492,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = vn.maytech.calculatorx;
+				MARKETING_VERSION = 1.0.20221005;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.maytech.calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -528,8 +524,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = vn.maytech.calculatorx;
+				MARKETING_VERSION = 1.0.20221005;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.maytech.calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

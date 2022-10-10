@@ -18,28 +18,25 @@ struct FunctionMoreButtonText: View {
     let action: () -> Void
     @Environment(\.colorScheme) private var colorScheme
     
-    var color: Color {
-        return self.colorScheme == .light ? .black : .white
-    }
-    
     var body: some View {
         Button(action: action) {
             HStack(spacing: UIScreen.getUnit(8)) {
+                
+                Text(string)
+                    .font(.bold(size: 16))
+                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .lineLimit(1)
                 
                 Image("icon-drop_down")
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(color)
+                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .frame(width: UIScreen.getUnit(12), height: UIScreen.getUnit(12))
-                
-                Text(string)
-                    .font(.bold(size: UIScreen.getUnit(14)))
-                    .foregroundColor(color)
-                    .fixedSize(horizontal: true, vertical: false)
-                
             }
-            .padding(UIScreen.getUnit(8))
+            .padding(.horizontal, UIScreen.getUnit(10))
+            .padding(.vertical, UIScreen.getUnit(5))
             .background(
                 RoundedRectangle(cornerRadius: UIScreen.getUnit(8))
                     .fill(Color.Neumorphic.main)

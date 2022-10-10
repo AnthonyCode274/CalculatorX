@@ -16,7 +16,6 @@ struct CalculatorButton: View {
     var backgroundColor: Color = Color.Neumorphic.main
     var overView: AnyView =  AnyView(EmptyView())
     let action: () -> Void
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         let width: CGFloat = UIScreen.getUnit(70)

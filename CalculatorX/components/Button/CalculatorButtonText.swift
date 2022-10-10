@@ -20,7 +20,7 @@ struct CalculatorButtonText: View {
     var backgroundColor: Color = Color.Neumorphic.main
     let string: String
     let action: () -> Void
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         let fontSize: CGFloat = UIScreen.getUnit(30)
@@ -29,9 +29,7 @@ struct CalculatorButtonText: View {
             overView: AnyView(
                 Text(string)
                     .font(.custom("", size: fontSize))
-                    .foregroundColor(
-                        colorScheme == .dark ? Color.white : Color.black
-                    )
+                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
             ),
             backgroundColor: backgroundColor,
             action: self.action)
