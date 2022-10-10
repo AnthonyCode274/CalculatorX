@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct WorkingModel : Codable {
+    var id: UUID { return UUID() }
+    var value: String
+    var type: WorkingType
+}

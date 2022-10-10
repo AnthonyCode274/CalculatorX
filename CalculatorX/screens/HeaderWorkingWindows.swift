@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct HeaderWorkingWindows: View {
-    init(viewModel: CalculatorViewModel) {
-        self.viewModel = viewModel
-    }
-    @ObservedObject var viewModel: CalculatorViewModel
-    @Environment(\.colorScheme) private var colorScheme
+    @ObservedObject var viewModel: CalculationViewModel
     @State private var number: Double = 0
+    @State private var isLimit: Bool = false
     
     var body: some View {
         let width: CGFloat = UIScreen.width - 30
-        let height: CGFloat = UIScreen.getUnit(140)
+        let height: CGFloat = UIScreen.getUnit(110)
         let radius: CGFloat = UIScreen.getUnit(16)
         
         RoundedRectangle(cornerRadius: radius)
@@ -28,16 +25,9 @@ struct HeaderWorkingWindows: View {
                 Image("background_calculator")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth:  width - 30, maxHeight: height - 30)
+                    .frame(maxWidth:  width, maxHeight: height)
                     .cornerRadius(radius / 2)
                     .clipped()
-                    .softInnerShadow(
-                        RoundedRectangle(cornerRadius: radius / 2),
-                        darkShadow: .black.opacity(0.5),
-                        lightShadow: .clear,
-                        spread: 0.15,
-                        radius: 6
-                    )
                     .overlay(
                         self.resultStatusWorking, alignment: .topTrailing
                     )
@@ -46,18 +36,21 @@ struct HeaderWorkingWindows: View {
                     )
                 
             )
-            .onAppear() {
-                self.viewModel.currentWorking = "11111111111111111111"
-                self.viewModel.resultValue = Double(11111111111111111111)
-            }
+            .alert(Text("Lỗi"), isPresented: $isLimit, actions: {
+                Button(action: {}) {
+                    Text("Ok".uppercased())
+                }
+            }, message: {
+                Text("Bạn đã đạt giới giạn số hiển thị trên màn hình!")
+            })
     }
     
     var workingNumber: some View {
-        Text(self.viewModel.currentWorking.isEmpty ? "0" : self.viewModel.currentWorking)
+        Text("\(self.viewModel.currentWorking)")
             .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
             .foregroundColor(Color.black)
             .padding(.horizontal, UIScreen.getUnit(10))
-            .padding(.vertical, UIScreen.getUnit(10))
+            .padding(.vertical, UIScreen.getUnit(5))
     }
     
     var resultStatusWorking: some View {
@@ -73,18 +66,17 @@ struct HeaderWorkingWindows: View {
                     .frame(width: UIScreen.getUnit(14), height: UIScreen.getUnit(14))
                 
                 
-                Text("\(self.viewModel.currentWorking.count) - \(self.resizeWorkingNumber())")
-                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(16)))
-                    .foregroundColor(Color.GrayDark)
-                    .lineLimit(1)
-                    .multilineTextAlignment(.leading)
+//                Text("\(Date.now)")
+//                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(16)))
+//                    .foregroundColor(Color.GrayDark)
+//                    .lineLimit(1)
+//                    .multilineTextAlignment(.leading)
                 
             }
-            .frame(height: UIScreen.getUnit(20), alignment: .bottom)
             
             Spacer()
             
-            Text("\(self.viewModel.workingMiniShow)")
+            Text("\(self.viewModel.currentWorking)")
                 .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(20)))
                 .foregroundColor(Color.GrayDark)
                 .lineLimit(2)

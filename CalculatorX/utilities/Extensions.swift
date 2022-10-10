@@ -149,6 +149,32 @@ extension String {
         let val = (self as NSString).doubleValue
         return val
     }
+    
+    func floatValue() -> Float {
+        let val = (self as NSString).floatValue
+        return val
+    }
+    
+    func tail(s: String) -> String {
+        return String(s.suffix(from: s.index(s.startIndex, offsetBy: 1)))
+    }
+    
+    func replacedCharacters(_ oldChar: String, by newChar: String) -> String {
+        let newStr = self.replacingOccurrences(of: oldChar, with: newChar, options: .literal, range: nil)
+        return newStr
+    }
+    
+    func firstIndex(with character: Character) -> Int {
+        if let i = self.firstIndex(of: character) {
+          let index: Int = self.distance(from: self.startIndex, to: i)
+          return index
+        }
+        return 0
+    }
+    
+    func replace(target: String, with string: String) -> String {
+        return self.replacingOccurrences(of: target, with: string, options: .literal, range: nil)
+    }
 }
 
 public extension Encodable {
@@ -176,6 +202,17 @@ public extension Encodable {
             }
         }
         return dict
+    }
+    
+    func toJsonString() -> String {
+        do {
+            let jsonData = try MTUtils.getJSONEncoder().encode(self)
+            return String(data: jsonData, encoding: .utf8)!
+        }
+        catch let jsonError {
+            print("Erorr toJsonString at: >>> \(jsonError.localizedDescription)")
+            return ""
+        }
     }
 }
 
