@@ -158,6 +158,12 @@ extension String {
         return val
     }
     
+    func replaceLastCharacter(_ string: String) -> String {
+        var newValue = String(string.dropLast())
+        newValue.append(string)
+        return newValue
+    }
+    
     func replacedCharacters(_ oldChar: String, by newChar: String) -> String {
         let newStr = self.replacingOccurrences(of: oldChar, with: newChar, options: .literal, range: nil)
         return newStr

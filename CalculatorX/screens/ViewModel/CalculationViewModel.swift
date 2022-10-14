@@ -17,6 +17,7 @@ enum Operation: String, Codable {
     case percent = "%"
     case addOrSubtract = "+/-"
     case dot = "."
+    case comma = ","
 }
 
 class CalculationViewModel: ObservableObject {
@@ -44,7 +45,7 @@ class CalculationViewModel: ObservableObject {
     }
     
     func isValidationInputForm(_ string: String) {
-        // Limit 1.000.000 => 1.000.000.000.000.000 (15 số 0) giống calculator trên iphone
+        // Limit 1.000.000 => 1.000.000.000.000.000 (16 số) giống calculator trên iphone
         if let operation = Operation(rawValue: string) {
             switch operation {
             case .none:
@@ -56,6 +57,9 @@ class CalculationViewModel: ObservableObject {
                 self.addOrSubtractWorking(operation.rawValue)
                 break;
             case .dot:
+                self.dotSliderWorking(operation.rawValue)
+                break;
+            case .comma:
                 self.dotSliderWorking(operation.rawValue)
                 break;
             default:
@@ -72,7 +76,6 @@ class CalculationViewModel: ObservableObject {
     
     func operatorValidation(_ operation: String) {
         let string = self.currentWorking
-        // Checking is not empty value..
         if !string.isEmpty {
             // Check last character
             let lastChar = string.last != nil ? String(string.last!) : ""
@@ -85,60 +88,62 @@ class CalculationViewModel: ObservableObject {
                     // Add new a operator
                     newString.append(operation)
                     self.assignWorking(newString)
-                } else {
-                    if !lastChar.contains(".") {
-                        self.appendWorking(operation)
-                    } else {
-                        let endValue = string[self.valueFromEnd(string)]
-                        if !endValue.contains(".") {
-                            var newString = String(string.dropLast())
-                            newString.append(operation)
-                            self.assignWorking(newString)
-                        }
-                    }
                 }
-            }
-        } else {
-            if !self.isMatchOperation(operation) {
-                self.appendWorking(operation)
+                else if self.isMatchNumber(lastChar) {
+                    self.appendWorking(operation)
+                }
+                else if self.isMatchOperationException(lastChar) {
+                    var newString = String(string.dropLast())
+                    // Add new a operator
+                    newString.append(operation)
+                    self.assignWorking(newString)
+                }
+                else {
+                    self.appendWorking(operation)
+                }
             }
         }
     }
     
     
     func numberValidation(_ number: String) {
-        let bumberFormatted = number.numberFormatted()
         // Must be get number
         let string = self.currentWorking
-        // Before checking..
-        // Checking is not empty value..
         if !string.isEmpty {
+            let valueEnd = self.valueOfEnd(string)
+            
             // Check last character
             let lastChar = string.last != nil ? String(string.last!) : ""
-            
             if !lastChar.isEmpty {
-                if self.isMatchOperation(lastChar.description) {
-                    let valueEnd = string[self.valueFromEnd(string)]
+                if self.isMatchOperationCalulator(lastChar) {
+                    // Append constaint number..
+                    self.appendWorking(number)
+                }
+                else if self.isMatchOperationException(lastChar) {
+                    print("numberValidation: \(string)")
                     
-                    if valueEnd.contains(".") {
-                        var newString = String(string.dropLast())
-                        newString.append(number)
-                        // Append constaint number..
-                        self.assignWorking(newString)
-                    } else {
-                        self.appendWorking(number)
-                    }
-                    
-                } else {
-                    // Check limit number
-                    let count = string[self.valueFromEnd(string)].count
-                    
-                    if count >= 16 {
+                    self.appendWorking(number)
+                }
+                else if self.isMatchNumber(number) {
+                    let valueEnd = self.valueOfEnd(string)
+                    if self.isLimitNumber(valueEnd) {
                         // Push error message -> Limit number
                         //UIScreen.showAlert(title: "Cảnh báo", msg: "Giá trị đã đạt đến số giới hạn 1 triệu tỉ số và không thể nhập thêm được nữa", button: "OK")
+                        print("isLimitNumber")
                     } else {
-                        self.appendWorking(number)
+                        // Check last number is zero
+                        if valueEnd != "0" {
+                            self.appendWorking(number)
+                        } else {
+                            print("valueEnd == 0")
+                            // Drop last end replace new value
+                            var newString = String(string.dropLast())
+                            newString.append(number)
+                            self.assignWorking(newString)
+                        }
                     }
+                } else {
+                    print("numberValidation error")
                 }
             }
         } else {
@@ -166,31 +171,38 @@ class CalculationViewModel: ObservableObject {
     
     
     func dotSliderWorking(_ operation: String) {
-//        let string = self.currentWorking
-//        if !string.isEmpty {
-//            let endValue = string[self.valueFromEnd(string)]
-//
-//            // Check first character
-//            let lastChar = string.last != nil ? String(string.last!) : ""
-//
-//            if !lastChar.isEmpty {
-//                if self.isMatchOperationCalulator(lastChar.description) {
-//                    // Update new value at index end value of string
-//                    // Drop last
-//                    var newString = String(string.dropLast())
-//                    // Add new a operator
-//                    newString.append(operation)
-//                    self.assignWorking(newString)
-//                } else {
-//                    // Check string number if not exist "."
-//                    let endValue = string[self.valueFromEnd(string)]
-//
-//                    if !endValue.contains(",") {
-//                        self.appendWorking(operation)
-//                    }
-//                }
-//            }
-//        }
+        let string = self.currentWorking
+        if !string.isEmpty {
+            let valueEnd = self.valueOfEnd(string)
+
+            // Check first character
+            let lastChar = string.last != nil ? String(string.last!) : ""
+
+            if !lastChar.isEmpty {
+                if self.isMatchOperationCalulator(lastChar) {
+                    // Append constaint number..
+                    print("isMatchOperationCalulator")
+                }
+                else if self.isMatchOperationException(lastChar) {
+                    print("isMatchOperationException")
+                }
+                else if self.isMatchNumber(operation) {
+                    let valueEnd = self.valueOfEnd(string)
+                    if self.isLimitNumber(valueEnd) {
+                        // Push error message -> Limit number
+                        //UIScreen.showAlert(title: "Cảnh báo", msg: "Giá trị đã đạt đến số giới hạn 1 triệu tỉ số và không thể nhập thêm được nữa", button: "OK")
+                        print("isLimitNumber: true")
+                    } else {
+                        print("isLimitNumber: false")
+                    }
+                } else {
+                    // Check "." in valueOfEnd
+                    if !valueEnd.contains(Operation.comma.rawValue) {
+                        self.appendWorking(operation)
+                    }
+                }
+            }
+        }
     }
     
     func backRemove() {
@@ -233,25 +245,45 @@ class CalculationViewModel: ObservableObject {
         self.GT = ""
     }
     
+    func isLimitNumber(_ string: String) -> Bool {
+        var arr: String = ""
+        for i in string.indices {
+            if String(string[i]) != Operation.comma.rawValue {
+                arr.append(string[i])
+            }
+        }
+        return arr.count >= 16
+    }
+    
     func isMatchOperation(_ string: String) -> Bool {
         return self.isMatchOperationCalulator(string) || self.isMatchOperationException(string)
     }
     
     func isMatchOperationCalulator(_ string: String) -> Bool {
-        return string == "+" || string == "-" || string == "*" || string == "/"
+        return string == Operation.add.rawValue || string == Operation.subtract.rawValue || string == Operation.multiply.rawValue || string == Operation.divide.rawValue
     }
     
     func isMatchOperationException(_ string: String) -> Bool {
-        if string == "%" || string == "," {
+        if string == Operation.percent.rawValue || string == Operation.comma.rawValue || string == Operation.dot.rawValue {
             return true
-        } else if string == "+/-" {
+        } else if string == Operation.addOrSubtract.rawValue {
             return true
         } else {
             return false
         }
     }
     
-    func valueFromEnd(_ string: String) -> Range<String.Index> {
+    func isMatchNumber(_ string: String) -> Bool {
+        let targetNumber: String = "0123456789"
+        return targetNumber.contains(string) || string.contains("000")
+    }
+    
+    func valueOfEnd(_ string: String) -> String {
+        let range = self.rangeOfEnd(string)
+        return String(string[range])
+    }
+    
+    func rangeOfEnd(_ string: String) -> Range<String.Index> {
         var array = [String.Index]()
         for i in string.indices {
             let char = string[i]

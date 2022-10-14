@@ -79,7 +79,7 @@ struct HeaderWorkingWindows: View {
     
     var currentWorkingShow: String {
         let string = self.viewModel.currentWorking
-        return string
+        return string.isEmpty ? "0" : string
     }
 
     func resizeWorkingNumber() -> CGFloat {
