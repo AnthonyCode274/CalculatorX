@@ -14,27 +14,6 @@ struct BodyCalculatorWorking: View {
     @Environment(\.colorScheme) private var colorScheme
 
     
-    var currencyName: String {
-        return self.currencyViewModel.currency?.currencyName ?? ""
-    }
-    
-    var currencyCode: String {
-        return self.currencyViewModel.currency?.currencyCode ?? ""
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            
-            self.spellOutView
-            
-            Spacer()
-            
-        }
-        .padding(.top, UIScreen.getUnit(20))
-        .padding(.horizontal, UIScreen.getUnit(20))
-        .frame(maxWidth: UIScreen.width, alignment: .leading)
-    }
-    
     var rateExchange: some View {
         VStack(alignment: .leading, spacing: UIScreen.getUnit(10)) {
             HStack {
@@ -46,7 +25,7 @@ struct BodyCalculatorWorking: View {
                 
             }
             
-            Text("=> \(String(Double(999 * 66200000)).numberFotmat) VNĐ")
+            Text("=> \(String(Double(999 * 66200000)).numberFormatted()) VNĐ")
                 .font(.bold(size: 18))
                 .foregroundColor(.yellow)
                 
@@ -67,45 +46,50 @@ struct BodyCalculatorWorking: View {
                         .frame(width: UIScreen.getUnit(20), height: UIScreen.getUnit(20))
                 }
 
-                VStack(alignment: .trailing, spacing: 5) {
-                    HStack {
-                        Text(String(self.viewModel.resultValue).spellOut())
+                HStack {
+                    Text(String(self.viewModel.currentWorking).spellOut())
+                        .font(.regular(size: 14))
+                        .foregroundColor(self.colorScheme == .dark ? .white : .black)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    
+                    Button(action: {
+                        UIScreen.showAlert(title: "Đánh vần", msg: self.currentWorkingShow, button: "OK")
+                    }) {
+                        Text("Xem thêm")
                             .font(.regular(size: 14))
-                            .foregroundColor(self.colorScheme == .dark ? .white : .black)
-                            .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(2)
-                        Spacer()
-                    }
-
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            self.expanded = true
-                        }) {
-                            Text("Xem thêm")
-                                .font(.regular(size: 14))
-                                .foregroundColor(.blue)
-                        }
+                            .foregroundColor(.blue)
                     }
                 }
-            }
-            .alert(Text("Đánh vần"), isPresented: $expanded) {
-                Button(action: {
-                    self.expanded = false
-                }) {
-                    Text("Ok".uppercased())
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                }
-            } message: {
-                Text(String(self.viewModel.resultValue).spellOut())
-                    .font(.regular(size: 18))
-                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
-                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            
+            self.spellOutView
+            
+            Spacer()
+        }
+        .padding(.top, UIScreen.getUnit(20))
+        .padding(.horizontal, UIScreen.getUnit(20))
+        .frame(maxWidth: UIScreen.width, alignment: .leading)
+    }
+    
+    var currentWorkingShow: String {
+        let string = self.viewModel.currentWorking
+        return string.spellOut()
+    }
+    
+    var currencyName: String {
+        return self.currencyViewModel.currency?.currencyName ?? ""
+    }
+    
+    var currencyCode: String {
+        return self.currencyViewModel.currency?.currencyCode ?? ""
+    }
+    
 }
 
 struct BodyCalculatorWorking_Previews: PreviewProvider {

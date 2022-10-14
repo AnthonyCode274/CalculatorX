@@ -15,7 +15,7 @@ struct ExchangeRateUpdates: View {
     @State private var indexPicker: Int = 0
     
     var currencyRate: String {
-        return String(format: "%.2f", self.viewModel.currency?.currencyRate ?? "").numberFotmat
+        return String(format: "%.2f", self.viewModel.currency?.currencyRate ?? "").numberFormatted()
     }
     
     var currencyName: String {

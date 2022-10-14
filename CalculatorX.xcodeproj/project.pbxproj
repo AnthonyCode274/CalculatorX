@@ -44,7 +44,6 @@
 		B29C0B1B28D9A432000C3776 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C0B1A28D9A432000C3776 /* Language.swift */; };
 		B2ADA2B828EE96270076E849 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ADA2B728EE96270076E849 /* HalfSheet.swift */; };
 		B2ADA2BA28EEC74C0076E849 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ADA2B928EEC74C0076E849 /* CurrencyViewModel.swift */; };
-		B2C0C09C28F4196D0056B3F1 /* WorkingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C0C09B28F4196D0056B3F1 /* WorkingModel.swift */; };
 		B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */; };
 		B2CCC4E028D18B160008AEC1 /* BodyCalculatorWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */; };
 		B2D13DED28F477F700F370F6 /* CalculationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D13DEC28F477F700F370F6 /* CalculationViewModel.swift */; };
@@ -98,7 +97,6 @@
 		B29C0B1A28D9A432000C3776 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		B2ADA2B728EE96270076E849 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		B2ADA2B928EEC74C0076E849 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
-		B2C0C09B28F4196D0056B3F1 /* WorkingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingModel.swift; sourceTree = "<group>"; };
 		B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkingWindows.swift; sourceTree = "<group>"; };
 		B2CCC4DA28D17FF90008AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCalculatorWorking.swift; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 			children = (
 				B29C0B1A28D9A432000C3776 /* Language.swift */,
 				B201BCEC28ED9EFD00A2E489 /* Currency.swift */,
-				B2C0C09B28F4196D0056B3F1 /* WorkingModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -437,7 +434,6 @@
 				B24D87DF28D48BE0006A8F1E /* CalculatorButton.swift in Sources */,
 				B29C0B1B28D9A432000C3776 /* Language.swift in Sources */,
 				B2F5968E28ED86F800F8CB5A /* ExchangeRateUpdates.swift in Sources */,
-				B2C0C09C28F4196D0056B3F1 /* WorkingModel.swift in Sources */,
 				B201BCE428ED9A5B00A2E489 /* Define.swift in Sources */,
 				B2ADA2BA28EEC74C0076E849 /* CurrencyViewModel.swift in Sources */,
 				B201BCE628ED9AB100A2E489 /* Config.swift in Sources */,

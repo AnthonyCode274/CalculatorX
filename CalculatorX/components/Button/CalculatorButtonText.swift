@@ -23,7 +23,7 @@ struct CalculatorButtonText: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        let fontSize: CGFloat = UIScreen.getUnit(30)
+        let fontSize: CGFloat = self.string.contains("000") ? UIScreen.getUnit(24) : UIScreen.getUnit(30)
         
         CalculatorButton(
             overView: AnyView(

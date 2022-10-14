@@ -47,6 +47,10 @@ public extension UIScreen {
     static func getUnit(_ number: CGFloat) -> CGFloat {
         return (number * UIScreen.width) / 360
     }
+    
+    static func showAlert(title:String, msg:String, button:String) {
+        NavigationUtil.top()?.showAlert(title: title, msg: msg, button:button)
+    }
 }
 
 extension Color {
@@ -100,49 +104,43 @@ public extension Color {
 }
 
 extension String {
-    var numberFotmat: String {
+    func numberFormatter() -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.locale = Locale(identifier: "vi_VN")
         formatter.maximumFractionDigits = 2
         formatter.decimalSeparator = ","
         formatter.groupingSeparator = "."
         
-        let doubleValue = (self as NSString).doubleValue
+        return formatter
+    }
+    
+    func numberFormatted() -> String {
+        let numberFormater = self.numberFormatter()
         
-        let number = NSNumber(value: doubleValue)
-        let formattedValue = formatter.string(from: number)!
-        return String(formattedValue)
+        let number = NSNumber(value: self.doubleValue())
+        
+        if let valueFormatted = numberFormater.string(from: number) {
+            return valueFormatted
+        } else {
+            return self
+        }
     }
     
     func spellOut() -> String {
-        let number = (self as NSString).doubleValue
-        
-        let formatter = NumberFormatter()
+        let formatter = self.numberFormatter()
         formatter.numberStyle = .spellOut
-        formatter.locale = Locale(identifier: "vi_VN")
-        let numberAsWord = formatter.string(from: NSNumber(value: number))
-        return String(numberAsWord ?? "").capitalizingFirstLetter()
-    }
-    
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + self.lowercased().dropFirst()
-    }
-    
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
-    }
-    
-    func convertFromDoubleToCleanString() -> String? {
+        let numberAsWord = formatter.string(from: NSNumber(value: self.doubleValue()))
         
-        if self.last == "." {
+        if let resultString = numberAsWord {
+            return resultString.capitalizeFirstLetter()
+        } else {
             return self
         }
-        
-        if let double = Double(self) {
-            return double.truncate(places: 4).clean
-        } else {
-            return nil
-        }
+    }
+    
+    func capitalizeFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
     }
     
     func doubleValue() -> Double {
@@ -150,13 +148,14 @@ extension String {
         return val
     }
     
+    func valueOf(index: String.Index) -> Character {
+        let indexEnd = self.endIndex
+        return self[indexEnd]
+    }
+    
     func floatValue() -> Float {
         let val = (self as NSString).floatValue
         return val
-    }
-    
-    func tail(s: String) -> String {
-        return String(s.suffix(from: s.index(s.startIndex, offsetBy: 1)))
     }
     
     func replacedCharacters(_ oldChar: String, by newChar: String) -> String {
@@ -164,9 +163,9 @@ extension String {
         return newStr
     }
     
-    func firstIndex(with character: Character) -> Int {
-        if let i = self.firstIndex(of: character) {
-          let index: Int = self.distance(from: self.startIndex, to: i)
+    func firstIndex(with string: String, from distance: String.Index) -> Int {
+        if let i = self.firstIndex(of: Character(string)) {
+          let index: Int = self.distance(from: distance, to: i)
           return index
         }
         return 0
@@ -175,6 +174,19 @@ extension String {
     func replace(target: String, with string: String) -> String {
         return self.replacingOccurrences(of: target, with: string, options: .literal, range: nil)
     }
+}
+
+public extension StringProtocol {
+    func distance(of element: Element) -> Int? { firstIndex(of: element)?.distance(in: self) }
+    func distance<S: StringProtocol>(of string: S) -> Int? { range(of: string)?.lowerBound.distance(in: self) }
+}
+
+public extension Collection {
+    func distance(to index: Index) -> Int { distance(from: startIndex, to: index) }
+}
+
+public extension String.Index {
+    func distance<S: StringProtocol>(in string: S) -> Int { string.distance(to: self) }
 }
 
 public extension Encodable {
@@ -263,3 +275,50 @@ public extension Date {
     }
 }
 
+extension String {
+    func allNumsToDouble() -> String {
+        
+        let symbolsCharSet = ".,"
+        let fullCharSet = "0123456789" + symbolsCharSet
+        var i = 0
+        var result = ""
+        let chars = Array(self)
+        while i < chars.count {
+            if fullCharSet.contains(chars[i]) {
+                var numString = String(chars[i])
+                i += 1
+            loop: while i < chars.count {
+                if fullCharSet.contains(chars[i]) {
+                    numString += String(chars[i])
+                    i += 1
+                } else {
+                    break loop
+                }
+            }
+                if let num = Double(numString) {
+                    result += "\(num)"
+                } else {
+                    result += numString
+                }
+            } else {
+                result += String(chars[i])
+                i += 1
+            }
+        }
+        return result
+    }
+    
+    func calculate() -> Double? {
+        let transformedString = allNumsToDouble()
+        let expr = NSExpression(format: transformedString)
+        if let result = expr.expressionValue(with: nil, context: nil) as? Double {
+            return result
+        } else {
+            return 0
+        }
+    }
+    
+    func indexOf() {
+        
+    }
+}
