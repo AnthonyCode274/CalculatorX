@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SwiftUI
 
-
 extension Double {
     var clean: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
@@ -149,36 +148,12 @@ extension String {
     }
     
     func valueOf(index: String.Index) -> Character {
-        let indexEnd = self.endIndex
-        return self[indexEnd]
+        return self[index]
     }
     
     func floatValue() -> Float {
         let val = (self as NSString).floatValue
         return val
-    }
-    
-    func replaceLastCharacter(_ string: String) -> String {
-        var newValue = String(string.dropLast())
-        newValue.append(string)
-        return newValue
-    }
-    
-    func replacedCharacters(_ oldChar: String, by newChar: String) -> String {
-        let newStr = self.replacingOccurrences(of: oldChar, with: newChar, options: .literal, range: nil)
-        return newStr
-    }
-    
-    func firstIndex(with string: String, from distance: String.Index) -> Int {
-        if let i = self.firstIndex(of: Character(string)) {
-          let index: Int = self.distance(from: distance, to: i)
-          return index
-        }
-        return 0
-    }
-    
-    func replace(target: String, with string: String) -> String {
-        return self.replacingOccurrences(of: target, with: string, options: .literal, range: nil)
     }
 }
 
@@ -315,16 +290,8 @@ extension String {
     }
     
     func calculate() -> Double? {
-        let transformedString = allNumsToDouble()
+        let transformedString = self.allNumsToDouble()
         let expr = NSExpression(format: transformedString)
-        if let result = expr.expressionValue(with: nil, context: nil) as? Double {
-            return result
-        } else {
-            return 0
-        }
-    }
-    
-    func indexOf() {
-        
+        return expr.expressionValue(with: nil, context: nil) as? Double
     }
 }

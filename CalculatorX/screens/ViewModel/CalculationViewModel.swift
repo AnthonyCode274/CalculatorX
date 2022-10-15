@@ -20,6 +20,11 @@ enum Operation: String, Codable {
     case comma = ","
 }
 
+enum CalculationError: Error {
+    case invalidString
+    case invalidCalculator
+}
+
 class CalculationViewModel: ObservableObject {
     
     init() {
@@ -75,16 +80,15 @@ class CalculationViewModel: ObservableObject {
     
     
     func operatorValidation(_ operation: String) {
-        let string = self.currentWorking
-        if !string.isEmpty {
+        if !self.currentWorking.isEmpty {
             // Check last character
-            let lastChar = string.last != nil ? String(string.last!) : ""
+            let lastChar = self.currentWorking.last != nil ? String(self.currentWorking.last!) : ""
             
             if !lastChar.isEmpty {
                 if self.isMatchOperationCalulator(lastChar) {
                     // Update new value at index end value of string
                     // Drop last
-                    var newString = String(string.dropLast())
+                    var newString = String(self.currentWorking.dropLast())
                     // Add new a operator
                     newString.append(operation)
                     self.assignWorking(newString)
@@ -93,7 +97,7 @@ class CalculationViewModel: ObservableObject {
                     self.appendWorking(operation)
                 }
                 else if self.isMatchOperationException(lastChar) {
-                    var newString = String(string.dropLast())
+                    var newString = String(self.currentWorking.dropLast())
                     // Add new a operator
                     newString.append(operation)
                     self.assignWorking(newString)
@@ -108,24 +112,22 @@ class CalculationViewModel: ObservableObject {
     
     func numberValidation(_ number: String) {
         // Must be get number
-        let string = self.currentWorking
-        if !string.isEmpty {
-            let valueEnd = self.valueOfEnd(string)
-            
+        if !self.currentWorking.isEmpty {
             // Check last character
-            let lastChar = string.last != nil ? String(string.last!) : ""
+            let valueEnd = self.valueOfEnd(self.currentWorking)
+            let lastChar = self.currentWorking.last != nil ? String(self.currentWorking.last!) : ""
+            
             if !lastChar.isEmpty {
                 if self.isMatchOperationCalulator(lastChar) {
                     // Append constaint number..
                     self.appendWorking(number)
                 }
                 else if self.isMatchOperationException(lastChar) {
-                    print("numberValidation: \(string)")
+                    print("numberValidation: \(self.currentWorking)")
                     
                     self.appendWorking(number)
                 }
                 else if self.isMatchNumber(number) {
-                    let valueEnd = self.valueOfEnd(string)
                     if self.isLimitNumber(valueEnd) {
                         // Push error message -> Limit number
                         //UIScreen.showAlert(title: "Cảnh báo", msg: "Giá trị đã đạt đến số giới hạn 1 triệu tỉ số và không thể nhập thêm được nữa", button: "OK")
@@ -137,7 +139,7 @@ class CalculationViewModel: ObservableObject {
                         } else {
                             print("valueEnd == 0")
                             // Drop last end replace new value
-                            var newString = String(string.dropLast())
+                            var newString = String(self.currentWorking.dropLast())
                             newString.append(number)
                             self.assignWorking(newString)
                         }
@@ -166,28 +168,40 @@ class CalculationViewModel: ObservableObject {
     
     
     func addOrSubtractWorking(_ string: String) {
-        print("+/-")
+        let valueEnd = self.valueOfEnd(self.currentWorking)
+        // Nếu phần tử cuối là dấu chấm -> Giữ nguyên dấu chấm và nhân giá trị trước dấu chấm cho -1 (vd: 2*8-5. -> (+/-) -> 2*8+5.)
+        
+        print("\(valueEnd)")
+        
+//        if !valueEnd.isEmpty {
+//            if valueEnd.doubleValue() > 0 {
+//
+//            } else {
+//
+//            }
+//        }
+        
     }
     
     
     func dotSliderWorking(_ operation: String) {
-        let string = self.currentWorking
-        if !string.isEmpty {
-            let valueEnd = self.valueOfEnd(string)
+        if !self.currentWorking.isEmpty {
+            let valueEnd = self.valueOfEnd(self.currentWorking)
 
             // Check first character
-            let lastChar = string.last != nil ? String(string.last!) : ""
+            let lastChar = self.currentWorking.last != nil ? String(self.currentWorking.last!) : ""
 
             if !lastChar.isEmpty {
                 if self.isMatchOperationCalulator(lastChar) {
-                    // Append constaint number..
+                    // Thêm số "0." đằng trước
                     print("isMatchOperationCalulator")
+                    self.appendWorking("0.")
                 }
                 else if self.isMatchOperationException(lastChar) {
                     print("isMatchOperationException")
                 }
                 else if self.isMatchNumber(operation) {
-                    let valueEnd = self.valueOfEnd(string)
+                    let valueEnd = self.valueOfEnd(self.currentWorking)
                     if self.isLimitNumber(valueEnd) {
                         // Push error message -> Limit number
                         //UIScreen.showAlert(title: "Cảnh báo", msg: "Giá trị đã đạt đến số giới hạn 1 triệu tỉ số và không thể nhập thêm được nữa", button: "OK")
@@ -197,7 +211,7 @@ class CalculationViewModel: ObservableObject {
                     }
                 } else {
                     // Check "." in valueOfEnd
-                    if !valueEnd.contains(Operation.comma.rawValue) {
+                    if !valueEnd.contains(Operation.dot.rawValue) {
                         self.appendWorking(operation)
                     }
                 }
@@ -211,20 +225,21 @@ class CalculationViewModel: ObservableObject {
     
     
     func equalButton() {
-//        let string = self.currentWorking
-//        if !string.isEmpty {
-//            if let last = string.last {
-//                if !self.isMatchOperationCalulator(last.description) {
-//                    // Make calculation
-//                    self.makeCalculation(string)
-//                } else {
-//                    // Drop last
-//                    let newString = String(string.dropLast())
-//                    // Make calculation
-//                    self.makeCalculation(newString)
-//                }
-//            }
-//        }
+        if !self.currentWorking.isEmpty {
+            let lastChar = self.currentWorking.last != nil ? String(self.currentWorking.last!) : ""
+            if !lastChar.isEmpty {
+                if self.isMatchOperationCalulator(lastChar) {
+                    // Drop last
+                    let newString = String(self.currentWorking.dropLast())
+                    // Make calculation
+                    self.makeCalculation(newString)
+                    
+                } else {
+                    // Make calculation
+                    self.makeCalculation(self.currentWorking)
+                }
+            }
+        }
     }
     
     func makeCalculation(_ string: String) {
@@ -232,9 +247,10 @@ class CalculationViewModel: ObservableObject {
         // We must have to validate
         if let calculate = string.calculate() {
             self.resultValue = calculate
-            self.assignWorking(String(calculate))
+            self.assignWorking(self.numberFormated(calculate))
         } else {
-            UIScreen.showAlert(title: "Lỗi", msg: "Không thể thực hiện phép tính này", button: "OK")
+            UIScreen.showAlert(title: "Lỗi", msg: "Không thể thực hiện phép tính này!", button: "OK")
+            print("Error calculating.")
         }
     }
     
@@ -298,7 +314,6 @@ class CalculationViewModel: ObservableObject {
         }
         return string.startIndex..<string.endIndex
     }
-    
     
     func numberFormated(_ value: Double) -> String {
         return String(value)

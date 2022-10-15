@@ -190,8 +190,8 @@ struct KeyboardCalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonText(",") {
-                self.viewModel.setValue(",")
+            CalculatorButtonText(".") {
+                self.viewModel.setValue(".")
             }
             
             Spacer()
