@@ -100,6 +100,10 @@ public extension Color {
     static var OgranDark: Color {
         return Color(hex: "#9A5500")
     }
+    
+    static var OviLight: Color {
+        return Color(hex: "#00C8FF") // old: 38F3FF
+    }
 }
 
 extension String {
@@ -127,12 +131,14 @@ extension String {
     }
     
     func spellOut() -> String {
-        let formatter = self.numberFormatter()
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "vi_VN")
         formatter.numberStyle = .spellOut
-        let numberAsWord = formatter.string(from: NSNumber(value: self.doubleValue()))
+        formatter.decimalSeparator = ","
+        formatter.groupingSeparator = "."
         
-        if let resultString = numberAsWord {
-            return resultString.capitalizeFirstLetter()
+        if let numberAsWord = formatter.string(from: NSNumber(value: self.doubleValue())) {
+            return numberAsWord.capitalizeFirstLetter().replacingOccurrences(of: " phẩy", with: ",")
         } else {
             return self
         }
@@ -257,7 +263,18 @@ public extension Date {
 }
 
 extension String {
-    func allNumsToDouble() -> String {
+    func toString(decimal: Int = 9) -> String {
+        let value = decimal < 0 ? 0 : decimal
+        var string = String(format: "%.\(value)f", self)
+        
+        while string.last == "0" || string.last == "." {
+            if string.last == "." { string = String(string.dropLast()); break}
+            string = String(string.dropLast())
+        }
+        return string
+    }
+    
+    func allNumsToDouble() throws -> String {
         
         let symbolsCharSet = ".,"
         let fullCharSet = "0123456789" + symbolsCharSet
@@ -289,9 +306,12 @@ extension String {
         return result
     }
     
-    func calculate() -> Double? {
-        let transformedString = self.allNumsToDouble()
+    func calculate() throws -> Double? {
+        let transformedString = try self.allNumsToDouble()
         let expr = NSExpression(format: transformedString)
-        return expr.expressionValue(with: nil, context: nil) as? Double
+        if let value = expr.expressionValue(with: nil, context: nil) as? NSNumber {
+            return value.doubleValue
+        }
+        return 0
     }
 }

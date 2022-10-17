@@ -20,11 +20,6 @@ enum Operation: String, Codable {
     case comma = ","
 }
 
-enum CalculationError: Error {
-    case invalidString
-    case invalidCalculator
-}
-
 class CalculationViewModel: ObservableObject {
     
     init() {
@@ -33,9 +28,13 @@ class CalculationViewModel: ObservableObject {
     
     @Published var currentWorking: String = ""
     
+    // Using variable currentWorkingShow to format number when user click button number..
     @Published var currentWorkingShow: String = ""
     
-    @Published var lastNumber: String = ""
+    @Published var currentNumberSpell: String = ""
+        
+    // Variable beforeResult to show before result..
+    @Published var oldResults: Array<String> = Array<String>()
     
     @Published var percent: String = ""
     
@@ -114,7 +113,7 @@ class CalculationViewModel: ObservableObject {
         // Must be get number
         if !self.currentWorking.isEmpty {
             // Check last character
-            let valueEnd = self.valueOfEnd(self.currentWorking)
+            let valueEnd = self.valueOfRange(self.currentWorking)
             let lastChar = self.currentWorking.last != nil ? String(self.currentWorking.last!) : ""
             
             if !lastChar.isEmpty {
@@ -156,41 +155,20 @@ class CalculationViewModel: ObservableObject {
     
     
     func percentWorking(_ operation: String) {
-        
-//        var string = self.currentWorking
-//        let range = self.valueFromEnd(string)
-//        let valueOfRange = string[range]
-//        let resultValue = self.numberFormated(Double(String(valueOfRange).doubleValue() / 100))
-//        string.removeSubrange(range)
-//        print(resultValue)
-//        self.currentWorking = resultValue
     }
     
     
     func addOrSubtractWorking(_ string: String) {
-        let valueEnd = self.valueOfEnd(self.currentWorking)
-        // Nếu phần tử cuối là dấu chấm -> Giữ nguyên dấu chấm và nhân giá trị trước dấu chấm cho -1 (vd: 2*8-5. -> (+/-) -> 2*8+5.)
-        
-        print("\(valueEnd)")
-        
-//        if !valueEnd.isEmpty {
-//            if valueEnd.doubleValue() > 0 {
-//
-//            } else {
-//
-//            }
-//        }
-        
     }
     
     
     func dotSliderWorking(_ operation: String) {
         if !self.currentWorking.isEmpty {
-            let valueEnd = self.valueOfEnd(self.currentWorking)
-
+            let valueEnd = self.valueOfRange(self.currentWorking)
+            
             // Check first character
             let lastChar = self.currentWorking.last != nil ? String(self.currentWorking.last!) : ""
-
+            
             if !lastChar.isEmpty {
                 if self.isMatchOperationCalulator(lastChar) {
                     // Thêm số "0." đằng trước
@@ -201,7 +179,7 @@ class CalculationViewModel: ObservableObject {
                     print("isMatchOperationException")
                 }
                 else if self.isMatchNumber(operation) {
-                    let valueEnd = self.valueOfEnd(self.currentWorking)
+                    let valueEnd = self.valueOfRange(self.currentWorking)
                     if self.isLimitNumber(valueEnd) {
                         // Push error message -> Limit number
                         //UIScreen.showAlert(title: "Cảnh báo", msg: "Giá trị đã đạt đến số giới hạn 1 triệu tỉ số và không thể nhập thêm được nữa", button: "OK")
@@ -245,13 +223,15 @@ class CalculationViewModel: ObservableObject {
     func makeCalculation(_ string: String) {
         // Before use it
         // We must have to validate
-        if let calculate = string.calculate() {
+        do {
+            let calculate = try string.calculate() ?? 0
             self.resultValue = calculate
+            self.oldResults.append(String(calculate))
             self.assignWorking(self.numberFormated(calculate))
-        } else {
-            UIScreen.showAlert(title: "Lỗi", msg: "Không thể thực hiện phép tính này!", button: "OK")
-            print("Error calculating.")
+        } catch let err {
+            print("Error: \(err.localizedDescription)")
         }
+        
     }
     
     func resetAll() {
@@ -264,7 +244,7 @@ class CalculationViewModel: ObservableObject {
     func isLimitNumber(_ string: String) -> Bool {
         var arr: String = ""
         for i in string.indices {
-            if String(string[i]) != Operation.comma.rawValue {
+            if string[i] != "." {
                 arr.append(string[i])
             }
         }
@@ -294,7 +274,7 @@ class CalculationViewModel: ObservableObject {
         return targetNumber.contains(string) || string.contains("000")
     }
     
-    func valueOfEnd(_ string: String) -> String {
+    func valueOfRange(_ string: String) -> String {
         let range = self.rangeOfEnd(string)
         return String(string[range])
     }
@@ -302,8 +282,7 @@ class CalculationViewModel: ObservableObject {
     func rangeOfEnd(_ string: String) -> Range<String.Index> {
         var array = [String.Index]()
         for i in string.indices {
-            let char = string[i]
-            if self.isMatchOperationCalulator(String(char)) {
+            if self.isMatchOperationCalulator(String(string[i])) {
                 //let index = string.distance(from: string.startIndex, to: i)
                 array.append(i)
             }
@@ -311,8 +290,25 @@ class CalculationViewModel: ObservableObject {
         if let maxIndex = array.max() {
             let range = string.index(after: maxIndex)..<string.endIndex
             return range
+        } else {
+            return string.startIndex..<string.endIndex
         }
-        return string.startIndex..<string.endIndex
+    }
+    
+    func rangeNumber(_ string: String) -> Range<String.Index> { // Để lấy dãy số trước ký tự đặc biệt
+        var array = [String.Index]()
+        for i in string.indices {
+            if self.isMatchOperationCalulator(String(string[i])) {
+                //let index = string.distance(from: string.startIndex, to: i)
+                array.append(i)
+            }
+        }
+        if let maxIndex = array.max() {
+            let range = string.index(before: maxIndex)..<string.endIndex
+            return range
+        } else {
+            return string.startIndex..<string.endIndex
+        }
     }
     
     func numberFormated(_ value: Double) -> String {

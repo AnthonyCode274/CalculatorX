@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Currency: Identifiable, Codable {
+public struct Currency: Identifiable, Codable, Hashable {
     public init(currencyId: Int64 = 0, currencyStatus: Int16 = 0, currencyCode: String = "", currencyName: String = "", currencyRate: Float = 0, isMainCurrency: Bool = false, createdDate: String = "", createdBy: Int64? = 0, updatedDate: String = "", updatedBy: Int64? = 0) {
         self.currencyId = currencyId
         self.currencyStatus = currencyStatus

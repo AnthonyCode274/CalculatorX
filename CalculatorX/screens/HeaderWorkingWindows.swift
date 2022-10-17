@@ -11,41 +11,51 @@ struct HeaderWorkingWindows: View {
     @ObservedObject var viewModel: CalculationViewModel
     
     var statusWorkingCurrentShow: some View {
-        Text("\(self.currentWorkingShow)")
-            .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
-            .foregroundColor(Color.black)
-            .padding(.horizontal, UIScreen.getUnit(10))
-            .padding(.vertical, UIScreen.getUnit(5))
+        Button(action: {
+            self.viewModel.currentNumberSpell = self.currentWorkingShow
+        }) {
+            Text("\(self.currentWorkingShow)")
+                .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
+                .foregroundColor(Color.black)
+                .padding(.horizontal, UIScreen.getUnit(10))
+                .padding(.vertical, UIScreen.getUnit(5))
+        }
     }
     
     var statusWorkingMiniShow: some View {
         HStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
             
-            HStack(alignment: .center, spacing: UIScreen.getUnit(2)) {
+            HStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
                 
-                Image("icon-history")
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.GrayDark)
-                    .frame(width: UIScreen.getUnit(14), height: UIScreen.getUnit(14))
+                Text("Kết quả trước: ")
+                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(10)))
+                    .foregroundColor(Color.GrayDark)
+                    .lineLimit(1)
+                    .multilineTextAlignment(.leading)
                 
-                
-//                Text("\(Date.now)")
-//                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(16)))
+//                Image("icon-right_arrow")
+//                    .resizable()
+//                    .renderingMode(.template)
+//                    .aspectRatio(contentMode: .fit)
 //                    .foregroundColor(Color.GrayDark)
-//                    .lineLimit(1)
-//                    .multilineTextAlignment(.leading)
-                
+//                    .frame(width: UIScreen.getUnit(14), height: UIScreen.getUnit(14))
             }
             
             Spacer()
             
-            Text("\(self.viewModel.currentWorking.count)")
-                .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(20)))
-                .foregroundColor(Color.GrayDark)
-                .lineLimit(2)
-                .multilineTextAlignment(.trailing)
+            Button(action: {
+                // Refill number
+                if !self.viewModel.oldResults.isEmpty {
+                    self.viewModel.currentWorking = self.viewModel.oldResults.last ?? "0"
+                }
+            }) {
+                Text("\(self.viewModel.oldResults.last ?? "0")")
+                    .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(20)))
+                    .foregroundColor(Color.GrayDark)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.trailing)
+            }
+                
         }
         .frame(height: UIScreen.getUnit(20), alignment: .center)
         .padding(UIScreen.getUnit(10))

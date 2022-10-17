@@ -36,6 +36,7 @@
 		B24D87E328D5B3A3006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */; };
 		B2644DC928EC447A0055485F /* CustomContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2644DC828EC447A0055485F /* CustomContextMenu.swift */; };
 		B2644DCC28EC488C0055485F /* ContextMenusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2644DCB28EC488C0055485F /* ContextMenusHelper.swift */; };
+		B28090B928FC7C790013B1BD /* ListViewSelectionRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28090B828FC7C790013B1BD /* ListViewSelectionRate.swift */; };
 		B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */; };
 		B2868D2228DC1B480001D689 /* AltoneTrial-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */; };
 		B2868D2428DC1C670001D689 /* AltoneTrial-RegularOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */; };
@@ -89,6 +90,7 @@
 		B24D87E228D5B3A3006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
 		B2644DC828EC447A0055485F /* CustomContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContextMenu.swift; sourceTree = "<group>"; };
 		B2644DCB28EC488C0055485F /* ContextMenusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenusHelper.swift; sourceTree = "<group>"; };
+		B28090B828FC7C790013B1BD /* ListViewSelectionRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewSelectionRate.swift; sourceTree = "<group>"; };
 		B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-BoldOblique.ttf"; sourceTree = "<group>"; };
 		B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-RegularOblique.ttf"; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */,
 				B2F5968B28ED840300F8CB5A /* KeyboardCalculatorView.swift */,
 				B2F5968D28ED86F800F8CB5A /* ExchangeRateUpdates.swift */,
+				B28090B828FC7C790013B1BD /* ListViewSelectionRate.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				B2D13DED28F477F700F370F6 /* CalculationViewModel.swift in Sources */,
 				B24D87E128D48D7D006A8F1E /* CalculatorButtonImage.swift in Sources */,
 				B24D87DF28D48BE0006A8F1E /* CalculatorButton.swift in Sources */,
+				B28090B928FC7C790013B1BD /* ListViewSelectionRate.swift in Sources */,
 				B29C0B1B28D9A432000C3776 /* Language.swift in Sources */,
 				B2F5968E28ED86F800F8CB5A /* ExchangeRateUpdates.swift in Sources */,
 				B201BCE428ED9A5B00A2E489 /* Define.swift in Sources */,
@@ -571,7 +575,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CalculatorX/Preview Content\"";
 				DEVELOPMENT_TEAM = KSY9NMG6B8;
 				ENABLE_PREVIEWS = YES;
@@ -603,7 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CalculatorX/Preview Content\"";
 				DEVELOPMENT_TEAM = KSY9NMG6B8;
 				ENABLE_PREVIEWS = YES;

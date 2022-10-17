@@ -35,7 +35,7 @@ public class CurrencyViewModel: ObservableObject {
                         self.currentDateUpdate = Date.now
                         
                         if self.currency == nil {
-                            self.currency = self.currencies[0]
+                            self.currency = self.currencies.first
                         }
                     }
                     catch let jsonError {

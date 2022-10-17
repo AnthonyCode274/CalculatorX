@@ -23,7 +23,7 @@ struct FunctionMoreButtonText: View {
             HStack(spacing: UIScreen.getUnit(8)) {
                 
                 Text(string)
-                    .font(.bold(size: 16))
+                    .font(.medium(size: 16))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .fixedSize(horizontal: true, vertical: false)
                     .lineLimit(1)
@@ -33,10 +33,10 @@ struct FunctionMoreButtonText: View {
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
-                    .frame(width: UIScreen.getUnit(12), height: UIScreen.getUnit(12))
+                    .frame(width: UIScreen.getUnit(8), height: UIScreen.getUnit(8))
             }
             .padding(.horizontal, UIScreen.getUnit(10))
-            .padding(.vertical, UIScreen.getUnit(5))
+            .padding(.vertical, UIScreen.getUnit(8))
             .background(
                 RoundedRectangle(cornerRadius: UIScreen.getUnit(8))
                     .fill(Color.Neumorphic.main)
@@ -60,6 +60,9 @@ struct FunctionMoreButtonText_Previews: PreviewProvider {
         .colorScheme(.light)
         .previewLayout(.sizeThatFits)
         
+        CalculatorView()
+            .colorScheme(.dark)
+        
         ZStack {
             
             FunctionMoreButtonText(string: "Lượng vàng SJC") {
@@ -71,5 +74,8 @@ struct FunctionMoreButtonText_Previews: PreviewProvider {
         .background(Color.Neumorphic.main)
         .colorScheme(.dark)
         .previewLayout(.sizeThatFits)
+        
+        CalculatorView()
+            .colorScheme(.light)
     }
 }
