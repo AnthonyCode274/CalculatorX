@@ -25,21 +25,6 @@ extension Font {
         case RobotoThinItalic = "Roboto-ThinItalic"
     }
     
-//    public static func system(size: CGFloat, weight: Font.Weight = .regular, design: Font.Design = .default) -> Font {
-//        var font = FontType.RobotoRegular.rawValue
-//        switch weight {
-//        case .bold: font = FontType.RobotoBold.rawValue
-//        case .heavy: font = FontType.RobotoBlack.rawValue
-//        case .light: font = FontType.RobotoLight.rawValue
-//        case .medium: font = FontType.RobotoRegular.rawValue
-//        case .semibold: font = FontType.RobotoMedium.rawValue
-//        case .thin: font = FontType.RobotoLight.rawValue
-//        case .ultraLight: font = FontType.RobotoLight.rawValue
-//        default: break
-//        }
-//        return Font.custom(font, size: size)
-//    }
-    
     /// Regular
     public static func regular(size: CGFloat) -> Font {
         return Font.custom(Font.FontType.RobotoRegular.rawValue, size: size)

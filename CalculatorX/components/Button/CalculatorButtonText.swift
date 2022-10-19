@@ -23,12 +23,12 @@ struct CalculatorButtonText: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        let fontSize: CGFloat = self.string.contains("000") ? UIScreen.getUnit(24) : UIScreen.getUnit(30)
+        let fontSize: CGFloat = self.string.contains("000") ? 26 : 32
         
         CalculatorButton(
             overView: AnyView(
                 Text(string)
-                    .font(.custom("", size: fontSize))
+                    .font(.medium(size: fontSize))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
             ),
             backgroundColor: backgroundColor,

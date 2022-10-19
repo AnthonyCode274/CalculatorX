@@ -14,65 +14,87 @@ struct KeyboardCalculatorView: View {
     var body: some View {
         VStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
             
-            self.roleBackButton
+            HStack {
+                self.TotalAllButton
+                
+                Spacer()
+                
+                self.roleBackButton
+            }
             
-            self.row0
-            
-            self.row1
-             
-            self.row2
-            
-            self.row3
-            
-            self.row4
+            VStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
+                
+                self.row0
+                
+                self.row1
+                
+                self.row2
+                
+                self.row3
+                
+                self.row4
+            }
         }
     }
     
+    var TotalAllButton: some View {
+        Button(action: {
+            
+        }) {
+            Circle()
+                .fill(Color.Neumorphic.main)
+                .frame(width: UIScreen.getUnit(30), height: UIScreen.getUnit(30), alignment: .center)
+                .softOuterShadow()
+                .overlay(
+                    Text("GT")
+                        .font(.bold(size: 16))
+                        .foregroundColor(.primary)
+                )
+        }
+        .padding(.horizontal, UIScreen.getUnit(20))
+    }
     
     var roleBackButton: some View {
-        VStack(alignment: .trailing) {
-            Button(action: {
-                self.viewModel.backRemove()
-            }) {
-                Image("icon-delete")
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
-                    .frame(width: UIScreen.getUnit(30), height: UIScreen.getUnit(30), alignment: .center)
-                    .softOuterShadow()
-            }
-            .padding(.horizontal, UIScreen.getUnit(20))
+        Button(action: {
+            self.viewModel.backRemove()
+        }) {
+            Image(ImageStyle.name.removeIcon)
+                .resizable()
+                .renderingMode(.template)
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(self.colorScheme == .dark ? .white : .black)
+                .frame(width: UIScreen.getUnit(30), height: UIScreen.getUnit(30), alignment: .center)
+                .softOuterShadow()
         }
-        .frame(maxWidth: UIScreen.width, alignment: .trailing)
+        .padding(.horizontal, UIScreen.getUnit(20))
     }
     
-    let paddingH: CGFloat = UIScreen.getUnit(20)
+    let paddingH: CGFloat = UIScreen.getUnit(2)
     let paddingV: CGFloat = UIScreen.getUnit(20)
     
     var row0: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: self.paddingH) {
             Spacer()
             
-            CalculatorButtonImage("icon-letter_ac", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.acIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.resetAll()
             }
             
             Spacer()
             
-            CalculatorButtonImage("icon-plus_and_minus", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.plusOrSubtractIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.setValue("+/-")
             }
             
             Spacer()
             
-            CalculatorButtonImage("icon-percent", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.percentIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.setValue("%")
             }
             
             Spacer()
             
-            CalculatorButtonImage("icon-divide", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.divideIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.setValue("/")
             }
             
@@ -82,7 +104,7 @@ struct KeyboardCalculatorView: View {
     }
     
     var row1: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: self.paddingH) {
             Spacer()
             
             CalculatorButtonText("1") {
@@ -104,7 +126,7 @@ struct KeyboardCalculatorView: View {
             Spacer()
             
             
-            CalculatorButtonImage("icon-crossed", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.multlyIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.setValue("*")
             }
             
@@ -114,7 +136,7 @@ struct KeyboardCalculatorView: View {
     }
     
     var row2: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: self.paddingH) {
             Spacer()
             
             CalculatorButtonText("4") {
@@ -135,7 +157,7 @@ struct KeyboardCalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonImage("icon-minus", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.subtractIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.setValue("-")
             }
             
@@ -145,7 +167,7 @@ struct KeyboardCalculatorView: View {
     }
     
     var row3: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: self.paddingH) {
             Spacer()
             
             CalculatorButtonText("7") {
@@ -166,7 +188,7 @@ struct KeyboardCalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonImage("icon-add", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.plusIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.setValue("+")
             }
             
@@ -175,7 +197,7 @@ struct KeyboardCalculatorView: View {
     }
     
     var row4: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: self.paddingH) {
             Spacer()
             
             CalculatorButtonText("000") {
@@ -196,7 +218,7 @@ struct KeyboardCalculatorView: View {
             
             Spacer()
             
-            CalculatorButtonImage("icon-equal", backgroundColor: Color.OgranLight) {
+            CalculatorButtonImage(ImageStyle.name.equalIcon, backgroundColor: Color.OgranLight) {
                 self.viewModel.equalButton()
             }
             

@@ -23,12 +23,12 @@ struct FunctionMoreButtonText: View {
             HStack(spacing: UIScreen.getUnit(8)) {
                 
                 Text(string)
-                    .font(.medium(size: 16))
+                    .font(.custom("AltoneTrial-BoldOblique", size: UIScreen.getUnit(16)))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .fixedSize(horizontal: true, vertical: false)
                     .lineLimit(1)
                 
-                Image("icon-drop_down")
+                Image(ImageStyle.name.dropdownIcon)
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)

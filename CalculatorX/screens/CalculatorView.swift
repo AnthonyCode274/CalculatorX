@@ -25,7 +25,7 @@ struct CalculatorView: View {
                 
                 Spacer()
                 
-                VStack(spacing: UIScreen.getUnit(15)) {
+                VStack(spacing: UIScreen.getUnit(10)) {
                     KeyboardCalculatorView(viewModel: viewModel)
                     
                     ExchangeRateUpdates(viewModel: currencyVM)

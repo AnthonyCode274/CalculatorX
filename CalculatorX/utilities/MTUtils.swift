@@ -20,4 +20,8 @@ public class MTUtils {
         encoder.outputFormatting = .withoutEscapingSlashes
         return encoder
     }
+    
+    public static func unitCurrency(from: Double, to: Double) -> Double {
+        return from / to
+    }
 }

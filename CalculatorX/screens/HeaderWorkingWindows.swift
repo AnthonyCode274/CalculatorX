@@ -12,9 +12,9 @@ struct HeaderWorkingWindows: View {
     
     var statusWorkingCurrentShow: some View {
         Button(action: {
-            self.viewModel.currentNumberSpell = self.currentWorkingShow
+            self.viewModel.currentNumberSpell = self.viewModel.workings
         }) {
-            Text("\(self.currentWorkingShow)")
+            Text("\(self.currentWorkingMiniShow)")
                 .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
                 .foregroundColor(Color.black)
                 .padding(.horizontal, UIScreen.getUnit(10))
@@ -27,7 +27,7 @@ struct HeaderWorkingWindows: View {
             
             HStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
                 
-                Text("Kết quả trước: ")
+                Text(TextDictionary.LastResult + ":")
                     .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(10)))
                     .foregroundColor(Color.GrayDark)
                     .lineLimit(1)
@@ -45,11 +45,12 @@ struct HeaderWorkingWindows: View {
             
             Button(action: {
                 // Refill number
-                if !self.viewModel.oldResults.isEmpty {
-                    self.viewModel.currentWorking = self.viewModel.oldResults.last ?? "0"
+                let last = String(self.viewModel.oldResults.last!)
+                if !last.isEmpty {
+                    self.viewModel.validAssignWorking(last)
                 }
             }) {
-                Text("\(self.viewModel.oldResults.last ?? "0")")
+                Text("\(self.currentWorkingMiniShow)")
                     .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(20)))
                     .foregroundColor(Color.GrayDark)
                     .lineLimit(2)
@@ -71,7 +72,7 @@ struct HeaderWorkingWindows: View {
             .frame(width: width, height: height)
             .softOuterShadow()
             .overlay(
-                Image("background_calculator")
+                Image(ImageStyle.name.background)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(maxWidth:  width, maxHeight: height)
@@ -87,14 +88,21 @@ struct HeaderWorkingWindows: View {
             )
     }
     
-    var currentWorkingShow: String {
-        let string = self.viewModel.currentWorking
+    var currentWorking: String {
+        let string = self.viewModel.workings
+        
+        return string.isEmpty ? "0" : string
+    }
+    
+    var currentWorkingMiniShow: String {
+        let string = self.viewModel.currentWorkingShow
+        
         return string.isEmpty ? "0" : string
     }
 
     func resizeWorkingNumber() -> CGFloat {
         var size: CGFloat = 58
-        let count = self.viewModel.currentWorking.count
+        let count = self.viewModel.workings.count
         
         
 //        switch count {

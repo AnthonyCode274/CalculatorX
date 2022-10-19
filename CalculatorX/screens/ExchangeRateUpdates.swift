@@ -15,15 +15,15 @@ struct ExchangeRateUpdates: View {
     @State private var indexPicker: Int = 0
     
     var currencyRate: String {
-        return String(format: "%.2f", self.viewModel.currency?.currencyRate ?? "").numberFormatted()
+        return String(format: "%.2f", self.viewModel.fromCurrency?.currencyRate ?? "").numberFormatted()
     }
     
     var currencyName: String {
-        return self.viewModel.currency?.currencyName ?? ""
+        return self.viewModel.fromCurrency?.currencyName ?? ""
     }
     
     var currencyCode: String {
-        return self.viewModel.currency?.currencyCode ?? ""
+        return self.viewModel.fromCurrency?.currencyCode ?? ""
     }
     
     var body: some View {
@@ -84,7 +84,7 @@ struct ExchangeRateUpdates: View {
     
     
     func onEnd() {
-        self.viewModel.currency = self.viewModel.currencies[self.indexPicker]
+        self.viewModel.fromCurrency = self.viewModel.currencies[self.indexPicker]
         self.isActiveSheet = false
     }
 }

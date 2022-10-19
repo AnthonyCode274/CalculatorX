@@ -14,7 +14,8 @@ public class CurrencyViewModel: ObservableObject {
         self.loadCurrencies()
     }
     
-    @Published var currency: Currency?
+    @Published var fromCurrency: Currency?
+    @Published var toCurrency: Currency?
     @Published var currencies = [Currency]()
     @Published var currentDateUpdate: Date = Date.now
     
@@ -34,8 +35,9 @@ public class CurrencyViewModel: ObservableObject {
                         self.currencies = results
                         self.currentDateUpdate = Date.now
                         
-                        if self.currency == nil {
-                            self.currency = self.currencies.first
+                        if self.fromCurrency == nil && self.toCurrency == nil {
+                            self.fromCurrency = self.currencies[0]
+                            self.toCurrency = self.currencies[1]
                         }
                     }
                     catch let jsonError {

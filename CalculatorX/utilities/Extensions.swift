@@ -52,96 +52,50 @@ public extension UIScreen {
     }
 }
 
-extension Color {
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (1, 1, 1, 0)
-        }
-        
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue:  Double(b) / 255,
-            opacity: Double(a) / 255
-        )
-    }
-}
-
-public extension Color {
-    
-    static var GrayLight: Color {
-        return Color(UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0))
-    }
-    
-    static var GrayDark: Color {
-        return Color(UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 1.0))
-    }
-    
-    static var YellowLight: Color {
-        return Color(UIColor(red: 233/255, green: 158/255, blue: 57/255, alpha: 1.0))
-    }
-    
-    static var OgranLight: Color {
-        return Color(hex: "#FF8C00")
-    }
-    
-    static var OgranDark: Color {
-        return Color(hex: "#9A5500")
-    }
-    
-    static var OviLight: Color {
-        return Color(hex: "#00C8FF") // old: 38F3FF
-    }
-}
-
 extension String {
-    func numberFormatter() -> NumberFormatter {
+    
+    func numberFormatted() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.allowsFloats = true
         formatter.locale = Locale(identifier: "vi_VN")
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = 3
         formatter.decimalSeparator = ","
         formatter.groupingSeparator = "."
         
-        return formatter
-    }
-    
-    func numberFormatted() -> String {
-        let numberFormater = self.numberFormatter()
-        
         let number = NSNumber(value: self.doubleValue())
         
-        if let valueFormatted = numberFormater.string(from: number) {
+        if let valueFormatted = formatter.string(from: number) {
             return valueFormatted
         } else {
             return self
         }
     }
     
-    func spellOut() -> String {
-        let formatter = NumberFormatter()
-        formatter.locale = Locale(identifier: "vi_VN")
-        formatter.numberStyle = .spellOut
-        formatter.decimalSeparator = ","
-        formatter.groupingSeparator = "."
-        
-        if let numberAsWord = formatter.string(from: NSNumber(value: self.doubleValue())) {
-            return numberAsWord.capitalizeFirstLetter().replacingOccurrences(of: " phẩy", with: ",")
-        } else {
-            return self
+    func numberFormatOnly() -> String {
+        var string = self
+        for i in string.indices {
+            let char = string[i]
+            if char == "+" || char == "-" || char == "*" || char == "/" {
+                string.remove(at: i)
+            }
         }
+        
+        return string.numberFormatted()
+    }
+    
+    func spellOut() -> String {
+        let number = (self as NSString).doubleValue
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .spellOut
+        formatter.maximumFractionDigits = 3
+        formatter.locale = Locale(identifier: "vi_VN")
+        var numberAsWord = String(formatter.string(from: NSNumber(value: number)) ?? "").capitalizeFirstLetter()
+        
+        let newString = numberAsWord.replacingOccurrences(of: "nghìn", with: "nghìn,").replacingOccurrences(of: "tỷ", with: "tỷ,").replacingOccurrences(of: "triệu", with: "triệu,").replacingOccurrences(of: " phẩy", with: ",")
+        numberAsWord = newString
+        
+        return numberAsWord
     }
     
     func capitalizeFirstLetter() -> String {
@@ -161,6 +115,59 @@ extension String {
         let val = (self as NSString).floatValue
         return val
     }
+    
+    func toString(decimal: Int = 9) -> String {
+        let value = decimal < 0 ? 0 : decimal
+        var string = String(format: "%.\(value)f", self)
+        
+        while string.last == "0" || string.last == "." {
+            if string.last == "." { string = String(string.dropLast()); break}
+            string = String(string.dropLast())
+        }
+        return string
+    }
+    
+    func allNumsToDouble() -> String {
+        
+        let symbolsCharSet = ".,"
+        let fullCharSet = "0123456789" + symbolsCharSet
+        var i = 0
+        var result = ""
+        let chars = Array(self)
+        while i < chars.count {
+            if fullCharSet.contains(chars[i]) {
+                var numString = String(chars[i])
+                i += 1
+            loop: while i < chars.count {
+                if fullCharSet.contains(chars[i]) {
+                    numString += String(chars[i])
+                    i += 1
+                } else {
+                    break loop
+                }
+            }
+                if let num = Double(numString) {
+                    result += "\(num)"
+                } else {
+                    result += numString
+                }
+            } else {
+                result += String(chars[i])
+                i += 1
+            }
+        }
+        return result
+    }
+    
+    func calculate() -> Double? {
+        let transformedString = self.allNumsToDouble()
+        let expr = NSExpression(format: transformedString)
+        if let value = expr.expressionValue(with: nil, context: nil) as? NSNumber {
+            return value.doubleValue
+        } else {
+            return 0
+        }
+    }
 }
 
 public extension StringProtocol {
@@ -174,6 +181,12 @@ public extension Collection {
 
 public extension String.Index {
     func distance<S: StringProtocol>(in string: S) -> Int { string.distance(to: self) }
+}
+
+public extension String.Element {
+    func toString() -> String {
+        return String(self)
+    }
 }
 
 public extension Encodable {
@@ -259,59 +272,5 @@ public extension Date {
         dayComponent.day    = -1 // For removing one day (yesterday): -1
         let theCalendar     = Calendar(identifier: .iso8601)
         return theCalendar.date(byAdding: dayComponent, to: Date())!
-    }
-}
-
-extension String {
-    func toString(decimal: Int = 9) -> String {
-        let value = decimal < 0 ? 0 : decimal
-        var string = String(format: "%.\(value)f", self)
-        
-        while string.last == "0" || string.last == "." {
-            if string.last == "." { string = String(string.dropLast()); break}
-            string = String(string.dropLast())
-        }
-        return string
-    }
-    
-    func allNumsToDouble() throws -> String {
-        
-        let symbolsCharSet = ".,"
-        let fullCharSet = "0123456789" + symbolsCharSet
-        var i = 0
-        var result = ""
-        let chars = Array(self)
-        while i < chars.count {
-            if fullCharSet.contains(chars[i]) {
-                var numString = String(chars[i])
-                i += 1
-            loop: while i < chars.count {
-                if fullCharSet.contains(chars[i]) {
-                    numString += String(chars[i])
-                    i += 1
-                } else {
-                    break loop
-                }
-            }
-                if let num = Double(numString) {
-                    result += "\(num)"
-                } else {
-                    result += numString
-                }
-            } else {
-                result += String(chars[i])
-                i += 1
-            }
-        }
-        return result
-    }
-    
-    func calculate() throws -> Double? {
-        let transformedString = try self.allNumsToDouble()
-        let expr = NSExpression(format: transformedString)
-        if let value = expr.expressionValue(with: nil, context: nil) as? NSNumber {
-            return value.doubleValue
-        }
-        return 0
     }
 }
