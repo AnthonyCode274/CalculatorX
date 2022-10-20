@@ -134,7 +134,12 @@ extension String {
     }
     
     var isMatchOperator: Bool {
-        return self == "+" || self == "-" || self == "*" || self == "/"
+        for i in self {
+            if i == "+" || i == "-" || i == "*" || i == "/" {
+                return true
+            }
+        }
+        return false
     }
     
     var isMatchOperatorException: Bool {

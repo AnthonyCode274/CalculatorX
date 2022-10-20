@@ -81,7 +81,7 @@ struct BodyCalculatorWorking: View {
             }
             
             Button(action: {
-                //self.viewModel.currentNumberSpell = String(format: "%.3f", self.totalResultExchange)
+                self.viewModel.spellNumber = String(format: "%.3f", self.totalResultExchange)
             }) {
                 Text(self.totalResultExchangeShow + " " + self.currencyCodeRight)
                     .font(.bold(size: 18))

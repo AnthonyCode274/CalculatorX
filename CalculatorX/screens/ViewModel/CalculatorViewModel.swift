@@ -63,7 +63,7 @@ class CalculatorViewModel: CurrencyViewModel {
                         print("%")
                         break;
                     case .addOrSubtract:
-                        print("+/-")
+                        self.addOrSubtract(stringOperator)
                         break;
                     case .dot:
                         self.dotOperatorAction(stringOperator)
@@ -84,7 +84,7 @@ class CalculatorViewModel: CurrencyViewModel {
                         print("%")
                         break;
                     case .addOrSubtract:
-                        print("+/-")
+                        self.addOrSubtract(stringOperator)
                         break;
                     case .dot:
                         self.dotOperatorAction(stringOperator)
@@ -105,6 +105,42 @@ class CalculatorViewModel: CurrencyViewModel {
             }
         }
     }
+    
+    func addOrSubtract(_ stringOperator: String) {
+        // Lấy chuỗi numbers ở cuối và kiểm tra.
+        let lastNumbers = String(self.workings.endNumbers())
+        let rangeOfEnd = self.workings.rangeOfEnd()
+        if self.workings.isMatchOperator {
+            if !lastNumbers.isEmpty {
+                let beforeNumbers = lastNumbers.index(before: rangeOfEnd.lowerBound)
+                let type = Operation(rawValue: String(self.workings[beforeNumbers]))
+                
+                switch type {
+                case .add:
+                    self.workings.replaceSubrange(beforeNumbers..<rangeOfEnd.upperBound, with: "-\(lastNumbers)")
+                    break;
+                case .subtract:
+                    self.workings.replaceSubrange(beforeNumbers..<rangeOfEnd.upperBound, with: "+\(lastNumbers)")
+                    break;
+                case .multiply:
+                    self.workings.replaceSubrange(beforeNumbers..<rangeOfEnd.upperBound, with: "*(-\(lastNumbers))")
+                    break;
+                case .divide:
+                    self.workings.replaceSubrange(beforeNumbers..<rangeOfEnd.upperBound, with: "/(-\(lastNumbers))")
+                    break;
+                default:
+                    break;
+                }
+                
+                print("\(self.workings[beforeNumbers])")
+            } else {
+                print("Empty")
+            }
+        } else {
+            self.workings.replaceSubrange(rangeOfEnd.lowerBound..<rangeOfEnd.upperBound, with: "-\(lastNumbers)")
+        }
+    }
+    
     func dotOperatorAction(_ stringOperator: String) {
         if self.workings.isEmpty {
             self.addWorking("0.")
@@ -193,8 +229,11 @@ class CalculatorViewModel: CurrencyViewModel {
         
     }
     
-    func exchangeCurrenyAction() {
-        
+    func resetExchangeCurreny() {
+        self.fromCurrency = Currency()
+        self.toCurrency = Currency()
+        self.currencies = [Currency]()
+        self.currentDateUpdate = .now
     }
     
     func equalButton() {
