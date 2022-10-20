@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListViewSelectionRate: View {
     var data: [Currency]
-    @Binding var itemSelected: Currency?
+    @Binding var itemSelected: Currency
     @Binding var isPresented: Bool
     @Environment(\.colorScheme) private var colorScheme
 

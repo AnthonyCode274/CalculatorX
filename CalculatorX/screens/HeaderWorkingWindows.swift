@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HeaderWorkingWindows: View {
-    @ObservedObject var viewModel: CalculationViewModel
+    @ObservedObject var viewModel: CalculatorViewModel
     
     var statusWorkingCurrentShow: some View {
         Button(action: {
-            self.viewModel.currentNumberSpell = self.viewModel.workings
+            
         }) {
             Text("\(self.currentWorkingMiniShow)")
                 .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
@@ -44,11 +44,7 @@ struct HeaderWorkingWindows: View {
             Spacer()
             
             Button(action: {
-                // Refill number
-                let last = String(self.viewModel.oldResults.last!)
-                if !last.isEmpty {
-                    self.viewModel.validAssignWorking(last)
-                }
+                
             }) {
                 Text("\(self.currentWorkingMiniShow)")
                     .font(.custom("digital-7monoitalic", size: UIScreen.getUnit(20)))
@@ -95,9 +91,9 @@ struct HeaderWorkingWindows: View {
     }
     
     var currentWorkingMiniShow: String {
-        let string = self.viewModel.currentWorkingShow
+        let string = self.viewModel.workings
         
-        return string.isEmpty ? "0" : string
+        return string.isEmpty ? "0" : string.specialFormatted()
     }
 
     func resizeWorkingNumber() -> CGFloat {

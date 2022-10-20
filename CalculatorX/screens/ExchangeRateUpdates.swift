@@ -8,22 +8,24 @@
 import SwiftUI
 
 struct ExchangeRateUpdates: View {
-    @ObservedObject var viewModel: CurrencyViewModel
+    @ObservedObject var viewModel: CalculatorViewModel
     @Environment(\.colorScheme) private var colorScheme
     @State private var rotation: Double = 0
     @State private var isActiveSheet: Bool = false
     @State private var indexPicker: Int = 0
     
     var currencyRate: String {
-        return String(format: "%.2f", self.viewModel.fromCurrency?.currencyRate ?? "").numberFormatted()
+        return String(format: "%.2f", self.viewModel.fromCurrency.currencyRate).numberFormatted()
     }
     
     var currencyName: String {
-        return self.viewModel.fromCurrency?.currencyName ?? ""
+        let string = self.viewModel.fromCurrency.currencyName
+        return string
     }
     
     var currencyCode: String {
-        return self.viewModel.fromCurrency?.currencyCode ?? ""
+        let string = self.viewModel.fromCurrency.currencyCode
+        return string
     }
     
     var body: some View {
@@ -53,11 +55,6 @@ struct ExchangeRateUpdates: View {
                     }
                     .font(.regular(size: 16))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
-
-//                    Text("1 \(self.currencyName) " + "(\(self.currencyCode))" + " = " + "\(self.currencyRate) VNĐ")
-//                        .font(.regular(size: 16))
-//                        .foregroundColor(self.colorScheme == .dark ? .white : .black)
-                    
                 }
                 
             }
@@ -70,7 +67,7 @@ struct ExchangeRateUpdates: View {
             VStack(spacing: 10) {
                 Section {
                     Picker(selection: $indexPicker, label: EmptyView()) {
-                        ForEach(self.viewModel.currencies.indices) { item in
+                        ForEach(self.viewModel.currencies.indices, id: \.self) { item in
                             Text("\(self.viewModel.currencies[item].currencyName)")
                                 .font(.regular(size: 20))
                                 .foregroundColor(self.colorScheme == .dark ? .white : .black)
@@ -91,6 +88,6 @@ struct ExchangeRateUpdates: View {
 
 struct ExchangeRateUpdates_Previews: PreviewProvider {
     static var previews: some View {
-        ExchangeRateUpdates(viewModel: CurrencyViewModel())
+        ExchangeRateUpdates(viewModel: CalculatorViewModel())
     }
 }

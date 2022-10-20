@@ -9,9 +9,7 @@ import SwiftUI
 import Neumorphic
 
 struct CalculatorView: View {
-    @StateObject private var viewModel = CalculationViewModel()
-    @StateObject private var currencyVM = CurrencyViewModel()
-    @Environment(\.colorScheme) private var colorScheme
+    @StateObject private var viewModel = CalculatorViewModel()
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -21,14 +19,14 @@ struct CalculatorView: View {
                 
                 HeaderWorkingWindows(viewModel: viewModel)
                 
-                BodyCalculatorWorking(viewModel: viewModel, currencyViewModel: currencyVM)
+                BodyCalculatorWorking(viewModel: viewModel)
                 
                 Spacer()
                 
                 VStack(spacing: UIScreen.getUnit(10)) {
                     KeyboardCalculatorView(viewModel: viewModel)
                     
-                    ExchangeRateUpdates(viewModel: currencyVM)
+                    ExchangeRateUpdates(viewModel: viewModel)
                 }
             }
             .padding(.vertical, UIScreen.getUnit(15))

@@ -13,5 +13,6 @@ public class TextDictionary: Codable {
     public static var ExchangeRate = "Chuyển đổi tỉ giá"
     public static var ListOfExchangeRates = "Danh sách tỉ giá"
     public static var LastResult = "Kết quả trước"
+    public static var CalculatorErrorMessage = "Không thể thực hiện được phép tính này"
     
 }

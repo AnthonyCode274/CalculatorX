@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct KeyboardCalculatorView: View {
-    @ObservedObject var viewModel: CalculationViewModel
+    @ObservedObject var viewModel: CalculatorViewModel
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         VStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
             
             HStack {
-                self.TotalAllButton
+                self.totalAllButton
                 
                 Spacer()
                 
@@ -37,7 +37,7 @@ struct KeyboardCalculatorView: View {
         }
     }
     
-    var TotalAllButton: some View {
+    var totalAllButton: some View {
         Button(action: {
             
         }) {
@@ -56,7 +56,7 @@ struct KeyboardCalculatorView: View {
     
     var roleBackButton: some View {
         Button(action: {
-            self.viewModel.backRemove()
+            self.viewModel.removeButton()
         }) {
             Image(ImageStyle.name.removeIcon)
                 .resizable()

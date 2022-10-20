@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItemSelectionRate: View {
     var item: Currency
-    @Binding var itemSelected: Currency?
+    @Binding var itemSelected: Currency
     @Binding var isPresented: Bool
     @Environment(\.colorScheme) private var colorScheme
 
@@ -53,7 +53,7 @@ struct ItemSelectionRate: View {
     }
     
     func matchId(_ item: Currency) -> Bool {
-        return self.itemSelected?.id == item.id
+        return self.itemSelected.id == item.id
     }
 }
 

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct BodyCalculatorWorking: View {
-    @ObservedObject var viewModel: CalculationViewModel
-    @ObservedObject var currencyViewModel: CurrencyViewModel
+    @ObservedObject var viewModel: CalculatorViewModel
     @State private var expanded: Bool = false
     @Environment(\.colorScheme) private var colorScheme
     @State private var isPresentedFrom: Bool = false
@@ -27,7 +26,7 @@ struct BodyCalculatorWorking: View {
             }
 
             HStack {
-                Text(String(self.viewModel.currentNumberSpell).spellOut())
+                Text(self.spellOutNumber)
                     .font(.regular(size: 16))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .fixedSize(horizontal: false, vertical: true)
@@ -37,7 +36,7 @@ struct BodyCalculatorWorking: View {
                 Spacer()
                 
                 Button(action: {
-                    UIScreen.showAlert(title: "Đánh vần", msg: String(self.viewModel.currentNumberSpell).spellOut(), button: "OK")
+                    UIScreen.showAlert(title: "Đánh vần", msg: String(self.viewModel.spellNumber).spellOut(), button: "OK")
                 }) {
                     Text("Xem")
                         .font(.medium(size: 14))
@@ -82,11 +81,11 @@ struct BodyCalculatorWorking: View {
             }
             
             Button(action: {
-                self.viewModel.currentNumberSpell = String(format: "%.3f", self.totalResultExchange)
+                //self.viewModel.currentNumberSpell = String(format: "%.3f", self.totalResultExchange)
             }) {
                 Text(self.totalResultExchangeShow + " " + self.currencyCodeRight)
-                    .font(.medium(size: 18))
-                    .foregroundColor(.yellow)
+                    .font(.bold(size: 18))
+                    .foregroundColor(.OgranLight)
                     .fixedSize(horizontal: true, vertical: false)
                     .lineLimit(1)
                     .softOuterShadow()
@@ -94,10 +93,10 @@ struct BodyCalculatorWorking: View {
             
         }
         .sheet(isPresented: $isPresentedFrom) {
-            ListViewSelectionRate(data: self.currencyViewModel.currencies, itemSelected: self.$currencyViewModel.fromCurrency, isPresented: $isPresentedFrom)
+            ListViewSelectionRate(data: self.viewModel.currencies, itemSelected: self.$viewModel.fromCurrency, isPresented: $isPresentedFrom)
         }
         .sheet(isPresented: $isPresentedTo) {
-            ListViewSelectionRate(data: self.currencyViewModel.currencies, itemSelected: self.$currencyViewModel.toCurrency, isPresented: $isPresentedTo)
+            ListViewSelectionRate(data: self.viewModel.currencies, itemSelected: self.$viewModel.toCurrency, isPresented: $isPresentedTo)
         }
     }
     
@@ -130,8 +129,12 @@ struct BodyCalculatorWorking: View {
         
     }
     
+    var spellOutNumber: String {
+        return self.viewModel.operation != nil ? self.viewModel.operation!.operatorToWord().capitalizeFirstLetter() : String(self.viewModel.spellNumber).spellOut()
+    }
+    
     var totalResultExchange: Double {
-        let resultValue = self.viewModel.resultValue
+        let resultValue = self.viewModel.resultWorking.doubleValue()
         let unit = MTUtils.unitCurrency(from: self.currentRateLeft, to: self.currentRateRight)
         let result = resultValue * unit
         return result
@@ -143,11 +146,13 @@ struct BodyCalculatorWorking: View {
     }
     
     var currencyLeft: String {
-        return self.currencyViewModel.fromCurrency?.currencyName ?? TextDictionary.SpaceDivider
+        let string = self.viewModel.fromCurrency.currencyName
+        return string.isEmpty ? TextDictionary.SpaceDivider : string
     }
     
     var currentcyRight: String {
-        return self.currencyViewModel.toCurrency?.currencyName ?? TextDictionary.SpaceDivider
+        let string = self.viewModel.toCurrency.currencyName
+        return string
     }
     
     var currentWorkingShow: String {
@@ -156,27 +161,33 @@ struct BodyCalculatorWorking: View {
     }
     
     var currencyNameFrom: String {
-        return self.currencyViewModel.fromCurrency?.currencyName ?? TextDictionary.SpaceDivider
+        let string = self.viewModel.fromCurrency.currencyName
+        return string
     }
     
     var currencyNameTo: String {
-        return self.currencyViewModel.toCurrency?.currencyName ?? TextDictionary.SpaceDivider
+        let string = self.viewModel.toCurrency.currencyName
+        return string
     }
     
     var currencyCodeLeft: String {
-        return self.currencyViewModel.fromCurrency?.currencyCode ?? ""
+        let string = self.viewModel.fromCurrency.currencyCode
+        return string
     }
     
     var currencyCodeRight: String {
-        return self.currencyViewModel.toCurrency?.currencyCode ?? ""
+        let string = self.viewModel.toCurrency.currencyCode
+        return string
     }
     
     var currentRateLeft: Double {
-        return self.currencyViewModel.fromCurrency?.currencyRate ?? 0
+        let string = self.viewModel.fromCurrency.currencyRate
+        return string
     }
     
     var currentRateRight: Double {
-        return self.currencyViewModel.toCurrency?.currencyRate ?? 0
+        let string = self.viewModel.toCurrency.currencyRate
+        return string
     }
 }
 

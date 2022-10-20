@@ -21,10 +21,6 @@ public struct Currency: Identifiable, Codable, Hashable {
         self.updatedBy = updatedBy
     }
     
-    public init() {
-        
-    }
-    
     public var id : Int64 {
         return self.currencyId
     }

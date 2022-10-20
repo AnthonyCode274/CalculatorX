@@ -19,6 +19,27 @@ extension Double {
     }
 }
 
+extension Operation {
+    
+    func operatorToWord() -> String {
+        var print: String = ""
+
+        if self == .add {
+            print = "cộng"
+        }
+        if self == .subtract {
+            print = "trừ"
+        }
+        if self == .multiply {
+            print = "nhân"
+        }
+        if self == .divide {
+            print = "chia"
+        }
+        return print
+    }
+}
+
 public extension UIScreen {
     static func setRotationDevice(to orientation: UIInterfaceOrientationMask) {
         AppDelegate.orientationLock = orientation
@@ -54,12 +75,37 @@ public extension UIScreen {
 
 extension String {
     
+    func endNumbers() -> Substring {
+        let range = self.rangeOfEnd()
+        return self[range]
+    }
+    
+    func rangeOfEnd() -> Range<String.Index> {
+        var array = [String.Index]()
+        for i in self.indices {
+            if self[i].isMatchOperator {
+                array.append(i)
+            }
+        }
+        if let maxIndex = array.max() {
+            let range = self.index(after: maxIndex)..<self.endIndex
+            return range
+        } else {
+            return self.startIndex..<self.endIndex
+        }
+    }
+    
+    // hello, (Nice to- meet 한국 école %&$you all. 123 ! Давай العربية 😀 => hello Nice to meet 한국 école $you all 123  Давай العربية 😀
+    var withoutPunctuations: String {
+        return self.components(separatedBy: CharacterSet.punctuationCharacters).joined(separator: "")
+    }
+    
     func numberFormatted() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.allowsFloats = true
-        formatter.locale = Locale(identifier: "vi_VN")
+        formatter.locale = Locale.current
         formatter.maximumFractionDigits = 3
+        formatter.usesGroupingSeparator = true
         formatter.decimalSeparator = ","
         formatter.groupingSeparator = "."
         
@@ -72,18 +118,56 @@ extension String {
         }
     }
     
-    func numberFormatOnly() -> String {
-        var string = self
-        for i in string.indices {
-            let char = string[i]
-            if char == "+" || char == "-" || char == "*" || char == "/" {
-                string.remove(at: i)
-            }
+    var isLimitNumber: Bool {
+        if let indexFind = self.firstIndex(of: ".") {
+            // Remove at index
+            var getString = self
+            getString.remove(at: indexFind)
+            return getString.count >= 16
+        } else {
+            return self.count >= 16
         }
-        
-        return string.numberFormatted()
     }
     
+    func equal(_ string: String) -> Bool {
+        return self == string
+    }
+    
+    var isMatchOperator: Bool {
+        return self == "+" || self == "-" || self == "*" || self == "/"
+    }
+    
+    var isMatchOperatorException: Bool {
+        return self == "." || self == "+/-" || self == "%" || self == ","
+    }
+    
+    func isMatchNumber() -> Bool {
+        let targetNumber: String = "0123456789"
+        return targetNumber.contains(self) || self.contains("000")
+    }
+    
+    var isNumber: Bool {
+        return self.range(
+            of: "^[0-9]*$", // 1
+            options: .regularExpression) != nil
+    }
+    
+    func specialFormatted() -> String {
+        var string = self
+        
+        return string
+    }
+    
+    func subString(startIndex: String.Index, endIndex: String.Index) -> String {
+        return String(self[startIndex...endIndex])
+    }
+
+    func subString(_ from: Int, _ to: Int) -> String {
+          let startIndex = self.index(self.startIndex, offsetBy: from)
+          let endIndex = self.index(self.startIndex, offsetBy: to)
+        return String(self[startIndex...endIndex])
+    }
+        
     func spellOut() -> String {
         let number = (self as NSString).doubleValue
         let formatter = NumberFormatter()
@@ -272,5 +356,20 @@ public extension Date {
         dayComponent.day    = -1 // For removing one day (yesterday): -1
         let theCalendar     = Calendar(identifier: .iso8601)
         return theCalendar.date(byAdding: dayComponent, to: Date())!
+    }
+}
+
+
+extension Character {
+    var isMatchOperator: Bool {
+        return self == "+" || self == "-" || self == "*" || self == "/"
+    }
+    
+    func equal(_ character: Character) -> Bool {
+        return self == character
+    }
+    
+    func equal(_ string: String) -> Bool {
+        return String(self) == string
     }
 }

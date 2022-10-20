@@ -9,22 +9,6 @@ import Foundation
 import SwiftUI
 import MathExpression
 
-enum CalculationError: Error {
-    case invalidFormatStringToCalculate
-}
-
-enum Operation: String, Codable {
-    case none = "?"
-    case add = "+"
-    case subtract = "-"
-    case multiply = "*"
-    case divide = "/"
-    case percent = "%"
-    case addOrSubtract = "+/-"
-    case dot = "."
-    case comma = ","
-}
-
 class CalculationViewModel: ObservableObject {
     
     init() {
@@ -38,7 +22,7 @@ class CalculationViewModel: ObservableObject {
     
     @Published var currentNumberSpell: String = ""
     
-    @Published var operation: Operation = .none
+    @Published var operation: Operation?
     
     // Variable beforeResult to show before result..
     @Published var oldResults: Array<String> = Array<String>()
@@ -61,8 +45,6 @@ class CalculationViewModel: ObservableObject {
             self.operation = operation
             
             switch operation {
-            case .none:
-                break;
             case .percent:
                 self.percentWorking(operation.rawValue)
                 break;
@@ -99,7 +81,7 @@ class CalculationViewModel: ObservableObject {
                     newString.append(operation)
                     self.assignWorking(newString)
                 }
-                else if self.isMatchNumber(lastChar.toString()) {
+                else if lastChar.toString().isNumber {
                     self.appendWorking(operation)
                 }
                 else if self.isMatchOperationException(lastChar.toString()) {
@@ -134,7 +116,7 @@ class CalculationViewModel: ObservableObject {
                     self.appendWorking(number)
                     return
                 }
-                else if self.isMatchNumber(number) {
+                else if number.isMatchNumber() {
                     if self.isLimitNumber(valueEnd) {
                         // Push error message -> Limit number
                         //UIScreen.showAlert(title: "Cảnh báo", msg: "Giá trị đã đạt đến số giới hạn 1 triệu tỉ số và không thể nhập thêm được nữa", button: "OK")
@@ -160,7 +142,12 @@ class CalculationViewModel: ObservableObject {
             }
         } else {
             // Before adding a number, we have to check if the first element is zero
-            self.appendWorking(number)
+            if number.contains("0")
+            {
+                self.appendWorking("0")
+            } else {
+                self.appendWorking(number)
+            }
         }
     }
     
@@ -187,7 +174,7 @@ class CalculationViewModel: ObservableObject {
                 else if self.isMatchOperationException(lastChar.toString()) {
                     print("isMatchOperationException")
                 }
-                else if self.isMatchNumber(operation) {
+                else if operation.isNumber {
                     let valueEnd = self.valueOfRange(self.workings)
                     if self.isLimitNumber(valueEnd) {
                         // Push error message -> Limit number
@@ -277,11 +264,6 @@ class CalculationViewModel: ObservableObject {
         }
     }
     
-    func isMatchNumber(_ string: String) -> Bool {
-        let targetNumber: String = "0123456789"
-        return targetNumber.contains(string) || string.contains("000")
-    }
-    
     func valueOfRange(_ string: String) -> String {
         let range = self.rangeOfEnd(string)
         return String(string[range])
@@ -324,18 +306,6 @@ class CalculationViewModel: ObservableObject {
     }
     
     func appendWorking(_ string: String) {
-        
-        var getString = self.currentWorkingShow
-        
-        if self.isMatchNumber(string) {
-            getString.append(string)
-            let formatted = getString.numberFormatted()
-            self.currentWorkingShow.append(contentsOf: formatted)
-            print("Matched number: \(getString)")
-        } else {
-            self.currentWorkingShow.append(string)
-        }
-        
         self.workings.append(string)
         self.currentWorkingShow.append(string)
         self.currentNumberSpell.append(string)

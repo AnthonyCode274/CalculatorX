@@ -8,19 +8,22 @@
 import Foundation
 import SwiftUI
 
-public class CurrencyViewModel: ObservableObject {
+class CurrencyViewModel: ObservableObject {
     
     init() {
         self.loadCurrencies()
     }
     
-    @Published var fromCurrency: Currency?
-    @Published var toCurrency: Currency?
-    @Published var currencies = [Currency]()
+    @Published var fromCurrency: Currency = Currency()
+    
+    @Published var toCurrency: Currency = Currency()
+    
+    @Published var currencies: [Currency] = [Currency]()
+    
     @Published var currentDateUpdate: Date = Date.now
     
     func loadCurrencies() {
-        let adator = ExchangeRateAdaptor(onSucceed: dataDidSucceed)
+        let adator = ExchangeRateAdaptor(onSucceed: self.dataDidSucceed)
         adator.getCurrencies()
     }
     
@@ -35,10 +38,8 @@ public class CurrencyViewModel: ObservableObject {
                         self.currencies = results
                         self.currentDateUpdate = Date.now
                         
-                        if self.fromCurrency == nil && self.toCurrency == nil {
-                            self.fromCurrency = self.currencies[0]
-                            self.toCurrency = self.currencies[1]
-                        }
+                        self.fromCurrency = self.currencies[0]
+                        self.toCurrency = self.currencies[1]
                     }
                     catch let jsonError {
                         print("Erorr Customer > GetObject at: >>> \(jsonError.localizedDescription)")
@@ -51,5 +52,4 @@ public class CurrencyViewModel: ObservableObject {
             }
         }
     }
-    
 }
