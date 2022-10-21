@@ -36,7 +36,8 @@ public class BaseAdaptor {
             DispatchQueue.global(qos: .background).async {
                 guard error == nil else {
                     DispatchQueue.main.async {
-                        NavigationUtil.showAlert(title: "Lỗi", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet.", button: "OK")
+                        //NavigationUtil.showAlert(title: "Lỗi", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet.", button: "OK")
+                        print("Please check internet connection!")
                     }
                     print("\(urlString) >>>Error3: \(error.debugDescription)")
                     return
@@ -47,13 +48,15 @@ public class BaseAdaptor {
                     self.dataDidFailed?(response.statusCode)
                     print("\(urlString) >>>Error4.1: statusCode: \(response.statusCode)")
                     DispatchQueue.main.async {
-                        NavigationUtil.showAlert(title: "Lỗi \(response.statusCode)", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet hoặc liên hệ quản trị viên.", button: "OK")
+                        //NavigationUtil.showAlert(title: "Lỗi \(response.statusCode)", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet hoặc liên hệ quản trị viên.", button: "OK")
+                        print("Please check internet connection!")
                     }
                     return
                 }
                 guard let responseData = data else {
                     DispatchQueue.main.async {
-                        NavigationUtil.showAlert(title: "Lỗi", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet hoặc liên hệ quản trị viên.", button: "OK")
+                        //NavigationUtil.showAlert(title: "Lỗi", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet hoặc liên hệ quản trị viên.", button: "OK")
+                        print("Please check internet connection!")
                     }
                     print("\(urlString) >>>Error5: did not receive data")
                     return

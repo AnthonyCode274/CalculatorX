@@ -15,7 +15,7 @@ struct KeyboardCalculatorView: View {
         VStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
             
             HStack {
-                self.totalAllButton
+                //self.totalAllButton
                 
                 Spacer()
                 
@@ -39,7 +39,7 @@ struct KeyboardCalculatorView: View {
     
     var totalAllButton: some View {
         Button(action: {
-            
+            self.viewModel.totalCalculation()
         }) {
             Circle()
                 .fill(Color.Neumorphic.main)

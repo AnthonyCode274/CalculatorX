@@ -22,6 +22,8 @@ class CurrencyViewModel: ObservableObject {
     
     @Published var currentDateUpdate: Date = Date.now
     
+    @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     func loadCurrencies() {
         let adator = ExchangeRateAdaptor(onSucceed: self.dataDidSucceed)
         adator.getCurrencies()

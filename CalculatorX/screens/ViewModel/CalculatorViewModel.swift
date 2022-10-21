@@ -19,6 +19,27 @@ enum Operation: String, Codable {
     case comma = ","
 }
 
+struct SpellOut: Codable {
+    init(spellNumber: String = "", substring: String = "", stateOn: StateOn = .currency) {
+        self.spellNumber = spellNumber
+        self.substring = substring
+        self.stateOn = stateOn
+    }
+    
+    enum StateOn: String, Codable {
+        case working
+        case currency
+    }
+    
+    var spellNumber: String = ""
+    var substring: String = ""
+    var stateOn: StateOn = .currency
+    
+    var isEmpty: Bool {
+        return self.spellNumber.isEmpty
+    }
+}
+
 class CalculatorViewModel: CurrencyViewModel {
     
     override init() {
@@ -32,13 +53,17 @@ class CalculatorViewModel: CurrencyViewModel {
     
     @Published var operation: Operation? = nil
     
-    @Published var spellNumber: String = ""
+    @Published var spellout: SpellOut = SpellOut()
     
     
     func setValue(_ string: String) {
         if string.isNumber {
+            if self.spellout.stateOn == .working {
+                self.spellout.substring.removeAll()
+            }
             self.checkNumberValid(string)
         } else {
+            //self.spellout.substring.removeAll()
             self.checkOperationValid(string)
         }
     }
@@ -131,8 +156,6 @@ class CalculatorViewModel: CurrencyViewModel {
                 default:
                     break;
                 }
-                
-                print("\(self.workings[beforeNumbers])")
             } else {
                 print("Empty")
             }
@@ -222,6 +245,9 @@ class CalculatorViewModel: CurrencyViewModel {
     
     func removeButton() {
         self.removeLastWorking()
+        if !self.spellout.isEmpty && self.spellout.stateOn == .working {
+            self.spellout.spellNumber.removeLast()
+        }
     }
     
     // GT Button
@@ -256,7 +282,9 @@ class CalculatorViewModel: CurrencyViewModel {
         let convertString = String(calculateResult)
         self.resultWorking = convertString
         self.workings = convertString
-        self.spellNumber = convertString
+        self.spellout.spellNumber = convertString
+        self.spellout.substring.removeAll()
+        self.spellout.stateOn = .working
         self.operation = nil
     }
     
@@ -278,7 +306,9 @@ class CalculatorViewModel: CurrencyViewModel {
     func resetAll() {
         self.deleteWorking()
         self.resultWorking = ""
-        self.spellNumber = ""
+        self.spellout.spellNumber.removeAll()
+        self.spellout.substring.removeAll()
+        self.spellout.stateOn = .working
     }
     
     func addWorking(_ value: String) {
@@ -287,13 +317,18 @@ class CalculatorViewModel: CurrencyViewModel {
         } else {
             self.operation = nil
         }
+        
         if !self.workings.isEmpty {
             self.workings.append(value)
             let lastNumbers = String(self.workings.endNumbers())
-            self.spellNumber = lastNumbers
+            if self.spellout.stateOn == .working {
+                self.spellout.spellNumber = lastNumbers
+            }
         } else {
             self.workings.append(value)
-            self.spellNumber.append(value)
+            if self.spellout.stateOn == .working {
+                self.spellout.spellNumber.append(value)
+            }
         }
     }
     

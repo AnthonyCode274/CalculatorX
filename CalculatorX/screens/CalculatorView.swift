@@ -10,6 +10,7 @@ import Neumorphic
 
 struct CalculatorView: View {
     @StateObject private var viewModel = CalculatorViewModel()
+    @State var maxCountDown = 15
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -33,6 +34,19 @@ struct CalculatorView: View {
             
         }
         .frame(maxWidth: UIScreen.width)
+        .onReceive(self.viewModel.timer) { _ in
+            if self.maxCountDown > 0 && self.viewModel.currencies.isEmpty {
+                self.maxCountDown -= 1
+                if self.maxCountDown == 0 {
+                    DispatchQueue.main.async {
+                        self.viewModel.loadCurrencies()
+                    }
+                    print("Loading == 0")
+                    self.maxCountDown = 15
+                }
+                print("Loading API")
+            }
+        }
     }
     
 }

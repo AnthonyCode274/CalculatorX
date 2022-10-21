@@ -25,23 +25,17 @@ struct BodyCalculatorWorking: View {
                     .frame(width: UIScreen.getUnit(20), height: UIScreen.getUnit(20))
             }
 
-            HStack {
+            Button(action: {
+                UIScreen.showAlert(title: "Đánh vần", msg: self.alertSpelloutMessage, button: "OK")
+            }) {
                 Text(self.spellOutNumber)
                     .font(.regular(size: 16))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .fixedSize(horizontal: false, vertical: true)
                     .lineLimit(2)
-                    .frame(height: UIScreen.getUnit(30), alignment: .top)
-                
-                Spacer()
-                
-                Button(action: {
-                    UIScreen.showAlert(title: "Đánh vần", msg: String(self.viewModel.spellNumber).spellOut(), button: "OK")
-                }) {
-                    Text("Xem")
-                        .font(.medium(size: 14))
-                        .foregroundColor(.blue)
-                }
+                    .multilineTextAlignment(.leading)
+                    .frame(height: UIScreen.getUnit(30))
+                    .frame(maxWidth: UIScreen.width, alignment: .topLeading)
             }
         }
     }
@@ -72,7 +66,7 @@ struct BodyCalculatorWorking: View {
                                height: UIScreen.getUnit(20))
                 }
                 .frame(maxWidth: .infinity)
-                                
+                
                 FunctionMoreButtonText(string: self.currencyCodeRight) {
                     self.isPresentedTo = true
                 }
@@ -81,22 +75,30 @@ struct BodyCalculatorWorking: View {
             }
             
             Button(action: {
-                self.viewModel.spellNumber = String(format: "%.3f", self.totalResultExchange)
+                self.viewModel.spellout.spellNumber = String(format: "%.3f", self.totalResultExchange)
+                self.viewModel.spellout.substring = self.currentcyRight
+                self.viewModel.spellout.stateOn = .currency
             }) {
                 Text(self.totalResultExchangeShow + " " + self.currencyCodeRight)
                     .font(.bold(size: 18))
                     .foregroundColor(.OgranLight)
-                    .fixedSize(horizontal: true, vertical: false)
-                    .lineLimit(1)
                     .softOuterShadow()
+                    .frame(maxWidth: UIScreen.width)
             }
             
         }
         .sheet(isPresented: $isPresentedFrom) {
             ListViewSelectionRate(data: self.viewModel.currencies, itemSelected: self.$viewModel.fromCurrency, isPresented: $isPresentedFrom)
         }
-        .sheet(isPresented: $isPresentedTo) {
+        .sheet(isPresented: $isPresentedTo, onDismiss: onDismissSheet) {
             ListViewSelectionRate(data: self.viewModel.currencies, itemSelected: self.$viewModel.toCurrency, isPresented: $isPresentedTo)
+        }
+    }
+    
+    func onDismissSheet() {
+        if self.viewModel.spellout.stateOn == .currency {
+            self.viewModel.spellout.spellNumber = String(format: "%.3f", self.totalResultExchange)
+            self.viewModel.spellout.substring = self.currencyNameTo
         }
     }
     
@@ -130,7 +132,32 @@ struct BodyCalculatorWorking: View {
     }
     
     var spellOutNumber: String {
-        return self.viewModel.operation != nil ? self.viewModel.operation!.operatorToWord().capitalizeFirstLetter() : String(self.viewModel.spellNumber).spellOut()
+        let spellNumber = self.viewModel.spellout.spellNumber
+        let lastChar = self.viewModel.workings.last
+        let subString = self.viewModel.spellout.substring.isEmpty ? "" : " (\(self.viewModel.spellout.substring))"
+        let stateOn = self.viewModel.spellout.stateOn
+        
+        if let lastChar = lastChar {
+            if stateOn == .working {
+                if lastChar.isNumber {
+                    return spellNumber.spellOut()
+                } else {
+                    let operators = Operation(rawValue: String(lastChar))
+                    return operators!.operatorToWord().capitalizeFirstLetter()
+                }
+            } else {
+                return spellNumber.spellOut() + subString
+            }
+        }
+        
+        return "0".spellOut()
+    }
+    
+    var alertSpelloutMessage: String {
+        let spellNumber = self.viewModel.spellout.spellNumber
+        let subString = self.viewModel.spellout.substring.isEmpty ? "" : " (\(self.viewModel.spellout.substring))"
+        
+        return spellNumber.spellOut() + subString
     }
     
     var totalResultExchange: Double {

@@ -12,13 +12,16 @@ struct HeaderWorkingWindows: View {
     
     var statusWorkingCurrentShow: some View {
         Button(action: {
-            
+            self.viewModel.spellout.spellNumber = self.viewModel.resultWorking.isEmpty ? self.viewModel.workings : self.viewModel.resultWorking
+            self.viewModel.spellout.substring = ""
+            self.viewModel.spellout.stateOn = .working
         }) {
             Text("\(self.currentWorkingMiniShow)")
                 .font(.custom("digital-7mono", size: self.resizeWorkingNumber()))
                 .foregroundColor(Color.black)
                 .padding(.horizontal, UIScreen.getUnit(10))
                 .padding(.vertical, UIScreen.getUnit(5))
+                .multilineTextAlignment(.trailing)
         }
     }
     
@@ -74,9 +77,9 @@ struct HeaderWorkingWindows: View {
                     .frame(maxWidth:  width, maxHeight: height)
                     .cornerRadius(radius / 2)
                     .clipped()
-                    .overlay(
-                        self.statusWorkingMiniShow, alignment: .topTrailing
-                    )
+//                    .overlay(
+//                        self.statusWorkingMiniShow, alignment: .topTrailing
+//                    )
                     .overlay(
                         self.statusWorkingCurrentShow, alignment: .bottomTrailing
                     )

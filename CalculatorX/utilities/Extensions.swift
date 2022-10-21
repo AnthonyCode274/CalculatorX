@@ -36,6 +36,18 @@ extension Operation {
         if self == .divide {
             print = "chia"
         }
+        if self == .dot {
+            print = "chấm"
+        }
+        if self == .comma {
+            print = "phẩy"
+        }
+        if self == .addOrSubtract {
+            print = "cộng hoặc trừ"
+        }
+        if self == .percent {
+            print = "phần trăm"
+        }
         return print
     }
 }
