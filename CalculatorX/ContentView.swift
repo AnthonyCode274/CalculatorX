@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.colorScheme) private var colorScheme
+    @StateObject private var viewModel = CalculatorViewModel()
     
     var body: some View {
         CalculatorView()
@@ -16,6 +16,7 @@ struct ContentView: View {
             .onAppear() {
                 UIScreen.setRotationDevice(to: .portrait)
             }
+            .environmentObject(viewModel)
     }
 }
 
