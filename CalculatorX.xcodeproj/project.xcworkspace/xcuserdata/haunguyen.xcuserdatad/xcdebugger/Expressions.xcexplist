@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Calculator.setThreeZero():Calculator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "containsDecimal">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "KeyboardPad.buttonType(_:):KeyboardPad.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Calculator.gt():Calculator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "allResult">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Calculator.setDecimal():Calculator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "containsDecimal">
+            </PersistentString>
+            <PersistentString
+               value = "carryingDecimal">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Calculator.setDigit(_:):Calculator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "containsDecimal">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
