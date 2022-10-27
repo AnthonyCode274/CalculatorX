@@ -13,12 +13,14 @@ struct HeaderWorkingWindows: View {
 //    @StateObject private var viewModel = CalculatorViewModel()
     
     var workingShow: some View {
-        Button(action: {}) {
+        Button(action: {
+            UIScreen.showAlert(title: TextDictionary.Description, msg: self.viewModel.displayText, button: TextDictionary.OK)
+        }) {
             Text("\(viewModel.displayText)")
                 .font(.custom("digital-7mono", size: 80))
                 .foregroundColor(Color.black)
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.3)
                 .truncationMode(.head)
         }
     }

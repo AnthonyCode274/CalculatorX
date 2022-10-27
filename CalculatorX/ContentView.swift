@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = CalculatorViewModel()
+    @StateObject private var currentRate = CurrentRateViewModel()
     
     var body: some View {
         CalculatorView()
@@ -17,6 +18,7 @@ struct ContentView: View {
                 UIScreen.setRotationDevice(to: .portrait)
             }
             .environmentObject(viewModel)
+            .environmentObject(currentRate)
     }
 }
 

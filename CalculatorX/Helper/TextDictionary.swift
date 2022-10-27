@@ -9,6 +9,8 @@ import Foundation
 
 public class TextDictionary: Codable {
     
+    public static var Description = "Chi tiết"
+    public static var OK = "OK"
     public static var SpaceDivider = " --- "
     public static var ExchangeRate = "Chuyển đổi tỉ giá"
     public static var ListOfExchangeRates = "Danh sách tỉ giá"

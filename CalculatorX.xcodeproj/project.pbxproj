@@ -49,7 +49,7 @@
 		B2951CA12907C3F700E0AA56 /* CalculatorButtonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2951CA02907C3F700E0AA56 /* CalculatorButtonImage.swift */; };
 		B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */ = {isa = PBXBuildFile; fileRef = B29C0B1728D9A235000C3776 /* locale_identifiers.json */; };
 		B29C0B1B28D9A432000C3776 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C0B1A28D9A432000C3776 /* Language.swift */; };
-		B2ADA2BA28EEC74C0076E849 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ADA2B928EEC74C0076E849 /* CurrencyViewModel.swift */; };
+		B2ADA2BA28EEC74C0076E849 /* CurrentRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ADA2B928EEC74C0076E849 /* CurrentRateViewModel.swift */; };
 		B2B4F2CD28FEAE2200A799A9 /* MathExpression in Frameworks */ = {isa = PBXBuildFile; productRef = B2B4F2CC28FEAE2200A799A9 /* MathExpression */; };
 		B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */; };
 		B2CCC4E028D18B160008AEC1 /* BodyCalculatorWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */; };
@@ -107,7 +107,7 @@
 		B2951CA02907C3F700E0AA56 /* CalculatorButtonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonImage.swift; sourceTree = "<group>"; };
 		B29C0B1728D9A235000C3776 /* locale_identifiers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = locale_identifiers.json; sourceTree = "<group>"; };
 		B29C0B1A28D9A432000C3776 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		B2ADA2B928EEC74C0076E849 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		B2ADA2B928EEC74C0076E849 /* CurrentRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRateViewModel.swift; sourceTree = "<group>"; };
 		B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkingWindows.swift; sourceTree = "<group>"; };
 		B2CCC4DA28D17FF90008AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCalculatorWorking.swift; sourceTree = "<group>"; };
@@ -149,8 +149,9 @@
 		B201BCE928ED9E1500A2E489 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B2ADA2B928EEC74C0076E849 /* CurrencyViewModel.swift */,
+				B2ADA2B928EEC74C0076E849 /* CurrentRateViewModel.swift */,
 				B238F5882900294D0091BAC6 /* CalculatorViewModel.swift */,
+				B2951C97290776C700E0AA56 /* Calculator.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -229,7 +230,6 @@
 			children = (
 				B29C0B1A28D9A432000C3776 /* Language.swift */,
 				B201BCEC28ED9EFD00A2E489 /* Currency.swift */,
-				B2951C97290776C700E0AA56 /* Calculator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -455,7 +455,7 @@
 				B233053128FDAD3E0047F623 /* ItemSelectionRate.swift in Sources */,
 				B25CE93528FE422A00BB7E6E /* ImageStyle.swift in Sources */,
 				B201BCE428ED9A5B00A2E489 /* Define.swift in Sources */,
-				B2ADA2BA28EEC74C0076E849 /* CurrencyViewModel.swift in Sources */,
+				B2ADA2BA28EEC74C0076E849 /* CurrentRateViewModel.swift in Sources */,
 				B201BCE628ED9AB100A2E489 /* Config.swift in Sources */,
 				B201BCE228ED9A3600A2E489 /* BaseAdaptor.swift in Sources */,
 				B201BCE828ED9BBD00A2E489 /* NavigationUtil.swift in Sources */,
@@ -591,7 +591,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"CalculatorX/Preview Content\"";
 				DEVELOPMENT_TEAM = KSY9NMG6B8;
 				ENABLE_PREVIEWS = YES;
@@ -623,7 +623,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"CalculatorX/Preview Content\"";
 				DEVELOPMENT_TEAM = KSY9NMG6B8;
 				ENABLE_PREVIEWS = YES;

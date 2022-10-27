@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum StateOn: String {
-    case gt = "gt"
-    case equal = "="
-}
-
 struct Calculator {
     private var expression: ArithmeticExpression?
     private var result: Decimal?
@@ -33,9 +28,9 @@ struct Calculator {
             case .subtraction:
                 return number - secondNumber
             case .multiplication:
-                return number * secondNumber
+                return !secondNumber.isZero ? (number * secondNumber) : .zero
             case .division:
-                return number / secondNumber
+                return !secondNumber.isZero ? (number / secondNumber) : .zero
             }
         }
     }
@@ -54,23 +49,21 @@ struct Calculator {
     
     // MARK: - COMPUTED PROPERTIES
     
-    var displayText: String {
+    public var displayText: String {
         let string = getNumberString(forNumber: number, withCommas: true)
         
         return string
     }
     
-    
-    
-    var displayStateOn: String {
+    public var displayStateOn: String {
         return stateOn?.rawValue ?? ""
     }
     
-    var showAllClear: Bool {
+    public var showAllClear: Bool {
         newNumber == nil && expression == nil && result == nil || pressedClear
     }
         
-    var number: Decimal? {
+    public var number: Decimal? {
         if pressedClear || carryingDecimal {
             return newNumber
         }
@@ -87,14 +80,20 @@ struct Calculator {
     mutating func setDigit(_ digit: Digit) {
         stateOn = nil
         if containsDecimal && digit == .zero {
-            carryingZeroCount += 1
+            if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
+                addNumber(digit)
+            } else {
+                carryingZeroCount += 1
+            }
         } else if canAddDigit(digit) {
             if let number = number {
                 if !number.isNormal {
                     addNumber(digit)
                 } else {
                     if self.isLimitNumber(number) {
-                        print("Limit number")
+                        if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
+                            addNumber(digit)
+                        }
                     } else {
                         addNumber(digit)
                     }
@@ -120,12 +119,16 @@ struct Calculator {
     }
     
     mutating func setOperation(_ operation: ArithmeticOperation) {
-        guard var number = newNumber ?? result else { return }
-        if let existingExpression = expression {
-            number = existingExpression.evaluate(with: number)
+        if expression?.operation != nil {
+            expression?.operation = operation
+        } else {
+            guard var number = newNumber ?? result else { return }
+            if let existingExpression = expression {
+                number = existingExpression.evaluate(with: number)
+            }
+            expression = ArithmeticExpression(number: number, operation: operation)
+            newNumber = nil
         }
-        expression = ArithmeticExpression(number: number, operation: operation)
-        newNumber = nil
     }
     
     mutating func toggleSign() {
@@ -161,12 +164,22 @@ struct Calculator {
     }
     
     mutating func setDecimal() {
-        if containsDecimal { return }
-        carryingDecimal = true
+        if expression?.operation != nil {
+            print("Operation: \(expression?.operation.description)")
+            carryingDecimal = true
+        } else {
+            if containsDecimal { return }
+            carryingDecimal = true
+        }
     }
     
     mutating func evaluate() {
-        guard let number = newNumber, let expressionToEvaluate = expression else { return }
+        guard let number = newNumber else { return }
+        
+        allResult.append(number)
+        
+        guard let expressionToEvaluate = expression else { return }
+        
         let e = expressionToEvaluate.evaluate(with: number)
         result = e
         expression = nil
@@ -198,7 +211,6 @@ struct Calculator {
             stateOn = .gt
             print("\(allResult.toJsonString()) - sum: \(sum)")
         }
-        
     }
     
     mutating func allClear() {
@@ -223,7 +235,7 @@ struct Calculator {
     
     // MARK: - HELPERS
     
-    func operationIsHighlighted(_ operation: ArithmeticOperation) -> Bool {
+    public func operationIsHighlighted(_ operation: ArithmeticOperation) -> Bool {
         return expression?.operation == operation && newNumber == nil
     }
     

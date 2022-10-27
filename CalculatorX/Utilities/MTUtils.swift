@@ -21,7 +21,4 @@ public class MTUtils {
         return encoder
     }
     
-    public static func unitCurrency(from: Double, to: Double) -> Double {
-        return from / to
-    }
 }

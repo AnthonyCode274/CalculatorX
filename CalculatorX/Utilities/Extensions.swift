@@ -119,28 +119,62 @@ extension String {
         formatter.numberStyle = .spellOut
         formatter.maximumFractionDigits = 3
         formatter.locale = Locale(identifier: "vi_VN")
-        var numberAsWord = String(formatter.string(from: NSNumber(value: number)) ?? "").capitalizeFirstLetter()
+        let numberAsWord = String(formatter.string(from: NSNumber(value: number)) ?? "").capitalizeFirstLetter()
+          
+        var newString = numberAsWord.replacingOccurrences(of: "nghìn", with: "nghìn,").replacingOccurrences(of: "tỷ", with: "tỷ,").replacingOccurrences(of: "triệu", with: "triệu,").replacingOccurrences(of: "phẩy", with: "phẩy,")
         
-        let newString = numberAsWord.replacingOccurrences(of: "nghìn", with: "nghìn,").replacingOccurrences(of: "tỷ", with: "tỷ,").replacingOccurrences(of: "triệu", with: "triệu,").replacingOccurrences(of: " phẩy", with: ",")
-        numberAsWord = newString
+        if let last = newString.last {
+            if last == "," {
+                newString.removeLast()
+            }
+        }
         
-        return numberAsWord
+        return newString
     }
     
     func numberFormatted() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.locale = Locale.current
-        formatter.maximumFractionDigits = 3
         formatter.usesGroupingSeparator = true
+        formatter.decimalSeparator = ","
+        formatter.groupingSeparator = "."
+        formatter.maximumFractionDigits = 3
         
-        let number = NSNumber(value: (self as NSString).doubleValue)
+        var formatted: String? = nil
         
-        if let valueFormatted = formatter.string(from: number) {
+        if let index = self.firstIndex(of: ".") {
+            let numString = self.replacingOccurrences(of: ".", with: ",")
+            let rangeValueBefore = numString[numString.startIndex..<index]
+            let rangeValueBAfter = numString[index..<numString.endIndex]
+            
+            let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
+            let new = valFormatted?.appending(rangeValueBAfter)
+            return new ?? ""
+            
+        } else {
+            formatted = formatter.string(from: NSNumber(value: self.doubleValue))
+        }
+        
+        if let valueFormatted = formatted {
             return valueFormatted
         } else {
             return self
         }
+    }
+    
+    var isMatchOperation: Bool {
+        return self.contains("+") || self.contains("-") || self.contains("*") || self.contains("/")
+    }
+    
+    var doubleValue: Double {
+        return (self as NSString).doubleValue
+    }
+}
+
+extension Character {
+    var isMatchOperation: Bool {
+        return self == "+" || self == "-" || self == "*" || self == "/"
     }
 }
 

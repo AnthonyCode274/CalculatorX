@@ -9,16 +9,15 @@ import SwiftUI
 
 struct NavigationUtil {
     static func popToRootView() {
-        root()?.popToRootViewController(animated: true)
+        self.root()?.popToRootViewController(animated: true)
     }
     
     static func showAlert(title:String, msg:String, button:String)  {
-        top()?.showAlert(title: title, msg: msg, button:button)
+        self.top()?.showAlert(title: title, msg: msg, button:button)
     }
     
     static func root() -> UINavigationController? {
         return findNavigationController(viewController: UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController)
-        
     }
     
     static func top() -> UIViewController? {

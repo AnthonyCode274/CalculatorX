@@ -54,7 +54,7 @@ struct KeyboardPad: View {
         }
         .padding(.horizontal, UIScreen.getUnit(20))
         .opacity(self.viewModel.getAllResult.isEmpty ? 0 : 1)
-        .disabled(self.viewModel.getAllResult.isEmpty)
+        .animation(.spring().speed(2), value: self.viewModel.getAllResult.isEmpty)
     }
     
     var roleBackButton: some View {

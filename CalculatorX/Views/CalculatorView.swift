@@ -10,6 +10,11 @@ import Neumorphic
 
 struct CalculatorView: View {
     @EnvironmentObject private var viewModel: CalculatorViewModel
+    
+    @EnvironmentObject private var currentRate: CurrentRateViewModel
+    
+    private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     @State private var maxCountDown = 15
     
     var body: some View {
@@ -34,17 +39,15 @@ struct CalculatorView: View {
             
         }
         .frame(maxWidth: UIScreen.screenWidth)
-        .onReceive(self.viewModel.timer) { _ in
-            if self.maxCountDown > 0 && self.viewModel.currencies.isEmpty {
+        .onReceive(self.timer) { _ in
+            if self.maxCountDown > 0 && self.currentRate.currencies.isEmpty {
                 self.maxCountDown -= 1
                 if self.maxCountDown == 0 {
-                    DispatchQueue.main.async {
-                        self.viewModel.loadCurrencies()
-                    }
+                    self.currentRate.loadData()
                     print("Loading == 0")
                     self.maxCountDown = 15
                 }
-                print("Loading API")
+                print("Loading api..")
             }
         }
     }

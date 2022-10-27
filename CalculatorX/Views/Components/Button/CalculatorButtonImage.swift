@@ -10,11 +10,18 @@ import SwiftUI
 struct CalculatorButtonImage: View {
     let buttonType: ButtonType
     @EnvironmentObject private var viewModel: CalculatorViewModel
+    
+    @EnvironmentObject private var currentRate: CurrentRateViewModel
 //    @StateObject private var viewModel = CalculatorViewModel()
     
     var body: some View {
         Button(action: {
             viewModel.performAction(for: buttonType)
+            if buttonType == .equals {
+                currentRate.evaluateResultExchange(viewModel.getNumber)
+            } else if buttonType == .clear {
+                currentRate.clear()
+            }
         }) {
             Image(buttonType.description)
                 .resizable()

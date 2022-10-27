@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import Neumorphic
 
 struct ListViewSelectionRate: View {
-    var data: [Currency]
+    
+    let data: [Currency]
+    
     @Binding var itemSelected: Currency
+    
     @Binding var isPresented: Bool
-    @Environment(\.colorScheme) private var colorScheme
-
+    
     var body: some View {
         ZStack {
             Color.Neumorphic.main.ignoresSafeArea()
@@ -20,7 +23,7 @@ struct ListViewSelectionRate: View {
             VStack(spacing: UIScreen.getUnit(10)) {
                 Text(TextDictionary.ListOfExchangeRates)
                     .font(.bold(size: 16))
-                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
+                    .foregroundColor(.primary)
                     .padding(UIScreen.getUnit(20))
                 
                 ScrollView(.vertical, showsIndicators: false) {
@@ -41,7 +44,7 @@ struct ListViewSelectionRate: View {
             Button(action: {
                 self.isPresented.toggle()
             }) {
-                Image(ImageStyle.name.cancelIcon)
+                Image("cancel")
                     .resizable()
                     .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)

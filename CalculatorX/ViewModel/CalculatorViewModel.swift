@@ -8,14 +8,23 @@
 import Foundation
 import Combine
 
-class CalculatorViewModel: CurrencyViewModel {
+class CalculatorViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
     @Published private var calculator = Calculator()
     
+    var getNumber: Decimal {
+        return calculator.number ?? .zero
+    }
+        
     var displayText: String {
-        return calculator.displayText
+        let convertDecimal = Decimal(string: calculator.displayText) ?? .zero
+        return convertDecimal.formatted(.number)
+    }
+    
+    var spellOutNumber: String {
+        return calculator.displayText.spellOut()
     }
     
     var getAllResult: [Decimal] {

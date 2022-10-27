@@ -9,13 +9,24 @@ import SwiftUI
 import Neumorphic
 
 struct BodyCalculatorWorking: View {
+    
     @EnvironmentObject private var viewModel: CalculatorViewModel
+    
+    @EnvironmentObject private var currentRate: CurrentRateViewModel
+    
     @State private var expanded: Bool = false
+    
     @Environment(\.colorScheme) private var colorScheme
+    
     @State private var isPresentedFrom: Bool = false
+    
     @State private var isPresentedTo: Bool = false
     
-    var spellOutView: some View {
+    @State private var leftCurrency: Currency = Currency()
+    
+    @State private var rightCurrency: Currency = Currency()
+    
+    private var spellOutView: some View {
         HStack(alignment: .top, spacing: UIScreen.getUnit(10)) {
             Button(action: { }) {
                 Image("icon-loudspeaker")
@@ -27,9 +38,9 @@ struct BodyCalculatorWorking: View {
             }
 
             Button(action: {
-                UIScreen.showAlert(title: "Đánh vần", msg: self.alertSpelloutMessage, button: "OK")
+                UIScreen.showAlert(title: "Đánh vần", msg: self.viewModel.spellOutNumber, button: TextDictionary.OK)
             }) {
-                Text("\(viewModel.displayText.spellOut())")
+                Text(self.viewModel.spellOutNumber)
                     .font(.regular(size: 16))
                     .foregroundColor(self.colorScheme == .dark ? .white : .black)
                     .fixedSize(horizontal: false, vertical: true)
@@ -41,11 +52,11 @@ struct BodyCalculatorWorking: View {
         }
     }
     
-    var exchangeCurrency: some View {
+    private var exchangeCurrencyView: some View {
         VStack(alignment: .center, spacing: UIScreen.getUnit(10)) {
             HStack(alignment: .center, spacing: 0) {
                 
-                Button(self.currencyCodeLeft) {
+                Button("\(self.currentRate.currencyCodeLeft)") {
                     self.isPresentedFrom = true
                 }
                 .buttonStyle(FuncMoreButtonStyle())
@@ -69,7 +80,7 @@ struct BodyCalculatorWorking: View {
                 }
                 .frame(maxWidth: .infinity)
                 
-                Button(self.currencyCodeRight) {
+                Button("\(self.currentRate.currencyCodeRight)") {
                     self.isPresentedTo = true
                 }
                 .buttonStyle(FuncMoreButtonStyle())
@@ -78,9 +89,11 @@ struct BodyCalculatorWorking: View {
             }
             
             Button(action: {
-                
+                UIScreen.showAlert(title: TextDictionary.Description,
+                                   msg: self.currentRate.displayDescription,
+                                   button: TextDictionary.OK)
             }) {
-                Text(self.totalResultExchangeShow + " " + self.currencyCodeRight)
+                Text(self.currentRate.displayTotalResultExchange)
                     .font(.bold(size: 18))
                     .foregroundColor(.OgranLight)
                     .softOuterShadow()
@@ -88,16 +101,30 @@ struct BodyCalculatorWorking: View {
             }
             
         }
-        .sheet(isPresented: $isPresentedFrom) {
-            ListViewSelectionRate(data: self.viewModel.currencies, itemSelected: self.$viewModel.fromCurrency, isPresented: $isPresentedFrom)
+        .sheet(isPresented: $isPresentedFrom, onDismiss: onDismissLeft) {
+            ListViewSelectionRate(data: currentRate.currencies,
+                                  itemSelected: $leftCurrency,
+                                  isPresented: $isPresentedFrom)
+            .onAppear() {
+                self.leftCurrency = self.currentRate.leftCurrency ?? Currency()
+            }
         }
-        .sheet(isPresented: $isPresentedTo, onDismiss: onDismissSheet) {
-            ListViewSelectionRate(data: self.viewModel.currencies, itemSelected: self.$viewModel.toCurrency, isPresented: $isPresentedTo)
+        .sheet(isPresented: $isPresentedTo, onDismiss: onDismissRight) {
+            ListViewSelectionRate(data: currentRate.currencies,
+                                  itemSelected: $rightCurrency,
+                                  isPresented: $isPresentedTo)
+            .onAppear() {
+                self.rightCurrency = self.currentRate.rightCurrency ?? Currency()
+            }
         }
     }
     
-    func onDismissSheet() {
-        
+    private func onDismissLeft() {
+        self.currentRate.leftCurrency = self.leftCurrency
+    }
+    
+    private func onDismissRight() {
+        self.currentRate.rightCurrency = self.rightCurrency
     }
     
     var body: some View {
@@ -117,7 +144,7 @@ struct BodyCalculatorWorking: View {
 
                 }
                 
-                self.exchangeCurrency
+                self.exchangeCurrencyView
             }
             
             Spacer()
@@ -127,59 +154,6 @@ struct BodyCalculatorWorking: View {
         .padding(.horizontal, UIScreen.getUnit(20))
         .frame(maxWidth: UIScreen.screenWidth, alignment: .leading)
         
-    }
-    
-    var alertSpelloutMessage: String {
-        return ""
-    }
-    
-    var totalResultExchange: Double {
-        
-        return 0
-    }
-    
-    var totalResultExchangeShow: String {
-        return ""
-    }
-    
-    var currencyLeft: String {
-        let string = self.viewModel.fromCurrency.currencyName
-        return string.isEmpty ? TextDictionary.SpaceDivider : string
-    }
-    
-    var currentcyRight: String {
-        let string = self.viewModel.toCurrency.currencyName
-        return string
-    }
-    
-    var currencyNameFrom: String {
-        let string = self.viewModel.fromCurrency.currencyName
-        return string
-    }
-    
-    var currencyNameTo: String {
-        let string = self.viewModel.toCurrency.currencyName
-        return string
-    }
-    
-    var currencyCodeLeft: String {
-        let string = self.viewModel.fromCurrency.currencyCode
-        return string
-    }
-    
-    var currencyCodeRight: String {
-        let string = self.viewModel.toCurrency.currencyCode
-        return string
-    }
-    
-    var currentRateLeft: Double {
-        let string = self.viewModel.fromCurrency.currencyRate
-        return string
-    }
-    
-    var currentRateRight: Double {
-        let string = self.viewModel.toCurrency.currencyRate
-        return string
     }
 }
 
