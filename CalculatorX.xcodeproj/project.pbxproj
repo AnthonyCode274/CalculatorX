@@ -36,6 +36,7 @@
 		B24D87DF28D48BE0006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */; };
 		B25CE93328FE409600BB7E6E /* TextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93228FE409500BB7E6E /* TextDictionary.swift */; };
 		B25CE93528FE422A00BB7E6E /* ImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93428FE422A00BB7E6E /* ImageStyle.swift */; };
+		B2664C8B290A8ABF004F841F /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664C8A290A8ABF004F841F /* CustomAlert.swift */; };
 		B28090B928FC7C790013B1BD /* ListViewSelectionRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28090B828FC7C790013B1BD /* ListViewSelectionRate.swift */; };
 		B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */; };
 		B2868D2228DC1B480001D689 /* AltoneTrial-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */; };
@@ -94,6 +95,7 @@
 		B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
 		B25CE93228FE409500BB7E6E /* TextDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDictionary.swift; sourceTree = "<group>"; };
 		B25CE93428FE422A00BB7E6E /* ImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStyle.swift; sourceTree = "<group>"; };
+		B2664C8A290A8ABF004F841F /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		B28090B828FC7C790013B1BD /* ListViewSelectionRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewSelectionRate.swift; sourceTree = "<group>"; };
 		B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-BoldOblique.ttf"; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				B2A5772D28EFE28C0068F831 /* Button */,
+				B2664C8A290A8ABF004F841F /* CustomAlert.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2664C8B290A8ABF004F841F /* CustomAlert.swift in Sources */,
 				B28DE0CB28C401A20076DBDA /* Extensions.swift in Sources */,
 				B201BCEB28ED9ED100A2E489 /* MTUtils.swift in Sources */,
 				B2EE660628FD0E70006065C7 /* ColorStyle.swift in Sources */,

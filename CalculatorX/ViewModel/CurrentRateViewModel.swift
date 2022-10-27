@@ -61,11 +61,11 @@ class CurrentRateViewModel: ObservableObject {
         
         var result: String = ""
         
-        let exchange = currencyRateLeft / currencyRateRight
+        let exchange = currencyRateRight / currencyRateLeft
         
         if exchange.isNormal {
             let exchangeFormat = Decimal(exchange).formatted(.number)
-            result = "Tỉ giá: 1 \(currencyCodeLeft) = \(exchangeFormat) \(currencyCodeRight)"
+            result = "Tỉ giá: \(exchangeFormat) \(currencyCodeLeft) = 1 \(currencyCodeRight)"
         } else {
             result = "Tỉ giá: "
         }
