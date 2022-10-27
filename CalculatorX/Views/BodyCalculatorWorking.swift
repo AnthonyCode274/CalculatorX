@@ -28,14 +28,21 @@ struct BodyCalculatorWorking: View {
     
     private var spellOutView: some View {
         HStack(alignment: .top, spacing: UIScreen.getUnit(10)) {
-            Button(action: { }) {
-                Image("icon-loudspeaker")
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
-                    .frame(width: UIScreen.getUnit(20), height: UIScreen.getUnit(20))
-            }
+//            Button(action: { }) {
+//                Image("icon-loudspeaker")
+//                    .resizable()
+//                    .renderingMode(.template)
+//                    .aspectRatio(contentMode: .fit)
+//                    .foregroundColor(self.colorScheme == .dark ? .white : .black)
+//                    .frame(width: UIScreen.getUnit(20), height: UIScreen.getUnit(20))
+//            }
+            
+            Text("Đánh vần:")
+                .font(.medium(size: 16))
+                .foregroundColor(.primary)
+                .lineLimit(1)
+                .multilineTextAlignment(.leading)
+                .frame(height: UIScreen.getUnit(30), alignment: .topLeading)
 
             Button(action: {
                 UIScreen.showAlert(title: "Đánh vần", msg: self.viewModel.spellOutNumber, button: TextDictionary.OK)
@@ -46,7 +53,7 @@ struct BodyCalculatorWorking: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
-                    .frame(height: UIScreen.getUnit(30))
+                    .frame(height: UIScreen.getUnit(30), alignment: .topLeading)
                     .frame(maxWidth: UIScreen.screenWidth, alignment: .topLeading)
             }
         }

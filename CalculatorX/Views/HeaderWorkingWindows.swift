@@ -14,7 +14,7 @@ struct HeaderWorkingWindows: View {
     
     var workingShow: some View {
         Button(action: {
-            UIScreen.showAlert(title: TextDictionary.Description, msg: self.viewModel.displayText, button: TextDictionary.OK)
+            UIScreen.showAlert(title: TextDictionary.Description, msg: self.viewModel.alertSpellOut, button: TextDictionary.OK)
         }) {
             Text("\(viewModel.displayText)")
                 .font(.custom("digital-7mono", size: 80))

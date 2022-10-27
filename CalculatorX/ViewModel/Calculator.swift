@@ -109,26 +109,65 @@ struct Calculator {
         newNumber = Decimal(string: numberString.appending("\(digit.rawValue)"))
     }
     
+    mutating func addNumber(_ number: String) {
+        let numberString = getNumberString(forNumber: newNumber)
+        newNumber = Decimal(string: numberString.appending("\(number)"))
+    }
+    
     mutating func setThreeZero() {
+        stateOn = nil
         if containsDecimal {
-            carryingZeroCount += 3
+            if let number = number {
+                if !number.isNormal {
+                    addNumber("000")
+                } else {
+                    if self.isLimitNumber(number) {
+                        if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
+                            addNumber("000")
+                        }
+                    } else {
+                        addNumber("000")
+                    }
+                }
+            } else {
+                addNumber("000")
+            }
         } else if canAddDigit(.zero) {
-            let numberString = getNumberString(forNumber: newNumber)
-            newNumber = Decimal(string: numberString.appending("000"))
+            if let number = number {
+                if !number.isNormal {
+                    addNumber("000")
+                } else {
+                    if self.isLimitNumber(number) {
+                        if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
+                            addNumber("000")
+                        }
+                    } else {
+                        addNumber("000")
+                    }
+                }
+            } else {
+                addNumber("000")
+            }
         }
     }
     
     mutating func setOperation(_ operation: ArithmeticOperation) {
         if expression?.operation != nil {
+            evaluate()
+            setProgressOperation(operation)
             expression?.operation = operation
         } else {
-            guard var number = newNumber ?? result else { return }
-            if let existingExpression = expression {
-                number = existingExpression.evaluate(with: number)
-            }
-            expression = ArithmeticExpression(number: number, operation: operation)
-            newNumber = nil
+            setProgressOperation(operation)
         }
+    }
+    
+    mutating func setProgressOperation(_ operation: ArithmeticOperation) {
+        guard var number = newNumber ?? result else { return }
+        if let existingExpression = expression {
+            number = existingExpression.evaluate(with: number)
+        }
+        expression = ArithmeticExpression(number: number, operation: operation)
+        newNumber = nil
     }
     
     mutating func toggleSign() {
@@ -164,13 +203,8 @@ struct Calculator {
     }
     
     mutating func setDecimal() {
-        if expression?.operation != nil {
-            print("Operation: \(expression?.operation.description)")
-            carryingDecimal = true
-        } else {
-            if containsDecimal { return }
-            carryingDecimal = true
-        }
+        if containsDecimal { return }
+        carryingDecimal = true
     }
     
     mutating func evaluate() {

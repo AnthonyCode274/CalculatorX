@@ -20,7 +20,12 @@ class CalculatorViewModel: ObservableObject {
         
     var displayText: String {
         let convertDecimal = Decimal(string: calculator.displayText) ?? .zero
-        return convertDecimal.formatted(.number)
+        let convertString = NSDecimalNumber(decimal: Decimal(string: calculator.displayText) ?? .zero).stringValue
+        return calculator.displayText.numberFormatted()
+    }
+    
+    public var alertSpellOut: String {
+        return displayText + "\n" + spellOutNumber
     }
     
     var spellOutNumber: String {

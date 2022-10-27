@@ -21,6 +21,8 @@ struct CalculatorButtonImage: View {
                 currentRate.evaluateResultExchange(viewModel.getNumber)
             } else if buttonType == .clear {
                 currentRate.clear()
+            } else if buttonType == .allClear {
+                currentRate.clearAll()
             }
         }) {
             Image(buttonType.description)

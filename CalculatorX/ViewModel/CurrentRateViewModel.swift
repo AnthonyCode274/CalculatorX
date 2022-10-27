@@ -23,10 +23,9 @@ class CurrentRateViewModel: ObservableObject {
     @Published public var rightCurrency: Currency?
     
     public func clearAll() {
-        leftCurrency = nil
-        rightCurrency = nil
-        currencies.removeAll()
-        resultExchange = nil
+        leftCurrency = currencies[0]
+        rightCurrency = currencies[1]
+        clear()
     }
     
     public func clear() {
@@ -42,6 +41,7 @@ class CurrentRateViewModel: ObservableObject {
     
     public var displayTotalResultExchange: String {
         let convertDecimal = (resultExchange ?? .zero).formatted(.number)
+        let convertString = NSDecimalNumber(decimal: resultExchange ?? .zero).stringValue
         return convertDecimal + " \(self.currencyCodeRight)"
     }
     
