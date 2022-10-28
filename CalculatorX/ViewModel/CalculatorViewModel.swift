@@ -19,8 +19,6 @@ class CalculatorViewModel: ObservableObject {
     }
         
     var displayText: String {
-        let convertDecimal = Decimal(string: calculator.displayText) ?? .zero
-        let convertString = NSDecimalNumber(decimal: Decimal(string: calculator.displayText) ?? .zero).stringValue
         return calculator.displayText.numberFormatted()
     }
     

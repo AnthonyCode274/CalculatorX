@@ -49,10 +49,8 @@ struct Calculator {
     
     // MARK: - COMPUTED PROPERTIES
     
-    public var displayText: String {
-        let string = getNumberString(forNumber: number, withCommas: true)
-        
-        return string
+    public var displayText: String {        
+        return getNumberString(forNumber: number, withCommas: true)
     }
     
     public var displayStateOn: String {
@@ -71,8 +69,7 @@ struct Calculator {
     }
     
     private var containsDecimal: Bool {
-        let state = getNumberString(forNumber: number).contains(".")
-        return state
+        return getNumberString(forNumber: number).contains(".")
     }
     
     // MARK: - OPERATIONS
@@ -83,7 +80,9 @@ struct Calculator {
             if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
                 addNumber(digit)
             } else {
-                carryingZeroCount += 1
+                if !self.isLimitNumber(number!) {
+                    carryingZeroCount += 1
+                }
             }
         } else if canAddDigit(digit) {
             if let number = number {
@@ -117,20 +116,12 @@ struct Calculator {
     mutating func setThreeZero() {
         stateOn = nil
         if containsDecimal {
-            if let number = number {
-                if !number.isNormal {
-                    addNumber("000")
-                } else {
-                    if self.isLimitNumber(number) {
-                        if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
-                            addNumber("000")
-                        }
-                    } else {
-                        addNumber("000")
-                    }
-                }
+            if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
+                addNumber(.zero)
             } else {
-                addNumber("000")
+                if !self.isLimitNumber(number!) {
+                    carryingZeroCount += 3
+                }
             }
         } else if canAddDigit(.zero) {
             if let number = number {
@@ -184,10 +175,11 @@ struct Calculator {
     }
     
     mutating func isLimitNumber(_ number: Decimal) -> Bool {
-        if let _ = number.stringValue.firstIndex(of: ".") {
-            return number.stringValue.count >= 17
+        let stringNumber = displayText
+        if let _ = stringNumber.firstIndex(of: ".") {
+            return stringNumber.count >= 17
         } else {
-            return number.stringValue.count >= 16
+            return stringNumber.count >= 16
         }
     }
     
@@ -232,9 +224,9 @@ struct Calculator {
     }
     
     mutating func chervonBackRemove() {
-        var stringNumber = (newNumber?.stringValue ?? "0")
+        var stringNumber = getNumberString(forNumber: newNumber)
         stringNumber.removeLast()
-        newNumber = Decimal(string: stringNumber)
+        newNumber = Decimal(string: stringNumber) // Làm sao để Decimal không loại bỏ phần số 0 của số thập phân
     }
     
     mutating func gt() {

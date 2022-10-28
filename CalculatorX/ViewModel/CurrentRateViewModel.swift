@@ -23,8 +23,10 @@ class CurrentRateViewModel: ObservableObject {
     @Published public var rightCurrency: Currency?
     
     public func clearAll() {
-        leftCurrency = currencies[0]
-        rightCurrency = currencies[1]
+        if !currencies.isEmpty {
+            leftCurrency = currencies[0]
+            rightCurrency = currencies[1]
+        }
         clear()
     }
     
