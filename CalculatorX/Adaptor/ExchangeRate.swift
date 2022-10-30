@@ -8,10 +8,10 @@
 import Foundation
 
 public class ExchangeRateAdaptor : BaseAdaptor {
-        
+    
     public func getCurrencies() {
         let urlString = Config.apiUrl + "Currencies"
-        ExchangeRateAdaptor.callAPI(urlString: urlString, method: .GET, type: BaseAdaptorType.GetList as AnyObject)
+        self.callAPI(urlString: urlString, method: .GET, type: BaseAdaptorType.GetList as AnyObject)
     }
     
 }

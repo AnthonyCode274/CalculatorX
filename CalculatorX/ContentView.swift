@@ -16,6 +16,7 @@ struct ContentView: View {
             .statusBar(hidden: true)
             .onAppear() {
                 UIScreen.setRotationDevice(to: .portrait)
+                self.currentRate.loadData()
             }
             .environmentObject(viewModel)
             .environmentObject(currentRate)

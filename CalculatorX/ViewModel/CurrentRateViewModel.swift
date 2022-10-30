@@ -8,12 +8,10 @@
 import Foundation
 import SwiftUI
 
-class CurrentRateViewModel: ObservableObject {
+public class CurrentRateViewModel: ObservableObject {
     
-    public init() {
-        self.loadData()
-    }
-        
+    @Published public var requestError: RequestApiError?
+    
     @Published public var currentDateUpdate: Date = Date.now
         
     @Published public var currencies: [Currency] = [Currency]()
@@ -100,7 +98,7 @@ class CurrentRateViewModel: ObservableObject {
     }
     
     public func loadData() {
-        let adapter = ExchangeRateAdaptor(onSucceed: dataDidSuccess)
+        let adapter = ExchangeRateAdaptor(onSucceed: dataDidSuccess, dataDidFailed: dataDidFailed)
         adapter.getCurrencies()
     }
     
@@ -113,12 +111,12 @@ class CurrentRateViewModel: ObservableObject {
                     let result = try MTUtils.getJSONDecoder().decode([Currency].self, from: data as! Data)
                     self.currencies = result
                     
-                    if !currencies.isEmpty && leftCurrency == nil {
-                        leftCurrency = currencies[0]
+                    if !self.currencies.isEmpty && self.leftCurrency == nil {
+                        self.leftCurrency = self.currencies[0]
                     }
                     
-                    if !currencies.isEmpty && rightCurrency == nil {
-                        rightCurrency = currencies[1]
+                    if !self.currencies.isEmpty && self.rightCurrency == nil {
+                        self.rightCurrency = self.currencies[1]
                     }
                 }
                 catch let jsonError {
@@ -129,6 +127,12 @@ class CurrentRateViewModel: ObservableObject {
             default:
                 break
             }
+        }
+    }
+    
+    private func dataDidFailed(requestError: RequestApiError, message: String?) {
+        DispatchQueue.main.async {
+            self.requestError = requestError
         }
     }
 }

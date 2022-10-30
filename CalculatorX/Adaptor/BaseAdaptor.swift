@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+public enum RequestApiError: Error {
+    case missingUrl
+    case statusCodeError
+    case failedToRequestApi
+    case failedToGetRequestApi
+    case failedToGetData
+    case failedToGetHTTPURLResponse
+}
+
 enum BaseAdaptorType: Int8, Codable {
     case Create = 0
     case Update = 1
@@ -21,51 +30,60 @@ public class BaseAdaptor {
         BaseAdaptor.onSucceed = onSucceed
     }
     
-    static var onSucceed: ((_ data: AnyObject,_ statusCode: Int , _ type: AnyObject) -> Void)?
+    public init(onSucceed: @escaping (AnyObject, Int, AnyObject) -> Void, dataDidFailed: @escaping (RequestApiError, String?) -> Void) {
+        BaseAdaptor.onSucceed = onSucceed
+        BaseAdaptor.dataDidFailed = dataDidFailed
+    }
     
-    static var dataDidFailed: ((_ statusCode: Int) -> Void)?
+    static var onSucceed: ((_ data: AnyObject,_ statusCode: Int ,_ type: AnyObject) -> Void)?
     
-    static func callAPI(urlString: String, method: EHttpMethod, type: AnyObject, data:Data? = nil) {
-        var apiUrlRequest = Config.getRequestAPI(url: urlString, method: method)
+    static var dataDidFailed: ((_ requestError: RequestApiError, _ message: String?) -> Void)?
         
-        if (data != nil) {
-            apiUrlRequest.httpBody = data
-        }
-        URLSession.shared.dataTask(with: apiUrlRequest) {
-            (data, response, error) in
-            DispatchQueue.global(qos: .background).async {
-                guard error == nil else {
-                    DispatchQueue.main.async {
-                        //NavigationUtil.showAlert(title: "Lỗi", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet.", button: "OK")
-                        print("Please check internet connection!")
-                    }
-                    print("\(urlString) >>>Error3: \(error.debugDescription)")
+    public func callAPI(urlString: String, method: EHttpMethod, type: AnyObject, dataRequest: Data? = nil)
+    {
+        do {
+            var urlRequest = try Config.getRequestAPI(urlString: urlString, method: method)
+            
+            if (dataRequest != nil) {
+                urlRequest.httpBody = dataRequest
+            }
+            
+            let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+                if let error = error {
+                    print("Failed to get request api: \(error.localizedDescription)")
+                    BaseAdaptor.dataDidFailed?(.failedToRequestApi, error.localizedDescription)
                     return
                 }
-                let response = response as! HTTPURLResponse
+                
+                guard let response = response as? HTTPURLResponse else {
+                    print("Failed to get HTTPURLResponse")
+                    BaseAdaptor.dataDidFailed?(.failedToGetHTTPURLResponse, "Failed to get HTTPURLResponse")
+                    return
+                }
+                
                 if !(200...299).contains(response.statusCode) {
-                    // handle HTTP server-side error
-                    self.dataDidFailed?(response.statusCode)
-                    print("\(urlString) >>>Error4.1: statusCode: \(response.statusCode)")
-                    DispatchQueue.main.async {
-                        //NavigationUtil.showAlert(title: "Lỗi \(response.statusCode)", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet hoặc liên hệ quản trị viên.", button: "OK")
-                        print("Please check internet connection!")
-                    }
+                    print("Failed status code: \(response.statusCode.description)")
+                    BaseAdaptor.dataDidFailed?(.statusCodeError, "Failed status code: \(response.statusCode.description)")
                     return
                 }
-                guard let responseData = data else {
-                    DispatchQueue.main.async {
-                        //NavigationUtil.showAlert(title: "Lỗi", msg: "Có lỗi xảy ra. Vui lòng kiểm tra internet hoặc liên hệ quản trị viên.", button: "OK")
-                        print("Please check internet connection!")
-                    }
-                    print("\(urlString) >>>Error5: did not receive data")
+                
+                guard let data = data else {
+                    print("Failed to get data response")
+                    BaseAdaptor.dataDidFailed?(.failedToGetData, "Failed to get data response")
                     return
                 }
+                
                 DispatchQueue.main.async {
-                    self.onSucceed?(responseData as AnyObject, response.statusCode, type)
+                    BaseAdaptor.onSucceed?(data as AnyObject, response.statusCode, type)
                 }
             }
+            
+            dataTask.resume()
+            
+        } catch let err {
+            print("Failed to get request api: \(err.localizedDescription)")
+            BaseAdaptor.dataDidFailed?(.failedToGetRequestApi, err.localizedDescription)
+            return
         }
-        .resume()
     }
 }

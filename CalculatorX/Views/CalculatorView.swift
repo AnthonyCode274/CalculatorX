@@ -15,7 +15,7 @@ struct CalculatorView: View {
     
     private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    @State private var maxCountDown = 15
+    @State private var maxCountDown = 5
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -39,17 +39,19 @@ struct CalculatorView: View {
             
         }
         .frame(maxWidth: UIScreen.screenWidth)
-        .onReceive(self.timer) { _ in
-            if self.maxCountDown > 0 && self.currentRate.currencies.isEmpty {
-                self.maxCountDown -= 1
-                if self.maxCountDown == 0 {
-                    self.currentRate.loadData()
-                    print("Loading == 0")
-                    self.maxCountDown = 15
-                }
-                print("Loading api..")
-            }
-        }
+//        .onReceive(timer) { _ in
+//            if self.maxCountDown > 0 && self.currentRate.requestError != nil {
+//                self.maxCountDown -= 1
+//                if self.maxCountDown == 0 {
+//                    DispatchQueue.main.async {
+//                        self.currentRate.loadData()
+//                    }
+//                    print("Loading == 0")
+//                    self.maxCountDown = 5
+//                }
+//                print("Loading api..")
+//            }
+//        }
     }
     
 }
