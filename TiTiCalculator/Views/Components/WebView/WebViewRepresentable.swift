@@ -1,27 +1,14 @@
 //
-//  Webview.swift
-//  CalculatorX
+//  WebViewRepresentable.swift
+//  TiTiCalculator
 //
-//  Created by HauNguyen on 31/10/2565 BE.
+//  Created by HauNguyen on 01/11/2565 BE.
 //
 
 import SwiftUI
 import WebKit
 
-struct WebView: View {
-    @Binding var urlString: String
-    
-    @State private var showLoading: Bool = false
-    
-    var body: some View {
-        WebViewRepresentable(urlString: $urlString, showLoading: $showLoading)
-            .overlay(
-                showLoading ? AnyView(ProgressView("Loading..")) : AnyView(EmptyView())
-            )
-    }
-}
-
-private struct WebViewRepresentable: UIViewRepresentable {
+struct WebViewRepresentable: UIViewRepresentable {
  
     @Binding var urlString: String
     @Binding var showLoading: Bool
@@ -74,12 +61,5 @@ private struct WebViewRepresentable: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
             
         }
-    }
-}
-
-
-struct WebView_Previews: PreviewProvider {
-    static var previews: some View {
-        WebView(urlString: .constant("https://google.com"))
     }
 }

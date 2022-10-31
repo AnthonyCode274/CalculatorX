@@ -60,6 +60,8 @@ public extension Color {
         return Color(hex: "#00C8FF") // old: 38F3FF
     }
     
+    static var defaultMainColor = Color(red: 0.925, green: 0.941, blue: 0.953)
+    
     static var LinearGradientBackgroundInfo: LinearGradient {
         return LinearGradient(gradient: Gradient(colors: [Color(hex: "#2A94CF"), Color(hex: "#7EE297")]), startPoint: .leading, endPoint: .trailing)
     }

@@ -22,7 +22,7 @@ struct InfoItem: View {
                 
                 Text(title)
                     .font(.regular(size: 18))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                 
@@ -30,14 +30,13 @@ struct InfoItem: View {
                 
                 Button(action: {}) {
                     Image(systemName: "chevron.up")
-                        .foregroundColor(.primary)
+                        .foregroundColor(.black)
                         .rotationEffect(Angle(degrees: 90))
                         .frame(width: 20, height: 20)
                 }
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 10)
-            .softOuterShadow()
         }
         
     }

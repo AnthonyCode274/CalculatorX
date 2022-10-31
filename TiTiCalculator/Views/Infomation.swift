@@ -9,9 +9,8 @@ import SwiftUI
 import Neumorphic
 
 struct Infomation: View {
+    
     var body: some View {
-        
-        
         ZStack(alignment: .top) {
             
             VStack(spacing: 20) {
@@ -37,7 +36,7 @@ struct Infomation: View {
         .overlay(
             self.footer, alignment: .bottom
         )
-        .background(Color.Neumorphic.main.ignoresSafeArea())
+        .background(Color.defaultMainColor.ignoresSafeArea())
         .ignoresSafeArea()
     }
     
@@ -56,7 +55,7 @@ struct Infomation: View {
             Spacer()
             
             VStack(spacing: 0) {
-                Text("\(AppDelegate.appName)")
+                Text("\(AppDelegate.displayName)")
                     .font(.custom("AltoneTrial-BoldOblique", size: 26))
                     .foregroundColor(.white)
                 
@@ -89,8 +88,7 @@ struct Infomation: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.OviLight)
             }
-            .foregroundColor(.primary)
-            .softOuterShadow()
+            .foregroundColor(.black)
         }
         .padding(.bottom, 10 + (UIScreen.edges?.bottom ?? 0))
     }

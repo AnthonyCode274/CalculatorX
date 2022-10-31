@@ -28,6 +28,17 @@ extension Bundle {
             return ""
         }
     }
+    
+    static func displayName() -> String {
+        guard let dictionary = Bundle.main.infoDictionary else {
+            return ""
+        }
+        if let version : String = dictionary["CFBundleDisplayName"] as? String {
+            return version
+        } else {
+            return ""
+        }
+    }
 }
 
 public extension UIScreen {
