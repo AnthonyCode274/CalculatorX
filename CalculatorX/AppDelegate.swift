@@ -11,6 +11,8 @@ import AVKit
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
     
+    static var appName = Bundle.appName()
+    
     static var orientationLock = UIInterfaceOrientationMask.portrait
 }
 

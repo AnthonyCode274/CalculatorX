@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B201119828D3167400E21359 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = B201119728D3167400E21359 /* Neumorphic */; };
+		B201B12C29102E6B00F80B57 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201B12B29102E6B00F80B57 /* BlurView.swift */; };
 		B201BCE028ED9A1300A2E489 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201BCDF28ED9A1300A2E489 /* ExchangeRate.swift */; };
 		B201BCE228ED9A3600A2E489 /* BaseAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201BCE128ED9A3600A2E489 /* BaseAdaptor.swift */; };
 		B201BCE428ED9A5B00A2E489 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201BCE328ED9A5B00A2E489 /* Define.swift */; };
@@ -36,6 +37,10 @@
 		B24D87DF28D48BE0006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */; };
 		B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF0290F6CF400173206 /* DataLocal.swift */; };
 		B25C3DF5290F7C1800173206 /* CurrenciesJson.json in Resources */ = {isa = PBXBuildFile; fileRef = B25C3DF4290F7C1800173206 /* CurrenciesJson.json */; };
+		B25C3DF7290F7ED600173206 /* MaytechIntroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */; };
+		B25C3DF9290F7EF000173206 /* Infomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF8290F7EF000173206 /* Infomation.swift */; };
+		B25C3DFC290F7F2200173206 /* TiTiIntroductuion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */; };
+		B25C3DFF290F812B00173206 /* HeaderNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DFE290F812B00173206 /* HeaderNavigationBar.swift */; };
 		B25CE93328FE409600BB7E6E /* TextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93228FE409500BB7E6E /* TextDictionary.swift */; };
 		B25CE93528FE422A00BB7E6E /* ImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93428FE422A00BB7E6E /* ImageStyle.swift */; };
 		B2664C8B290A8ABF004F841F /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664C8A290A8ABF004F841F /* CustomAlert.swift */; };
@@ -52,7 +57,14 @@
 		B2951CA12907C3F700E0AA56 /* CalculatorButtonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2951CA02907C3F700E0AA56 /* CalculatorButtonImage.swift */; };
 		B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */ = {isa = PBXBuildFile; fileRef = B29C0B1728D9A235000C3776 /* locale_identifiers.json */; };
 		B29C0B1B28D9A432000C3776 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C0B1A28D9A432000C3776 /* Language.swift */; };
+		B2A0865A290FBAA900737DF0 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = B2A08659290FBAA900737DF0 /* NukeUI */; };
+		B2A0865C290FBAD200737DF0 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A0865B290FBAD200737DF0 /* AsyncImageView.swift */; };
+		B2A0865E290FBDD400737DF0 /* InfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A0865D290FBDD400737DF0 /* InfoItem.swift */; };
 		B2ADA2BA28EEC74C0076E849 /* CurrentRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ADA2B928EEC74C0076E849 /* CurrentRateViewModel.swift */; };
+		B2CA9912290FDB5B00A587B0 /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CA990F290FDB5B00A587B0 /* HTMLStringView.swift */; };
+		B2CA9913290FDB5B00A587B0 /* HTMLStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CA9910290FDB5B00A587B0 /* HTMLStringReader.swift */; };
+		B2CA9914290FDB5B00A587B0 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = B2CA9911290FDB5B00A587B0 /* style.css */; };
+		B2CA9916290FDC8800A587B0 /* Webview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CA9915290FDC8800A587B0 /* Webview.swift */; };
 		B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */; };
 		B2CCC4E028D18B160008AEC1 /* BodyCalculatorWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */; };
 		B2EE660628FD0E70006065C7 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EE660528FD0E70006065C7 /* ColorStyle.swift */; };
@@ -68,6 +80,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B201B12B29102E6B00F80B57 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		B201BCDF28ED9A1300A2E489 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		B201BCE128ED9A3600A2E489 /* BaseAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdaptor.swift; sourceTree = "<group>"; };
 		B201BCE328ED9A5B00A2E489 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
@@ -96,6 +109,10 @@
 		B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
 		B25C3DF0290F6CF400173206 /* DataLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLocal.swift; sourceTree = "<group>"; };
 		B25C3DF4290F7C1800173206 /* CurrenciesJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrenciesJson.json; sourceTree = "<group>"; };
+		B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaytechIntroduction.swift; sourceTree = "<group>"; };
+		B25C3DF8290F7EF000173206 /* Infomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infomation.swift; sourceTree = "<group>"; };
+		B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiTiIntroductuion.swift; sourceTree = "<group>"; };
+		B25C3DFE290F812B00173206 /* HeaderNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNavigationBar.swift; sourceTree = "<group>"; };
 		B25CE93228FE409500BB7E6E /* TextDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDictionary.swift; sourceTree = "<group>"; };
 		B25CE93428FE422A00BB7E6E /* ImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStyle.swift; sourceTree = "<group>"; };
 		B2664C8A290A8ABF004F841F /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
@@ -112,7 +129,13 @@
 		B2951CA02907C3F700E0AA56 /* CalculatorButtonImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonImage.swift; sourceTree = "<group>"; };
 		B29C0B1728D9A235000C3776 /* locale_identifiers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = locale_identifiers.json; sourceTree = "<group>"; };
 		B29C0B1A28D9A432000C3776 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		B2A0865B290FBAD200737DF0 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		B2A0865D290FBDD400737DF0 /* InfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoItem.swift; sourceTree = "<group>"; };
 		B2ADA2B928EEC74C0076E849 /* CurrentRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRateViewModel.swift; sourceTree = "<group>"; };
+		B2CA990F290FDB5B00A587B0 /* HTMLStringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
+		B2CA9910290FDB5B00A587B0 /* HTMLStringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLStringReader.swift; sourceTree = "<group>"; };
+		B2CA9911290FDB5B00A587B0 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		B2CA9915290FDC8800A587B0 /* Webview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webview.swift; sourceTree = "<group>"; };
 		B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkingWindows.swift; sourceTree = "<group>"; };
 		B2CCC4DA28D17FF90008AEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCalculatorWorking.swift; sourceTree = "<group>"; };
@@ -135,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B201119828D3167400E21359 /* Neumorphic in Frameworks */,
+				B2A0865A290FBAA900737DF0 /* NukeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +232,25 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		B25C3DFA290F7EF400173206 /* info */ = {
+			isa = PBXGroup;
+			children = (
+				B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */,
+				B25C3DF8290F7EF000173206 /* Infomation.swift */,
+				B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */,
+				B2A0865D290FBDD400737DF0 /* InfoItem.swift */,
+			);
+			name = info;
+			sourceTree = "<group>";
+		};
+		B25C3DFD290F80EB00173206 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B25C3DFE290F812B00173206 /* HeaderNavigationBar.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		B2951C9B29077ECC00E0AA56 /* ButtonStyles */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +290,17 @@
 				B2951CA02907C3F700E0AA56 /* CalculatorButtonImage.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		B2CA990E290FDB5B00A587B0 /* HTMLStringView */ = {
+			isa = PBXGroup;
+			children = (
+				B2CA990F290FDB5B00A587B0 /* HTMLStringView.swift */,
+				B2CA9910290FDB5B00A587B0 /* HTMLStringReader.swift */,
+				B2CA9911290FDB5B00A587B0 /* style.css */,
+				B2CA9915290FDC8800A587B0 /* Webview.swift */,
+			);
+			path = HTMLStringView;
 			sourceTree = "<group>";
 		};
 		B2CCC4D128D17F390008AEC1 /* fonts */ = {
@@ -312,6 +366,7 @@
 		B2F7631F28C0FC400084662D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B25C3DFA290F7EF400173206 /* info */,
 				B2FEF14528CDDBED00046C20 /* Components */,
 				B233052F28FDAD080047F623 /* List */,
 				B28343B928D0EDA200DFEAE4 /* CalculatorView.swift */,
@@ -336,8 +391,12 @@
 		B2FEF14528CDDBED00046C20 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B201B12B29102E6B00F80B57 /* BlurView.swift */,
+				B2CA990E290FDB5B00A587B0 /* HTMLStringView */,
+				B25C3DFD290F80EB00173206 /* Navigation */,
 				B2A5772D28EFE28C0068F831 /* Button */,
 				B2664C8A290A8ABF004F841F /* CustomAlert.swift */,
+				B2A0865B290FBAD200737DF0 /* AsyncImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -360,6 +419,7 @@
 			name = CalculatorX;
 			packageProductDependencies = (
 				B201119728D3167400E21359 /* Neumorphic */,
+				B2A08659290FBAA900737DF0 /* NukeUI */,
 			);
 			productName = CalculatorX;
 			productReference = B2F7630E28C0FA2C0084662D /* CalculatorX.app */;
@@ -391,6 +451,7 @@
 			mainGroup = B2F7630528C0FA2B0084662D;
 			packageReferences = (
 				B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */,
+				B2A08658290FBAA900737DF0 /* XCRemoteSwiftPackageReference "NukeUI" */,
 			);
 			productRefGroup = B2F7630F28C0FA2C0084662D /* Products */;
 			projectDirPath = "";
@@ -407,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B22E454B28E4294C007E92A2 /* Roboto-ThinItalic.ttf in Resources */,
+				B2CA9914290FDB5B00A587B0 /* style.css in Resources */,
 				B22E454E28E4294C007E92A2 /* Roboto-Italic.ttf in Resources */,
 				B22E455028E4294C007E92A2 /* Roboto-Bold.ttf in Resources */,
 				B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */,
@@ -442,6 +504,7 @@
 				B2664C8B290A8ABF004F841F /* CustomAlert.swift in Sources */,
 				B28DE0CB28C401A20076DBDA /* Extensions.swift in Sources */,
 				B201BCEB28ED9ED100A2E489 /* MTUtils.swift in Sources */,
+				B25C3DF9290F7EF000173206 /* Infomation.swift in Sources */,
 				B2EE660628FD0E70006065C7 /* ColorStyle.swift in Sources */,
 				B2951C9D29077ED700E0AA56 /* CalculatorButtonStyle.swift in Sources */,
 				B2951C98290776C700E0AA56 /* Calculator.swift in Sources */,
@@ -450,26 +513,35 @@
 				B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */,
 				B2951C9A29077DF800E0AA56 /* Constants.swift in Sources */,
 				B201BCED28ED9EFD00A2E489 /* Currency.swift in Sources */,
+				B25C3DFF290F812B00173206 /* HeaderNavigationBar.swift in Sources */,
 				B2F7631428C0FA2C0084662D /* ContentView.swift in Sources */,
 				B25CE93328FE409600BB7E6E /* TextDictionary.swift in Sources */,
 				B201BCE028ED9A1300A2E489 /* ExchangeRate.swift in Sources */,
 				B238F5892900294D0091BAC6 /* CalculatorViewModel.swift in Sources */,
 				B20D84D028E2A38D0099713F /* AppDelegate.swift in Sources */,
 				B24D87DF28D48BE0006A8F1E /* CalculatorButtonText.swift in Sources */,
+				B2CA9913290FDB5B00A587B0 /* HTMLStringReader.swift in Sources */,
 				B28090B928FC7C790013B1BD /* ListViewSelectionRate.swift in Sources */,
 				B29C0B1B28D9A432000C3776 /* Language.swift in Sources */,
 				B2F5968E28ED86F800F8CB5A /* ExchangeRateUpdates.swift in Sources */,
+				B2CA9916290FDC8800A587B0 /* Webview.swift in Sources */,
 				B233053128FDAD3E0047F623 /* ItemSelectionRate.swift in Sources */,
 				B25CE93528FE422A00BB7E6E /* ImageStyle.swift in Sources */,
 				B201BCE428ED9A5B00A2E489 /* Define.swift in Sources */,
+				B25C3DFC290F7F2200173206 /* TiTiIntroductuion.swift in Sources */,
+				B2A0865C290FBAD200737DF0 /* AsyncImageView.swift in Sources */,
 				B2ADA2BA28EEC74C0076E849 /* CurrentRateViewModel.swift in Sources */,
 				B201BCE628ED9AB100A2E489 /* Config.swift in Sources */,
 				B201BCE228ED9A3600A2E489 /* BaseAdaptor.swift in Sources */,
 				B201BCE828ED9BBD00A2E489 /* NavigationUtil.swift in Sources */,
+				B2CA9912290FDB5B00A587B0 /* HTMLStringView.swift in Sources */,
 				B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */,
 				B21247A328EE697900142084 /* QueryResponse.swift in Sources */,
+				B25C3DF7290F7ED600173206 /* MaytechIntroduction.swift in Sources */,
+				B201B12C29102E6B00F80B57 /* BlurView.swift in Sources */,
 				B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */,
 				B2F7631228C0FA2C0084662D /* CalculatorXApp.swift in Sources */,
+				B2A0865E290FBDD400737DF0 /* InfoItem.swift in Sources */,
 				B2951C96290775B200E0AA56 /* KeyboardPad.swift in Sources */,
 				B22E455428E429DD007E92A2 /* FontStyle.swift in Sources */,
 				B2951CA12907C3F700E0AA56 /* CalculatorButtonImage.swift in Sources */,
@@ -689,6 +761,14 @@
 				kind = branch;
 			};
 		};
+		B2A08658290FBAA900737DF0 /* XCRemoteSwiftPackageReference "NukeUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/NukeUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -696,6 +776,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */;
 			productName = Neumorphic;
+		};
+		B2A08659290FBAA900737DF0 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2A08658290FBAA900737DF0 /* XCRemoteSwiftPackageReference "NukeUI" */;
+			productName = NukeUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

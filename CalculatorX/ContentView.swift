@@ -12,14 +12,18 @@ struct ContentView: View {
     @StateObject private var currentRate = CurrentRateViewModel()
     
     var body: some View {
-        CalculatorView()
-            .statusBar(hidden: true)
-            .onAppear() {
-                UIScreen.setRotationDevice(to: .portrait)
-                self.currentRate.loadData()
-            }
-            .environmentObject(viewModel)
-            .environmentObject(currentRate)
+        NavigationView {
+            CalculatorView()
+                .statusBar(hidden: true)
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+                .onAppear() {
+                    UIScreen.setRotationDevice(to: .portrait)
+                    self.currentRate.loadData()
+                }
+                .environmentObject(viewModel)
+                .environmentObject(currentRate)
+        }
     }
 }
 

@@ -45,7 +45,7 @@ public extension Color {
     }
     
     static var YellowLight: Color {
-        return Color(UIColor(red: 233/255, green: 158/255, blue: 57/255, alpha: 1.0))
+        return Color(hex: "#E99E39")
     }
     
     static var OgranLight: Color {
@@ -58,5 +58,9 @@ public extension Color {
     
     static var OviLight: Color {
         return Color(hex: "#00C8FF") // old: 38F3FF
+    }
+    
+    static var LinearGradientBackgroundInfo: LinearGradient {
+        return LinearGradient(gradient: Gradient(colors: [Color(hex: "#2A94CF"), Color(hex: "#7EE297")]), startPoint: .leading, endPoint: .trailing)
     }
 }

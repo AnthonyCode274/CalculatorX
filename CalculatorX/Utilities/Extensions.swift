@@ -6,6 +6,30 @@
 //
 import SwiftUI
 
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+}
+
+extension Bundle {
+    static func appName() -> String {
+        guard let dictionary = Bundle.main.infoDictionary else {
+            return ""
+        }
+        if let version : String = dictionary["CFBundleName"] as? String {
+            return version
+        } else {
+            return ""
+        }
+    }
+}
+
 public extension UIScreen {
     static func setRotationDevice(to orientation: UIInterfaceOrientationMask) {
         AppDelegate.orientationLock = orientation
@@ -109,6 +133,10 @@ public extension Date {
 }
 
 extension String {
+    func parseURL() -> URL {
+        return URL(string: self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) ?? URL(string:String(Config.noImage).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+    }
+    
     func capitalizeFirstLetter() -> String {
         return prefix(1).uppercased() + self.lowercased().dropFirst()
     }
@@ -182,5 +210,18 @@ extension Character {
 extension Decimal {
     var stringValue: String {
         return NSDecimalNumber(decimal: self).stringValue
+    }
+}
+
+extension Text {
+    public func foregroundLinearGradient(colors: [Color], startPoint: UnitPoint, endPoint: UnitPoint) -> some View {
+        self.overlay {
+            LinearGradient(
+                colors: colors,
+                startPoint: startPoint,
+                endPoint: endPoint
+            )
+            .mask(self)
+        }
     }
 }

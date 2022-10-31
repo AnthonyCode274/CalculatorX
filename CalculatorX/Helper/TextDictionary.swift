@@ -9,6 +9,10 @@ import Foundation
 
 public class TextDictionary: Codable {
     
+    public static var subTitleInfo: String = "By Maytech & The Code-Love Team"
+    public static func serviceDescription(iconName: String) -> String {
+        return "Copyright \(iconName) " + "2022 Maytect".uppercased()
+    }
     public static var Description = "Chi tiết"
     public static var OK = "OK"
     public static var SpaceDivider = " --- "

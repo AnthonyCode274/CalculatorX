@@ -10,6 +10,8 @@ import Foundation
 public class Config {
     static let apiUrl = "https://calcapi.maytech.app/api/"
     
+    static let noImage = "https://media.thietthach.maytech.vn/images/no-img.jpg"
+    
     static var getApiUrl: String {
         get {
             return self.apiUrl
