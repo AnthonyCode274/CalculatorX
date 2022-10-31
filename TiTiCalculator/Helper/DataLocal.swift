@@ -7,18 +7,16 @@
 
 import Foundation
 
-public class DataLocal {
-    public static var shared: DataLocal = DataLocal()
-    
+public class DataLocal {    
     public init() {
         
     }
     
-    public func getCurrencies(filename fileName: String) -> [Currency] {
+    public static func getCurrencies(filename fileName: String) -> [Currency] {
         do {
-            if let jsonData = self.readLocalFile(filename: fileName) {
-                let decodedData = try JSONDecoder().decode([Currency].self, from: jsonData)
-                return decodedData
+            if let jsonData = DataLocal.readLocalFile(filename: fileName) {
+                let currencies = try JSONDecoder().decode([Currency].self, from: jsonData)
+                return currencies
             } else {
                 return [Currency]()
             }
@@ -28,13 +26,12 @@ public class DataLocal {
         return [Currency]()
     }
      
-    private func readLocalFile(filename fileName: String) -> Data? {
-        guard let path = Bundle.main.path(forResource: fileName, ofType: "json") else{ return nil }
-        debugPrint(path)
-        let url = URL(fileURLWithPath: path)
-        debugPrint(url)
+    static func readLocalFile(filename fileName: String) -> Data? {
+        guard let file = Bundle.main.path(forResource: fileName, ofType: "json") else {
+            fatalError("Unable to locate file \"\(fileName)\" in main bundle.")
+        }
         do {
-            let data = try Data(contentsOf: url)
+            let data = try String(contentsOfFile: file).data(using: .utf8)
             return data
         } catch{
             debugPrint(error)

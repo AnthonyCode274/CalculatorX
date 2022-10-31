@@ -21,39 +21,36 @@ public class CurrentRateViewModel: ObservableObject {
     @Published public var rightCurrency: Currency?
     
     public func clearAll() {
-        if !currencies.isEmpty {
-            leftCurrency = currencies[0]
-            rightCurrency = currencies[1]
-        }
-        clear()
+        self.loadDataCurrency(self.dataSorted(self.currencies))
+        self.clear()
     }
     
     public func clear() {
-        resultExchange = nil
+        self.resultExchange = nil
     }
     
     public var displayDescription: String {
-        let convertString = NSDecimalNumber(decimal: resultExchange ?? .zero).stringValue
+        let convertString = NSDecimalNumber(decimal: self.resultExchange ?? .zero).stringValue
         let spellout = convertString.spellOut() + " \(self.currencyNameRight)"
         
-        return displayTotalResultExchange + "\n" + spellout
+        return self.displayTotalResultExchange + "\n" + spellout
     }
     
     public var displayTotalResultExchange: String {
-        let convertDecimal = (resultExchange ?? .zero).formatted(.number)
-        let convertString = NSDecimalNumber(decimal: resultExchange ?? .zero).stringValue
+        let convertDecimal = (self.resultExchange ?? .zero).formatted(.number)
+        let convertString = NSDecimalNumber(decimal: self.resultExchange ?? .zero).stringValue
         return convertDecimal + " \(self.currencyCodeRight)"
     }
     
     public var resultExchange: Decimal?
     
     public func evaluateResultExchange(_ number: Decimal) {
-        let unit = currencyRateLeft / currencyRateRight
+        let unit = self.currencyRateLeft / self.currencyRateRight
         if unit.isNormal {
             let total = number * Decimal(unit)
-            resultExchange = total
+            self.resultExchange = total
         } else {
-            resultExchange = .zero
+            self.resultExchange = .zero
         }
     }
     
@@ -61,11 +58,11 @@ public class CurrentRateViewModel: ObservableObject {
         
         var result: String = ""
         
-        let exchange = currencyRateRight / currencyRateLeft
+        let exchange = self.currencyRateRight / self.currencyRateLeft
         
         if exchange.isNormal {
             let exchangeFormat = Decimal(exchange).formatted(.number)
-            result = "Tỉ giá: \(exchangeFormat) \(currencyCodeLeft) = 1 \(currencyCodeRight)"
+            result = "Tỉ giá: \(exchangeFormat) \(self.currencyCodeLeft) = 1 \(self.currencyCodeRight)"
         } else {
             result = "Tỉ giá: "
         }
@@ -74,31 +71,31 @@ public class CurrentRateViewModel: ObservableObject {
     }
         
     public var currencyNameLeft: String {
-        return leftCurrency?.currencyName ?? " --- "
+        return self.leftCurrency?.currencyName ?? " --- "
     }
     
     public var currencyNameRight: String {
-        return rightCurrency?.currencyName ?? " --- "
+        return self.rightCurrency?.currencyName ?? " --- "
     }
     
     public var currencyCodeLeft: String {
-        return leftCurrency?.currencyCode ?? " --- "
+        return self.leftCurrency?.currencyCode ?? " --- "
     }
     
     public var currencyCodeRight: String {
-        return rightCurrency?.currencyCode ?? " --- "
+        return self.rightCurrency?.currencyCode ?? " --- "
     }
     
     public var currencyRateLeft: Double {
-        return leftCurrency?.currencyRate ?? 0
+        return self.leftCurrency?.currencyRate ?? 0
     }
     
     public var currencyRateRight: Double {
-        return rightCurrency?.currencyRate ?? 0
+        return self.rightCurrency?.currencyRate ?? 0
     }
     
     public func loadData() {
-        let adapter = ExchangeRateAdaptor(onSucceed: dataDidSuccess, dataDidFailed: dataDidFailed)
+        let adapter = ExchangeRateAdaptor(onSucceed: self.dataDidSuccess, dataDidFailed: self.dataDidFailed)
         adapter.getCurrencies()
     }
     
@@ -110,15 +107,10 @@ public class CurrentRateViewModel: ObservableObject {
                 case .GetList:
                     do {
                         let result = try MTUtils.getJSONDecoder().decode([Currency].self, from: data as! Data)
-                        self.currencies = result
+                        let sorted = self.dataSorted(result)
+                        self.currencies = sorted
+                        self.loadDataCurrency(sorted)
                         
-                        if !self.currencies.isEmpty && self.leftCurrency == nil {
-                            self.leftCurrency = self.currencies[0]
-                        }
-                        
-                        if !self.currencies.isEmpty && self.rightCurrency == nil {
-                            self.rightCurrency = self.currencies[1]
-                        }
                     }
                     catch let jsonError {
                         print("Erorr Customer > GetObject at: >>> \(jsonError.localizedDescription)")
@@ -135,6 +127,26 @@ public class CurrentRateViewModel: ObservableObject {
     private func dataDidFailed(requestError: RequestApiError, message: String?) {
         DispatchQueue.main.async {
             self.requestError = requestError
+            let data = DataLocal.getCurrencies(filename: "CurrentRateOffline")
+            let sorted = self.dataSorted(data)
+            self.currencies = sorted
+            self.loadDataCurrency(sorted)
         }
+    }
+    
+    private func loadDataCurrency(_ data: [Currency]) {
+        if !data.isEmpty && self.leftCurrency == nil && self.rightCurrency == nil {
+            for item in data {
+                if item.isMainCurrency {
+                    self.leftCurrency = item
+                } else {
+                    self.rightCurrency = item
+                }
+            }
+        }
+    }
+    
+    private func dataSorted(_ data: [Currency]) -> [Currency] {
+        return data.sorted(by: {$0.currencyId < $1.currencyId})
     }
 }

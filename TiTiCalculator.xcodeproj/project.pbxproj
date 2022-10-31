@@ -35,7 +35,6 @@
 		B238F5892900294D0091BAC6 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B238F5882900294D0091BAC6 /* CalculatorViewModel.swift */; };
 		B24D87DF28D48BE0006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */; };
 		B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF0290F6CF400173206 /* DataLocal.swift */; };
-		B25C3DF5290F7C1800173206 /* CurrenciesJson.json in Resources */ = {isa = PBXBuildFile; fileRef = B25C3DF4290F7C1800173206 /* CurrenciesJson.json */; };
 		B25C3DF7290F7ED600173206 /* MaytechIntroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */; };
 		B25C3DF9290F7EF000173206 /* Infomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF8290F7EF000173206 /* Infomation.swift */; };
 		B25C3DFC290F7F2200173206 /* TiTiIntroductuion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */; };
@@ -47,6 +46,7 @@
 		B2868D2228DC1B480001D689 /* AltoneTrial-BoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */; };
 		B2868D2428DC1C670001D689 /* AltoneTrial-RegularOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */; };
 		B289EC5F291046A30041D5F6 /* WebViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289EC5E291046A30041D5F6 /* WebViewRepresentable.swift */; };
+		B289EC6129104A740041D5F6 /* CurrentRateOffline.json in Resources */ = {isa = PBXBuildFile; fileRef = B289EC6029104A740041D5F6 /* CurrentRateOffline.json */; };
 		B28DE0CB28C401A20076DBDA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28DE0CA28C401A20076DBDA /* Extensions.swift */; };
 		B2951C96290775B200E0AA56 /* KeyboardPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2951C95290775B200E0AA56 /* KeyboardPad.swift */; };
 		B2951C98290776C700E0AA56 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2951C97290776C700E0AA56 /* Calculator.swift */; };
@@ -103,7 +103,6 @@
 		B238F5882900294D0091BAC6 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
 		B25C3DF0290F6CF400173206 /* DataLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLocal.swift; sourceTree = "<group>"; };
-		B25C3DF4290F7C1800173206 /* CurrenciesJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrenciesJson.json; sourceTree = "<group>"; };
 		B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaytechIntroduction.swift; sourceTree = "<group>"; };
 		B25C3DF8290F7EF000173206 /* Infomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infomation.swift; sourceTree = "<group>"; };
 		B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiTiIntroductuion.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		B2868D2128DC1B480001D689 /* AltoneTrial-BoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-BoldOblique.ttf"; sourceTree = "<group>"; };
 		B2868D2328DC1C670001D689 /* AltoneTrial-RegularOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AltoneTrial-RegularOblique.ttf"; sourceTree = "<group>"; };
 		B289EC5E291046A30041D5F6 /* WebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewRepresentable.swift; sourceTree = "<group>"; };
+		B289EC6029104A740041D5F6 /* CurrentRateOffline.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrentRateOffline.json; sourceTree = "<group>"; };
 		B28DE0CA28C401A20076DBDA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B2951C95290775B200E0AA56 /* KeyboardPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardPad.swift; sourceTree = "<group>"; };
 		B2951C97290776C700E0AA56 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				B25CE93228FE409500BB7E6E /* TextDictionary.swift */,
 				B2951C9929077DF800E0AA56 /* Constants.swift */,
 				B25C3DF0290F6CF400173206 /* DataLocal.swift */,
-				B25C3DF4290F7C1800173206 /* CurrenciesJson.json */,
+				B289EC6029104A740041D5F6 /* CurrentRateOffline.json */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -342,7 +342,6 @@
 				B29C0B1928D9A417000C3776 /* Models */,
 				B29C0B1628D9A1F1000C3776 /* Helper */,
 				B2CCC4DA28D17FF90008AEC1 /* Info.plist */,
-				B201BCE928ED9E1500A2E489 /* ViewModel */,
 				B2F7632428C1019B0084662D /* Utilities */,
 				B2F7631F28C0FC400084662D /* Views */,
 				B2F7631128C0FA2C0084662D /* CalculatorXApp.swift */,
@@ -364,6 +363,7 @@
 		B2F7631F28C0FC400084662D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B201BCE928ED9E1500A2E489 /* ViewModel */,
 				B25C3DFA290F7EF400173206 /* info */,
 				B2FEF14528CDDBED00046C20 /* Components */,
 				B233052F28FDAD080047F623 /* List */,
@@ -480,11 +480,11 @@
 				B22E454C28E4294C007E92A2 /* Roboto-BoldItalic.ttf in Resources */,
 				B22E455128E4294C007E92A2 /* Roboto-Thin.ttf in Resources */,
 				B22E454D28E4294C007E92A2 /* Roboto-LightItalic.ttf in Resources */,
+				B289EC6129104A740041D5F6 /* CurrentRateOffline.json in Resources */,
 				B2F83F0E28DD76A900E45E95 /* digital-7mono.ttf in Resources */,
 				B22E454728E4294C007E92A2 /* Roboto-Medium.ttf in Resources */,
 				B22E454928E4294C007E92A2 /* Roboto-Regular.ttf in Resources */,
 				B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */,
-				B25C3DF5290F7C1800173206 /* CurrenciesJson.json in Resources */,
 				B2F83F1028DD76A900E45E95 /* digital-7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
