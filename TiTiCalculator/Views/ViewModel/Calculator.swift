@@ -65,6 +65,7 @@ struct Calculator {
         if pressedClear || carryingDecimal {
             return newNumber
         }
+        
         return newNumber ?? expression?.number ?? result
     }
     
@@ -200,9 +201,7 @@ struct Calculator {
     
     mutating func evaluate() {
         guard let number = newNumber else { return }
-        
-        allResult.append(number)
-        
+                
         guard let expressionToEvaluate = expression else { return }
         
         let e = expressionToEvaluate.evaluate(with: number)
@@ -223,9 +222,34 @@ struct Calculator {
     }
     
     mutating func chervonBackRemove() {
-        var stringNumber = getNumberString(forNumber: newNumber)
-        stringNumber.removeLast()
-        newNumber = Decimal(string: stringNumber) // Làm sao để Decimal không loại bỏ phần số 0 của số thập phân
+        if stateOn == .equal {
+            var stringNumber = getNumberString(forNumber: result)
+            stringNumber.removeLast()
+            result = Decimal(string: stringNumber) // Làm sao để Decimal không loại bỏ phần số 0 của số thập phân
+            if result == nil {
+                print("Result is empty")
+                clear()
+            }
+        } else if stateOn == .gt {
+            var stringNumber = getNumberString(forNumber: newNumber)
+            stringNumber.removeLast()
+            newNumber = Decimal(string: stringNumber) // Làm sao để Decimal không loại bỏ phần số 0 của số thập phân
+            if newNumber == nil {
+                print("gt 1 is empty")
+                clear()
+            }
+        } else {
+            var stringNumber = getNumberString(forNumber: newNumber)
+            stringNumber.removeLast()
+            newNumber = Decimal(string: stringNumber) // Làm sao để Decimal không loại bỏ phần số 0 của số thập phân
+            if newNumber == nil {
+                print("gt 2 is empty")
+                clear()
+            }
+        }
+        
+        
+        
     }
     
     mutating func gt() {
