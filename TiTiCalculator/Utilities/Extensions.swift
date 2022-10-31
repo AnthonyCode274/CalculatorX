@@ -172,23 +172,21 @@ extension String {
     }
     
     func numberFormatted() -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.locale = Locale.current
-        formatter.usesGroupingSeparator = true
-        formatter.decimalSeparator = ","
-        formatter.groupingSeparator = "."
-        formatter.maximumFractionDigits = 3
+        let formatter = self.decimalNumberFormatter()
         
         var formatted: String? = nil
         
         if let index = self.firstIndex(of: ".") {
             let numString = self.replacingOccurrences(of: ".", with: ",")
-            let rangeValueBefore = numString[numString.startIndex..<index]
-            let rangeValueBAfter = numString[index..<numString.endIndex]
+            let rangeValueBefore = String(numString[numString.startIndex..<index])
+            let rangeValueBAfter = String(numString[index..<numString.endIndex])
+            
+            let limitedDecimal = rangeValueBAfter.count > 8 ? String(rangeValueBAfter.prefix(8)).roundDecimals : String(rangeValueBAfter.prefix(.max))
+            
+            print("\(String(limitedDecimal))")
             
             let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
-            let new = valFormatted?.appending(rangeValueBAfter)
+            let new = valFormatted?.appending(limitedDecimal)
             return new ?? ""
             
         } else {
@@ -200,6 +198,37 @@ extension String {
         } else {
             return self
         }
+    }
+    
+    var roundDecimals: String {
+        var numString = self
+        let endIndex = numString.endIndex
+        let beforeEndIndex = numString.index(before: endIndex)
+        let a = String(numString[beforeEndIndex..<endIndex])  // Get end
+        let b = String(numString[numString.index(before: beforeEndIndex)..<numString.index(before: endIndex)])
+        let resultChar = (a.decimalValue >= 5 ? (b.decimalValue + 1) : b.decimalValue).stringValue
+        numString.replaceSubrange(numString.index(before: beforeEndIndex)..<numString.endIndex, with: resultChar)
+        return numString
+    }
+    
+    var isNumber: Bool {
+        return self.range(
+            of: "^[0-9]*$", // 1
+            options: .regularExpression) != nil
+    }
+    
+    var decimalValue: Decimal {
+        return Decimal(string: self) ?? .zero
+    }
+    
+    func decimalNumberFormatter() -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        formatter.usesGroupingSeparator = true
+        formatter.decimalSeparator = ","
+        formatter.groupingSeparator = "."
+        return formatter
     }
     
     var isMatchOperation: Bool {
