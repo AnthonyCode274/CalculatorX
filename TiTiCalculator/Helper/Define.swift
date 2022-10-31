@@ -42,10 +42,11 @@ public enum Digit: Int, CaseIterable, CustomStringConvertible {
     }
 }
 
-public enum StateOn: String {
-    case gt = "gt"
-    case equal = "="
-    case operation = "operation"
+public enum StateOn {
+    case digit
+    case gt
+    case equal
+    case operation
 }
 
 public enum ButtonType: Hashable, CustomStringConvertible {

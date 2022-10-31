@@ -172,7 +172,12 @@ extension String {
     }
     
     func numberFormatted() -> String {
-        let formatter = self.decimalNumberFormatter()
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        formatter.usesGroupingSeparator = true
+        formatter.decimalSeparator = ","
+        formatter.groupingSeparator = "."
         
         var formatted: String? = nil
         
@@ -180,11 +185,6 @@ extension String {
             let numString = self.replacingOccurrences(of: ".", with: ",")
             let rangeValueBefore = String(numString[numString.startIndex..<index])
             let rangeValueBAfter = String(numString[index..<numString.endIndex])
-            
-            let limitedDecimal = rangeValueBAfter.count > 8 ? String(rangeValueBAfter.prefix(8)) : String(rangeValueBAfter)
-            
-            print("\(String(limitedDecimal))")
-            
             let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
             let new = valFormatted?.appending(rangeValueBAfter)
             return new ?? ""
@@ -201,7 +201,12 @@ extension String {
     }
     
     func numberFormattedDecimal() -> String {
-        let formatter = self.decimalNumberFormatter()
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        formatter.usesGroupingSeparator = true
+        formatter.decimalSeparator = ","
+        formatter.groupingSeparator = "."
         
         var formatted: String? = nil
         
@@ -248,16 +253,6 @@ extension String {
     
     var decimalValue: Decimal {
         return Decimal(string: self) ?? .zero
-    }
-    
-    func decimalNumberFormatter() -> NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.locale = Locale.current
-        formatter.usesGroupingSeparator = true
-        formatter.decimalSeparator = ","
-        formatter.groupingSeparator = "."
-        return formatter
     }
     
     var isMatchOperation: Bool {

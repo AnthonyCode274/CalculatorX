@@ -49,12 +49,8 @@ struct Calculator {
     
     // MARK: - COMPUTED PROPERTIES
     
-    public var displayText: String {        
+    public var displayText: String {
         return getNumberString(forNumber: number, withCommas: true)
-    }
-    
-    public var displayStateOn: String {
-        return stateOn?.rawValue ?? ""
     }
     
     public var showAllClear: Bool {
@@ -76,7 +72,6 @@ struct Calculator {
     // MARK: - OPERATIONS
     
     mutating func setDigit(_ digit: Digit) {
-        stateOn = nil
         if containsDecimal && digit == .zero {
             if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
                 addNumber(digit)
@@ -102,6 +97,7 @@ struct Calculator {
                 addNumber(digit)
             }
         }
+        stateOn = .digit
     }
     
     mutating func addNumber(_ digit: Digit) {
@@ -144,6 +140,19 @@ struct Calculator {
     }
     
     mutating func setOperation(_ operation: ArithmeticOperation) {
+        if expression?.operation != nil {
+            if stateOn != .operation {
+                setProgressOperation(operation)
+            }
+            expression?.operation = operation
+        } else {
+            setProgressOperation(operation)
+        }
+        
+        stateOn = .operation
+    }
+    
+    mutating func setProgressOperation(_ operation: ArithmeticOperation) {
         guard var number = newNumber ?? result else { return }
         if let existingExpression = expression {
             number = existingExpression.evaluate(with: number)

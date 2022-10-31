@@ -26,15 +26,8 @@ struct HeaderWorkingWindows: View {
     }
     
     @ViewBuilder var displayStateOn: some View {
-        if viewModel.displayStateOn == "=" {
-            Image("icon-equal")
-                .resizable()
-                .renderingMode(.template)
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
-                .frame(width: 16, height: 16)
-        } else {
-            Text("\(viewModel.displayStateOn)".uppercased())
+        if viewModel.calculator.stateOn == .gt {
+            Text("GT".uppercased())
                 .font(.custom("AltoneTrial-BoldOblique", size: 16))
                 .foregroundColor(.black)
         }

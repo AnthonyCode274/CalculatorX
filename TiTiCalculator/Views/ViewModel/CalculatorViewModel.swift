@@ -12,14 +12,14 @@ class CalculatorViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    @Published private var calculator = Calculator()
+    @Published public var calculator = Calculator()
     
     var getNumber: Decimal {
         return calculator.number ?? .zero
     }
         
     var displayText: String {
-        return calculator.stateOn == .equal ? calculator.displayText.numberFormattedDecimal() : calculator.displayText.numberFormatted()
+        return calculator.stateOn == .digit ? calculator.displayText.numberFormatted() : calculator.displayText.numberFormattedDecimal()
     }
     
     public var alertSpellOut: String {
@@ -32,10 +32,6 @@ class CalculatorViewModel: ObservableObject {
     
     var getAllResult: [Decimal] {
         return calculator.allResult
-    }
-    
-    var displayStateOn: String {
-        return calculator.displayStateOn
     }
     
     var buttonTypes: [[ButtonType]] {
