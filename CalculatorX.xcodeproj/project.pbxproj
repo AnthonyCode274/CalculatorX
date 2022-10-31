@@ -34,6 +34,8 @@
 		B233053128FDAD3E0047F623 /* ItemSelectionRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233053028FDAD3E0047F623 /* ItemSelectionRate.swift */; };
 		B238F5892900294D0091BAC6 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B238F5882900294D0091BAC6 /* CalculatorViewModel.swift */; };
 		B24D87DF28D48BE0006A8F1E /* CalculatorButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */; };
+		B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF0290F6CF400173206 /* DataLocal.swift */; };
+		B25C3DF5290F7C1800173206 /* CurrenciesJson.json in Resources */ = {isa = PBXBuildFile; fileRef = B25C3DF4290F7C1800173206 /* CurrenciesJson.json */; };
 		B25CE93328FE409600BB7E6E /* TextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93228FE409500BB7E6E /* TextDictionary.swift */; };
 		B25CE93528FE422A00BB7E6E /* ImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93428FE422A00BB7E6E /* ImageStyle.swift */; };
 		B2664C8B290A8ABF004F841F /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2664C8A290A8ABF004F841F /* CustomAlert.swift */; };
@@ -51,7 +53,6 @@
 		B29C0B1828D9A235000C3776 /* locale_identifiers.json in Resources */ = {isa = PBXBuildFile; fileRef = B29C0B1728D9A235000C3776 /* locale_identifiers.json */; };
 		B29C0B1B28D9A432000C3776 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C0B1A28D9A432000C3776 /* Language.swift */; };
 		B2ADA2BA28EEC74C0076E849 /* CurrentRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ADA2B928EEC74C0076E849 /* CurrentRateViewModel.swift */; };
-		B2B4F2CD28FEAE2200A799A9 /* MathExpression in Frameworks */ = {isa = PBXBuildFile; productRef = B2B4F2CC28FEAE2200A799A9 /* MathExpression */; };
 		B2CCC4D028D176080008AEC1 /* HeaderWorkingWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4CF28D176080008AEC1 /* HeaderWorkingWindows.swift */; };
 		B2CCC4E028D18B160008AEC1 /* BodyCalculatorWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCC4DF28D18B160008AEC1 /* BodyCalculatorWorking.swift */; };
 		B2EE660628FD0E70006065C7 /* ColorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EE660528FD0E70006065C7 /* ColorStyle.swift */; };
@@ -93,6 +94,8 @@
 		B233053028FDAD3E0047F623 /* ItemSelectionRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionRate.swift; sourceTree = "<group>"; };
 		B238F5882900294D0091BAC6 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		B24D87DE28D48BE0006A8F1E /* CalculatorButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonText.swift; sourceTree = "<group>"; };
+		B25C3DF0290F6CF400173206 /* DataLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLocal.swift; sourceTree = "<group>"; };
+		B25C3DF4290F7C1800173206 /* CurrenciesJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CurrenciesJson.json; sourceTree = "<group>"; };
 		B25CE93228FE409500BB7E6E /* TextDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDictionary.swift; sourceTree = "<group>"; };
 		B25CE93428FE422A00BB7E6E /* ImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStyle.swift; sourceTree = "<group>"; };
 		B2664C8A290A8ABF004F841F /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
@@ -131,7 +134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2B4F2CD28FEAE2200A799A9 /* MathExpression in Frameworks */,
 				B201119828D3167400E21359 /* Neumorphic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +225,8 @@
 				B201BCE528ED9AB100A2E489 /* Config.swift */,
 				B25CE93228FE409500BB7E6E /* TextDictionary.swift */,
 				B2951C9929077DF800E0AA56 /* Constants.swift */,
+				B25C3DF0290F6CF400173206 /* DataLocal.swift */,
+				B25C3DF4290F7C1800173206 /* CurrenciesJson.json */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -356,7 +360,6 @@
 			name = CalculatorX;
 			packageProductDependencies = (
 				B201119728D3167400E21359 /* Neumorphic */,
-				B2B4F2CC28FEAE2200A799A9 /* MathExpression */,
 			);
 			productName = CalculatorX;
 			productReference = B2F7630E28C0FA2C0084662D /* CalculatorX.app */;
@@ -388,7 +391,6 @@
 			mainGroup = B2F7630528C0FA2B0084662D;
 			packageReferences = (
 				B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */,
-				B2B4F2CB28FEAE2200A799A9 /* XCRemoteSwiftPackageReference "MathExpression" */,
 			);
 			productRefGroup = B2F7630F28C0FA2C0084662D /* Products */;
 			projectDirPath = "";
@@ -425,6 +427,7 @@
 				B22E454728E4294C007E92A2 /* Roboto-Medium.ttf in Resources */,
 				B22E454928E4294C007E92A2 /* Roboto-Regular.ttf in Resources */,
 				B2F7631628C0FA2E0084662D /* Assets.xcassets in Resources */,
+				B25C3DF5290F7C1800173206 /* CurrenciesJson.json in Resources */,
 				B2F83F1028DD76A900E45E95 /* digital-7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +466,7 @@
 				B201BCE628ED9AB100A2E489 /* Config.swift in Sources */,
 				B201BCE228ED9A3600A2E489 /* BaseAdaptor.swift in Sources */,
 				B201BCE828ED9BBD00A2E489 /* NavigationUtil.swift in Sources */,
+				B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */,
 				B21247A328EE697900142084 /* QueryResponse.swift in Sources */,
 				B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */,
 				B2F7631228C0FA2C0084662D /* CalculatorXApp.swift in Sources */,
@@ -685,14 +689,6 @@
 				kind = branch;
 			};
 		};
-		B2B4F2CB28FEAE2200A799A9 /* XCRemoteSwiftPackageReference "MathExpression" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/peredaniel/MathExpression.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -700,11 +696,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B201119628D3167400E21359 /* XCRemoteSwiftPackageReference "neumorphic" */;
 			productName = Neumorphic;
-		};
-		B2B4F2CC28FEAE2200A799A9 /* MathExpression */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B2B4F2CB28FEAE2200A799A9 /* XCRemoteSwiftPackageReference "MathExpression" */;
-			productName = MathExpression;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

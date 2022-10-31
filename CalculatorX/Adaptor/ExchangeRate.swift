@@ -11,7 +11,7 @@ public class ExchangeRateAdaptor : BaseAdaptor {
     
     public func getCurrencies() {
         let urlString = Config.apiUrl + "Currencies"
-        self.callAPI(urlString: urlString, method: .GET, type: BaseAdaptorType.GetList as AnyObject)
+        self.requestAPI(urlString: urlString, method: .GET, type: BaseAdaptorType.GetList as AnyObject)
     }
     
 }

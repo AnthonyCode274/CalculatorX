@@ -1,0 +1,98 @@
+[
+    {
+        "currencyId": 0,
+        "currencyStatus": 1,
+        "currencyCode": "VND",
+        "currencyName": "Đồng Việt Nam",
+        "currencyRate": 1,
+        "isMainCurrency": true,
+        "createdDate": "2021-11-18T09:11:14",
+        "createdBy": 1,
+        "updatedDate": "2021-11-20T22:57:47",
+        "updatedBy": 1
+    },
+    {
+        "currencyId": 1,
+        "currencyStatus": 1,
+        "currencyCode": "USD",
+        "currencyName": "Đô la Mỹ",
+        "currencyRate": 24021,
+        "isMainCurrency": false,
+        "createdDate": "2022-08-31T16:08:08",
+        "createdBy": 1,
+        "updatedDate": "2022-08-31T16:08:08",
+        "updatedBy": null
+    },
+    {
+        "currencyId": 2,
+        "currencyStatus": 1,
+        "currencyCode": "GBP",
+        "currencyName": "Bảng Anh",
+        "currencyRate": 27715.34,
+        "isMainCurrency": false,
+        "createdDate": "2022-09-28T15:03:35",
+        "createdBy": 1,
+        "updatedDate": "2022-09-28T15:03:35",
+        "updatedBy": null
+    },
+    {
+        "currencyId": 3,
+        "currencyStatus": 1,
+        "currencyCode": "JPY",
+        "currencyName": "Yên Nhật",
+        "currencyRate": 157.3,
+        "isMainCurrency": false,
+        "createdDate": "2022-09-28T15:10:53",
+        "createdBy": 1,
+        "updatedDate": "2022-09-28T15:10:53",
+        "updatedBy": null
+    },
+    {
+        "currencyId": 4,
+        "currencyStatus": 1,
+        "currencyCode": "RBM",
+        "currencyName": "Nhân dân tệ",
+        "currencyRate": 3400.36,
+        "isMainCurrency": false,
+        "createdDate": "2022-09-28T15:10:53",
+        "createdBy": 1,
+        "updatedDate": "2022-09-28T15:10:53",
+        "updatedBy": null
+    },
+    {
+        "currencyId": 5,
+        "currencyStatus": 1,
+        "currencyCode": "EUR",
+        "currencyName": "Đồng Euro",
+        "currencyRate": 24475,
+        "isMainCurrency": false,
+        "createdDate": "2022-09-28T15:10:53",
+        "createdBy": 1,
+        "updatedDate": "2022-09-28T15:10:53",
+        "updatedBy": null
+    },
+    {
+        "currencyId": 6,
+        "currencyStatus": 1,
+        "currencyCode": "KRW",
+        "currencyName": "Won Hàn Quốc",
+        "currencyRate": 17.22,
+        "isMainCurrency": false,
+        "createdDate": "2022-09-28T15:10:53",
+        "createdBy": 1,
+        "updatedDate": "2022-09-28T15:10:53",
+        "updatedBy": null
+    },
+    {
+        "currencyId": 7,
+        "currencyStatus": 1,
+        "currencyCode": "SJC Cây",
+        "currencyName": "Lượng vàng SJC",
+        "currencyRate": 66900000,
+        "isMainCurrency": false,
+        "createdDate": "2022-09-28T15:10:54",
+        "createdBy": 1,
+        "updatedDate": "2022-09-28T15:10:54",
+        "updatedBy": null
+    }
+]

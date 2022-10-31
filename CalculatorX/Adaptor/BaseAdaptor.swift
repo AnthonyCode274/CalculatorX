@@ -39,7 +39,7 @@ public class BaseAdaptor {
     
     static var dataDidFailed: ((_ requestError: RequestApiError, _ message: String?) -> Void)?
         
-    public func callAPI(urlString: String, method: EHttpMethod, type: AnyObject, dataRequest: Data? = nil)
+    public func requestAPI(urlString: String, method: EHttpMethod, type: AnyObject, dataRequest: Data? = nil)
     {
         do {
             var urlRequest = try Config.getRequestAPI(urlString: urlString, method: method)
@@ -81,7 +81,7 @@ public class BaseAdaptor {
             
         } catch let err {
             print("Failed to get request api: \(err.localizedDescription)")
-            BaseAdaptor.dataDidFailed?(.failedToGetRequestApi, err.localizedDescription)
+            BaseAdaptor.dataDidFailed?(.failedToGetRequestApi, "Failed to get request api: \(err.localizedDescription)")
             return
         }
     }

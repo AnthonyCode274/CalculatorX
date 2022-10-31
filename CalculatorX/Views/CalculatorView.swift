@@ -40,7 +40,7 @@ struct CalculatorView: View {
         }
         .frame(maxWidth: UIScreen.screenWidth)
         .onReceive(timer) { _ in
-            if self.maxCountDown > 0 && self.currentRate.requestError != nil {
+            if self.maxCountDown > 0 && self.currentRate.currencies.isEmpty {
                 self.maxCountDown -= 1
                 if self.maxCountDown == 0 {
                     self.currentRate.loadData()

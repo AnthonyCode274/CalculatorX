@@ -103,29 +103,31 @@ public class CurrentRateViewModel: ObservableObject {
     }
     
     private func dataDidSuccess(data: AnyObject, statusCode: Int, type: AnyObject) {
-        let uType = type as? BaseAdaptorType
-        do {
-            switch uType {
-            case .GetList:
-                do {
-                    let result = try MTUtils.getJSONDecoder().decode([Currency].self, from: data as! Data)
-                    self.currencies = result
-                    
-                    if !self.currencies.isEmpty && self.leftCurrency == nil {
-                        self.leftCurrency = self.currencies[0]
+        DispatchQueue.main.async {
+            let uType = type as? BaseAdaptorType
+            do {
+                switch uType {
+                case .GetList:
+                    do {
+                        let result = try MTUtils.getJSONDecoder().decode([Currency].self, from: data as! Data)
+                        self.currencies = result
+                        
+                        if !self.currencies.isEmpty && self.leftCurrency == nil {
+                            self.leftCurrency = self.currencies[0]
+                        }
+                        
+                        if !self.currencies.isEmpty && self.rightCurrency == nil {
+                            self.rightCurrency = self.currencies[1]
+                        }
                     }
-                    
-                    if !self.currencies.isEmpty && self.rightCurrency == nil {
-                        self.rightCurrency = self.currencies[1]
+                    catch let jsonError {
+                        print("Erorr Customer > GetObject at: >>> \(jsonError.localizedDescription)")
                     }
-                }
-                catch let jsonError {
-                    print("Erorr Customer > GetObject at: >>> \(jsonError.localizedDescription)")
-                }
-                break
+                    break
 
-            default:
-                break
+                default:
+                    break
+                }
             }
         }
     }
