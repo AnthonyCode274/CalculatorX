@@ -19,7 +19,7 @@ class CalculatorViewModel: ObservableObject {
     }
         
     var displayText: String {
-        return calculator.displayText.numberFormatted()
+        return calculator.stateOn == .equal ? calculator.displayText.numberFormattedDecimal() : calculator.displayText.numberFormatted()
     }
     
     public var alertSpellOut: String {

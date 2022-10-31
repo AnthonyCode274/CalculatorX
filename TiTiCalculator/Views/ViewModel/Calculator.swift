@@ -15,7 +15,7 @@ struct Calculator {
     private var carryingZeroCount: Int = 0
     private var pressedClear: Bool = false
     public var allResult = [Decimal]()
-    private var stateOn: StateOn? = nil
+    public var stateOn: StateOn? = nil
     
     private struct ArithmeticExpression: Equatable {
         var number: Decimal
@@ -144,15 +144,6 @@ struct Calculator {
     }
     
     mutating func setOperation(_ operation: ArithmeticOperation) {
-        if expression?.operation != nil {
-            setProgressOperation(operation)
-            expression?.operation = operation
-        } else {
-            setProgressOperation(operation)
-        }
-    }
-    
-    mutating func setProgressOperation(_ operation: ArithmeticOperation) {
         guard var number = newNumber ?? result else { return }
         if let existingExpression = expression {
             number = existingExpression.evaluate(with: number)

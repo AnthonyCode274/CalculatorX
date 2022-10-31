@@ -181,7 +181,36 @@ extension String {
             let rangeValueBefore = String(numString[numString.startIndex..<index])
             let rangeValueBAfter = String(numString[index..<numString.endIndex])
             
-            let limitedDecimal = rangeValueBAfter.count > 8 ? String(rangeValueBAfter.prefix(8)).roundDecimals : String(rangeValueBAfter.prefix(.max))
+            let limitedDecimal = rangeValueBAfter.count > 8 ? String(rangeValueBAfter.prefix(8)) : String(rangeValueBAfter)
+            
+            print("\(String(limitedDecimal))")
+            
+            let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
+            let new = valFormatted?.appending(rangeValueBAfter)
+            return new ?? ""
+            
+        } else {
+            formatted = formatter.string(from: NSNumber(value: self.doubleValue))
+        }
+        
+        if let valueFormatted = formatted {
+            return valueFormatted
+        } else {
+            return self
+        }
+    }
+    
+    func numberFormattedDecimal() -> String {
+        let formatter = self.decimalNumberFormatter()
+        
+        var formatted: String? = nil
+        
+        if let index = self.firstIndex(of: ".") {
+            let numString = self.replacingOccurrences(of: ".", with: ",")
+            let rangeValueBefore = String(numString[numString.startIndex..<index])
+            let rangeValueBAfter = String(numString[index..<numString.endIndex])
+            
+            let limitedDecimal = rangeValueBAfter.count > 8 ? String(rangeValueBAfter.prefix(8)).roundDecimals : String(rangeValueBAfter)
             
             print("\(String(limitedDecimal))")
             
