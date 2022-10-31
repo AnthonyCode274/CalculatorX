@@ -39,19 +39,17 @@ struct CalculatorView: View {
             
         }
         .frame(maxWidth: UIScreen.screenWidth)
-//        .onReceive(timer) { _ in
-//            if self.maxCountDown > 0 && self.currentRate.requestError != nil {
-//                self.maxCountDown -= 1
-//                if self.maxCountDown == 0 {
-//                    DispatchQueue.main.async {
-//                        self.currentRate.loadData()
-//                    }
-//                    print("Loading == 0")
-//                    self.maxCountDown = 5
-//                }
-//                print("Loading api..")
-//            }
-//        }
+        .onReceive(timer) { _ in
+            if self.maxCountDown > 0 && self.currentRate.requestError != nil {
+                self.maxCountDown -= 1
+                if self.maxCountDown == 0 {
+                    self.currentRate.loadData()
+                    print("Loading == 0")
+                    self.maxCountDown = 5
+                }
+                print("Loading api..")
+            }
+        }
     }
     
 }

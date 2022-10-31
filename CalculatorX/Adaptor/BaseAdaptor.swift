@@ -77,7 +77,6 @@ public class BaseAdaptor {
                     BaseAdaptor.onSucceed?(data as AnyObject, response.statusCode, type)
                 }
             }
-            
             dataTask.resume()
             
         } catch let err {

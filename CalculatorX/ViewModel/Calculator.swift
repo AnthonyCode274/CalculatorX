@@ -144,7 +144,6 @@ struct Calculator {
     
     mutating func setOperation(_ operation: ArithmeticOperation) {
         if expression?.operation != nil {
-            evaluate()
             setProgressOperation(operation)
             expression?.operation = operation
         } else {

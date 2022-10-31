@@ -17,11 +17,14 @@ public class Config {
     }
     
     static func getRequestAPI(urlString: String, method: EHttpMethod) throws -> URLRequest {
-        guard let url = URL(string: getApiUrl) else { throw RequestApiError.missingUrl }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
-        urlRequest.setValue("IOS", forHTTPHeaderField: "Device")
-        urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        return urlRequest
+        if let url = URL(string: urlString) {
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = method.rawValue
+            urlRequest.setValue("IOS", forHTTPHeaderField: "Device")
+            urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            return urlRequest
+        } else {
+            throw RequestApiError.failedToGetRequestApi
+        }
     }
 }
