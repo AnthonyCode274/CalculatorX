@@ -184,44 +184,20 @@ extension String {
         if let index = self.firstIndex(of: ".") {
             let numString = self.replacingOccurrences(of: ".", with: ",")
             let rangeValueBefore = String(numString[numString.startIndex..<index])
-            let rangeValueBAfter = String(numString[index..<numString.endIndex])
-            let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
-            let new = valFormatted?.appending(rangeValueBAfter)
-            return new ?? ""
+            let rangeValueAfter = String(numString[index..<numString.endIndex])
             
-        } else {
-            formatted = formatter.string(from: NSNumber(value: self.doubleValue))
-        }
-        
-        if let valueFormatted = formatted {
-            return valueFormatted
-        } else {
-            return self
-        }
-    }
-    
-    func numberFormattedDecimal() -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.locale = Locale.current
-        formatter.usesGroupingSeparator = true
-        formatter.decimalSeparator = ","
-        formatter.groupingSeparator = "."
-        
-        var formatted: String? = nil
-        
-        if let index = self.firstIndex(of: ".") {
-            let numString = self.replacingOccurrences(of: ".", with: ",")
-            let rangeValueBefore = String(numString[numString.startIndex..<index])
-            let rangeValueBAfter = String(numString[index..<numString.endIndex])
+            let count = rangeValueBefore.count + rangeValueAfter.count
             
-            let limitedDecimal = rangeValueBAfter.count > 8 ? String(rangeValueBAfter.prefix(8)).roundDecimals : String(rangeValueBAfter)
-            
-            print("\(String(limitedDecimal))")
-            
-            let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
-            let new = valFormatted?.appending(limitedDecimal)
-            return new ?? ""
+            if count >= 17 {
+                if rangeValueAfter.count >= 17 {
+                    let newValueAfter = rangeValueAfter.prefix(17 - rangeValueBefore.count)
+                    let valFormatted = formatter.string(from: NSNumber(value: String(rangeValueBefore).doubleValue))
+                    let new = valFormatted?.appending(newValueAfter)
+                    return new ?? ""
+                }
+            } else {
+                return self
+            }
             
         } else {
             formatted = formatter.string(from: NSNumber(value: self.doubleValue))

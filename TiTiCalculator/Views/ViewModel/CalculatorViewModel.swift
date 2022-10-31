@@ -19,7 +19,7 @@ class CalculatorViewModel: ObservableObject {
     }
         
     var displayText: String {
-        return calculator.stateOn == .digit ? calculator.displayText.numberFormatted() : calculator.displayText.numberFormattedDecimal()
+        return calculator.displayText
     }
     
     public var alertSpellOut: String {
@@ -51,10 +51,13 @@ class CalculatorViewModel: ObservableObject {
         switch buttonType {
         case .threeZero:
             calculator.setThreeZero()
+            calculator.stateOn = .digit
         case .digit(let digit):
             calculator.setDigit(digit)
+            calculator.stateOn = .digit
         case .operation(let operation):
             calculator.setOperation(operation)
+            calculator.stateOn = .operation
         case .negative:
             calculator.toggleSign()
         case .percent:
@@ -63,6 +66,7 @@ class CalculatorViewModel: ObservableObject {
             calculator.setDecimal()
         case .equals:
             calculator.evaluate()
+            calculator.stateOn = .equal
         case .allClear:
             calculator.allClear()
         case .clear:

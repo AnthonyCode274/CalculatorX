@@ -50,7 +50,7 @@ struct Calculator {
     // MARK: - COMPUTED PROPERTIES
     
     public var displayText: String {
-        return getNumberString(forNumber: number, withCommas: true)
+        return getNumberString(forNumber: number, withCommas: true).numberFormatted()
     }
     
     public var showAllClear: Bool {
@@ -97,7 +97,6 @@ struct Calculator {
                 addNumber(digit)
             }
         }
-        stateOn = .digit
     }
     
     mutating func addNumber(_ digit: Digit) {
@@ -111,7 +110,6 @@ struct Calculator {
     }
     
     mutating func setThreeZero() {
-        stateOn = nil
         if containsDecimal {
             if expression?.operation != nil && operationIsHighlighted(expression!.operation) {
                 addNumber(.zero)
@@ -148,8 +146,6 @@ struct Calculator {
         } else {
             setProgressOperation(operation)
         }
-        
-        stateOn = .operation
     }
     
     mutating func setProgressOperation(_ operation: ArithmeticOperation) {
@@ -218,7 +214,6 @@ struct Calculator {
         } else {
             allResult.append(e)
         }
-        stateOn = .equal
     }
     
     mutating func chervonBackRemove() {
@@ -257,7 +252,6 @@ struct Calculator {
             let sum = allResult.reduce(0, {$0 + $1})
             newNumber = sum
             expression = nil
-            stateOn = .gt
             print("\(allResult.toJsonString()) - sum: \(sum)")
         }
     }
