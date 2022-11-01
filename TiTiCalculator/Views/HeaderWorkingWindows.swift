@@ -26,7 +26,7 @@ struct HeaderWorkingWindows: View {
     }
     
     @ViewBuilder var displayStateOn: some View {
-        if viewModel.calculator.stateOn == .gt {
+        if viewModel.stateOn == .gt {
             Text("GT".uppercased())
                 .font(.custom("AltoneTrial-BoldOblique", size: 16))
                 .foregroundColor(.black)

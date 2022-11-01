@@ -156,8 +156,7 @@ extension String {
         let number = (self as NSString).doubleValue
         let formatter = NumberFormatter()
         formatter.numberStyle = .spellOut
-        formatter.maximumFractionDigits = 3
-        formatter.locale = Locale(identifier: "vi_VN")
+        formatter.locale = Locale.current
         let numberAsWord = String(formatter.string(from: NSNumber(value: number)) ?? "").capitalizeFirstLetter()
           
         var newString = numberAsWord.replacingOccurrences(of: "nghìn", with: "nghìn,").replacingOccurrences(of: "tỷ", with: "tỷ,").replacingOccurrences(of: "triệu", with: "triệu,").replacingOccurrences(of: "phẩy", with: "phẩy,")

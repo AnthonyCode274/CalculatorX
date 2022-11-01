@@ -50,7 +50,7 @@ struct Calculator {
     // MARK: - COMPUTED PROPERTIES
     
     public var displayText: String {
-        return getNumberString(forNumber: number, withCommas: true).numberFormatted()
+        return getNumberString(forNumber: number, withCommas: true)
     }
     
     public var showAllClear: Bool {
