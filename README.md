@@ -1,6 +1,7 @@
 # TiTiCalculator!
 
-Phần mềm bao gôm các chức năng:
+<b>Ứng dụng TiTiCalculator<b/>
+Bao gôm các chức năng:
  - Tính toán thông dụng
  - Chuyển đổi tỷ giá
  - Đánh vần chữ số
