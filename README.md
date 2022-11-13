@@ -2,9 +2,8 @@
 
 ## Functions implemented in the project:
 - Calculate like apple calculator app
-- Convert exchange rates, world currency denominations, gold rates (limited)
+- Convert exchange rates, world currency denominations, gold rates,.. (online/offline)
 - Spelling digits including decimals
-- Call api
 - Light/Dark theme changed by device
 
 ## Languages & Tools
