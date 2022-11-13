@@ -1,5 +1,5 @@
 //
-//  Calculator.swift
+//  Calculator.swift (Model (Data & Logic), 00P / POP)
 //  CalculatorX
 //
 //  Created by HauNguyen on 25/10/2565 BE.

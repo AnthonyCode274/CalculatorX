@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B2F7630D28C0FA2C0084662D"
-               BuildableName = "TiTiCalculator.app"
-               BlueprintName = "TiTiCalculator"
-               ReferencedContainer = "container:TiTiCalculator.xcodeproj">
+               BuildableName = "CalculatorX.app"
+               BlueprintName = "CalculatorX"
+               ReferencedContainer = "container:CalculatorX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2F7630D28C0FA2C0084662D"
-            BuildableName = "TiTiCalculator.app"
-            BlueprintName = "TiTiCalculator"
-            ReferencedContainer = "container:TiTiCalculator.xcodeproj">
+            BuildableName = "CalculatorX.app"
+            BlueprintName = "CalculatorX"
+            ReferencedContainer = "container:CalculatorX.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2F7630D28C0FA2C0084662D"
-            BuildableName = "TiTiCalculator.app"
-            BlueprintName = "TiTiCalculator"
-            ReferencedContainer = "container:TiTiCalculator.xcodeproj">
+            BuildableName = "CalculatorX.app"
+            BlueprintName = "CalculatorX"
+            ReferencedContainer = "container:CalculatorX.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

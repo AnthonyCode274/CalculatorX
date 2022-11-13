@@ -107,7 +107,7 @@ public extension Encodable {
     
     func toJsonString() -> String {
         do {
-            let jsonData = try MTUtils.getJSONEncoder().encode(self)
+            let jsonData = try Utilities.getJSONEncoder().encode(self)
             return String(data: jsonData, encoding: .utf8)!
         }
         catch let jsonError {
@@ -237,6 +237,7 @@ extension String {
     var doubleValue: Double {
         return (self as NSString).doubleValue
     }
+    
 }
 
 extension Character {

@@ -106,7 +106,7 @@ public class CurrentRateViewModel: ObservableObject {
                 switch uType {
                 case .GetList:
                     do {
-                        let result = try MTUtils.getJSONDecoder().decode([Currency].self, from: data as! Data)
+                        let result = try Utilities.getJSONDecoder().decode([Currency].self, from: data as! Data)
                         let sorted = self.dataSorted(result)
                         self.currencies = sorted
                         self.loadDataCurrency(sorted)
