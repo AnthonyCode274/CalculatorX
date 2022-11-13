@@ -1,13 +1,13 @@
-## CalculatorX! (Calculator mobile app)
+# CalculatorX! (Calculator mobile app)
 
-# Functions implemented in the project:
+## Functions implemented in the project:
 - Calculate like apple calculator app
 - Convert exchange rates, world currency denominations, gold rates (limited)
 - Spelling digits including decimals
 - Call api
 - Light/Dark theme changed by device
 
-# Languages & Tools
+## Languages & Tools
 - [SwiftUI](https://developer.apple.com/xcode/swiftui/)
 - [MVVM Architecture](https://www.hackingwithswift.com/books/ios-swiftui/introducing-mvvm-into-your-swiftui-project)
 - [XCode](https://developer.apple.com/xcode/)
