@@ -1,6 +1,6 @@
-# TiTiCalculator!
+# CalculatorX!
 
-# Ứng dụng TiTiCalculator (TiTiCalculator Application)
+# Ứng dụng CalculatorX (Calculator Application)
 
 Bao gôm các chức năng (Includes functions):
  - Tính toán thông dụng (Common Calculations)
