@@ -13,4 +13,8 @@
 - [XCode](https://developer.apple.com/xcode/)
 - Object Oriented Programming (OOP) is also used in the project
 
+## Library
+- [Neumorphic SwiftUI](https://github.com/costachung/neumorphic.git) (Button style)
+- [NukeUI](https://github.com/kean/NukeUI.git) (Async image)
+
 ![banner_titicalculator](https://user-images.githubusercontent.com/63950809/200575688-39c6f829-8200-4d1b-b64f-a28020ab3d45.png)
