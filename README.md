@@ -9,7 +9,7 @@
 
 # Languages & Tools
 - [SwiftUI](https://developer.apple.com/xcode/swiftui/)
-- [MVVM] (https://www.hackingwithswift.com/books/ios-swiftui/introducing-mvvm-into-your-swiftui-project)
+- [MVVM Architecture](https://www.hackingwithswift.com/books/ios-swiftui/introducing-mvvm-into-your-swiftui-project)
 - [XCode](https://developer.apple.com/xcode/)
 - Object Oriented Programming (OOP) is also used in the project
 
