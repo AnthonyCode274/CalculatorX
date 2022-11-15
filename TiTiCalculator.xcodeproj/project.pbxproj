@@ -39,7 +39,7 @@
 		B255A84A2923B16A00C70859 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255A8492923B16A00C70859 /* Reachability.swift */; };
 		B255A84C2923B83B00C70859 /* NetworkChecking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255A84B2923B83B00C70859 /* NetworkChecking.swift */; };
 		B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF0290F6CF400173206 /* DataLocal.swift */; };
-		B25C3DF7290F7ED600173206 /* MaytechIntroduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */; };
+		B25C3DF7290F7ED600173206 /* WebViewDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF6290F7ED600173206 /* WebViewDisplay.swift */; };
 		B25C3DF9290F7EF000173206 /* Infomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DF8290F7EF000173206 /* Infomation.swift */; };
 		B25C3DFC290F7F2200173206 /* TiTiIntroductuion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */; };
 		B25CE93328FE409600BB7E6E /* TextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CE93228FE409500BB7E6E /* TextDictionary.swift */; };
@@ -109,7 +109,7 @@
 		B255A8492923B16A00C70859 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B255A84B2923B83B00C70859 /* NetworkChecking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChecking.swift; sourceTree = "<group>"; };
 		B25C3DF0290F6CF400173206 /* DataLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLocal.swift; sourceTree = "<group>"; };
-		B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaytechIntroduction.swift; sourceTree = "<group>"; };
+		B25C3DF6290F7ED600173206 /* WebViewDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewDisplay.swift; sourceTree = "<group>"; };
 		B25C3DF8290F7EF000173206 /* Infomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infomation.swift; sourceTree = "<group>"; };
 		B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiTiIntroductuion.swift; sourceTree = "<group>"; };
 		B25CE93228FE409500BB7E6E /* TextDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDictionary.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 		B25C3DFA290F7EF400173206 /* info */ = {
 			isa = PBXGroup;
 			children = (
-				B25C3DF6290F7ED600173206 /* MaytechIntroduction.swift */,
+				B25C3DF6290F7ED600173206 /* WebViewDisplay.swift */,
 				B25C3DF8290F7EF000173206 /* Infomation.swift */,
 				B25C3DFB290F7F2200173206 /* TiTiIntroductuion.swift */,
 				B2A0865D290FBDD400737DF0 /* InfoItem.swift */,
@@ -542,7 +542,7 @@
 				B201BCE828ED9BBD00A2E489 /* NavigationUtil.swift in Sources */,
 				B25C3DF1290F6CF400173206 /* DataLocal.swift in Sources */,
 				B21247A328EE697900142084 /* QueryResponse.swift in Sources */,
-				B25C3DF7290F7ED600173206 /* MaytechIntroduction.swift in Sources */,
+				B25C3DF7290F7ED600173206 /* WebViewDisplay.swift in Sources */,
 				B28343BA28D0EDA200DFEAE4 /* CalculatorView.swift in Sources */,
 				B2F7631228C0FA2C0084662D /* TiTiCalculatorApp.swift in Sources */,
 				B2A0865E290FBDD400737DF0 /* InfoItem.swift in Sources */,
