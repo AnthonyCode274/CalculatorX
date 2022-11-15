@@ -1,4 +1,4 @@
-# CalculatorX! (Calculator mobile app)
+# TiTiCalculator! (Calculator mobile app)
 
 ## Functions implemented in the project:
 - Calculate like apple calculator app
