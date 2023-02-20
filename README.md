@@ -16,4 +16,9 @@
 - [Neumorphic SwiftUI](https://github.com/costachung/neumorphic.git) (Button style)
 - [NukeUI](https://github.com/kean/NukeUI.git) (Async image)
 
-![banner_titicalculator](https://user-images.githubusercontent.com/63950809/200575688-39c6f829-8200-4d1b-b64f-a28020ab3d45.png)
+<h2 align="center">📷 Preview screen short 📷</h2>
+
+## Light Mode
+<img width="1440" alt="Screenshot 2566-02-20 at 13 34 07" src="https://user-images.githubusercontent.com/63950809/220030986-e6992f17-a0d6-443f-8bd5-58a94457e922.png">
+## Dark mode
+<img width="1440" alt="Screenshot 2566-02-20 at 13 31 24" src="https://user-images.githubusercontent.com/63950809/220031605-84c68f33-311d-4999-b546-10d644152737.png">
