@@ -20,5 +20,6 @@
 
 ## Light Mode
 <img width="1440" alt="Screenshot 2566-02-20 at 13 34 07" src="https://user-images.githubusercontent.com/63950809/220032096-83ce1575-bad4-473c-a00f-5e537ff8b762.png">
+
 ## Dark mode
 <img width="1440" alt="Screenshot 2566-02-20 at 13 31 24" src="https://user-images.githubusercontent.com/63950809/220032011-8da2ea20-53b0-4630-893a-9d4d7b001e2d.png">
