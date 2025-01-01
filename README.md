@@ -18,6 +18,9 @@
 
 <h2 align="center">📷 Preview screen short 📷</h2>
 
+## Screen app
+![interface-titicalculator](https://github.com/user-attachments/assets/4c29c03a-0510-41f7-bff0-9e176b2d2ec2)
+
 ## Light Mode
 <img width="1440" alt="Screenshot 2566-02-20 at 13 34 07" src="https://user-images.githubusercontent.com/63950809/220032096-83ce1575-bad4-473c-a00f-5e537ff8b762.png">
 
